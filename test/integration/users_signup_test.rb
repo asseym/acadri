@@ -20,5 +20,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       end
       assert_template 'users/show'
       assert_select '.alert', 'Successfully Registered The New User'
+      assert is_logged_in?
     end
 end
