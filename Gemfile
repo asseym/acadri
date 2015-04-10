@@ -40,6 +40,11 @@ gem 'rename'
 # Puma web server instead of WEBrick
 gem 'puma',             '~> 2.11.0'
 
+# Faking data
+gem 'faker',            '~> 1.4.0' 
+gem 'will_paginate',           '~> 3.0.0'
+gem 'bootstrap-will_paginate', '~> 0.0.10'              
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
