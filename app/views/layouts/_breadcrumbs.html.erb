@@ -1,0 +1,20 @@
+<ul class="page-breadcrumb">
+<% if @breadcrumbs %>
+    <% @breadcrumbs.each do | bcrumb | %>
+     <li>
+     <% if @breadcrumbs.first == bcrumb %>
+      <i class="fa fa-home"></i>
+     <% end %> 
+     <%= link_to bcrumb[:options][:title], bcrumb[:url] %>
+     <% if @breadcrumbs.last != bcrumb %>
+       <i class="fa fa-angle-right"></i>
+     <% end %>
+    </li>
+   <% end %>
+<% else %>
+   <li>
+       <i class="fa fa-home"></i>
+       <%= link_to "Home", root_path %>
+   </li>
+<% end %>
+</ul>

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   
   def index
+    @user = current_user
     @users = User.paginate(page: params[:page])
   end
   
@@ -58,7 +59,7 @@ class UsersController < ApplicationController
     #Filters
     #Confirm logged in user
     def logged_in_user
-      unless logged_in?
+      unless user_signed_in?
         store_location
         flash[:danger] = "Please log in first!"
         redirect_to login_url

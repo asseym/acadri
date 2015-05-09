@@ -77,6 +77,37 @@ p {
   }
 }
 
+.lead.boxed a {
+float: left;
+padding-top: 15px;
+margin-left: 0px;
+    color: white;
+}
+
+.lead.boxed a:hover {
+text-decoration:none;
+}
+
+span.erp{
+color: black;
+font-weight:bold;
+}
+
+/* Toggler customization */
+.menu-toggler.sidebar-toggler.no-padding{
+    padding-top: 0px;
+}
+
+/* Delete button custom */
+.btn.btn-xs.btn-danger{
+    color:white;
+}
+
+/* Remove left padding from col-md-6 */
+.col-md-6.pull-left{
+    padding-left: 0px;
+}
+
 /* footer */
 
 footer {

@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.validate
+//= require jquery.validate.additional-methods
+//= require twitter/bootstrap
 //= require bootstrap
 //= require turbolinks
+//= require metronic/metronic.js
 //= require_tree .

@@ -3,13 +3,13 @@ require 'test_helper'
 class StaticPagesControllerTest < ActionController::TestCase
   
   def setup
-    @base_title = "S!mple ERP"
+    @base_title = "S!mple.ERP"
   end
   
   test "should get home" do
     get :home
     assert_response :success
-    assert_select "title", "#{@base_title}"
+    assert_select "title", "Sign In | #{@base_title}"
   end
 
   test "should get help" do

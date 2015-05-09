@@ -15,6 +15,12 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# Jquery plugins
+gem 'jquery-plugins-rails'
+
+#jquery validate plugin
+gem 'jquery-validation-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -26,7 +32,25 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 #bootstrap sass
+
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-addons-rails'
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+gem 'simple-line-icons-rails'
+gem 'font-awesome-rails'
+gem 'bootstrap-switch-rails'
+
+#Breadcrumbs
+gem "breadcrumbs_on_rails"
+
+#Application configiration
+gem 'rails_config'
+
+#authentication module
+gem 'devise'
+   
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -43,7 +67,9 @@ gem 'puma',             '~> 2.11.0'
 # Faking data
 gem 'faker',            '~> 1.4.0' 
 gem 'will_paginate',           '~> 3.0.0'
-gem 'bootstrap-will_paginate', '~> 0.0.10'              
+gem 'bootstrap-will_paginate', '~> 0.0.10'
+gem 'install_theme'
+           
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -8,8 +8,7 @@
 
 User.create!(name:  "Example User",
              email: "example@example.com",
-             password:              "foobar",
-             password_confirmation: "foobar",
+             password:              "foobar311", 
              admin: true)
 
 99.times do |n|
@@ -18,6 +17,23 @@ User.create!(name:  "Example User",
   password = "password"
   User.create!(name:  name,
                email: email,
-               password:              password,
-               password_confirmation: password)
+               password:              password)
+end
+
+countries = [
+  ["Uganda", "UG", 256],
+  ["Kenya", "KE", 254],
+  ["Tanzania", "TZ", 255],
+  ["Rwanda", "RW", 256],
+  ["Burundi", "BU", 257]]
+
+
+countries.each do |country|
+  name = country[0]
+  c_code = country[1]
+  telephone_code = country[2]
+  Country.create!(name: name,
+                  c_code: c_code,
+                  telephone_code: telephone_code
+                  )
 end
