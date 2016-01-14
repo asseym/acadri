@@ -1,0 +1,25 @@
+
+                            
+                            <div class="form-group">   
+                                <% new_objects = [] %>
+                                <% 3.times do |n| new_objects.push(@program.programvenues.build) end %>   
+                            <%= @f.fields_for :programvenues, new_objects  do |programvenues_form| %>
+                            <% if programvenues_form.index == 0 %>
+                            <%= programvenues_form.label :venues, :class => 'col-md-3 control-label' %>
+                            <div class="col-md-9">
+                                <% end %>
+                                <div class="input-inline">
+                                    <div class="input-group">
+                                        <%= programvenues_form.text_field :name, :class => 'form-control', :placeholder => 'Name' %>
+                                        <span class="input-group-addon">
+                                        	<i class="fa fa-map-marker"></i>
+                                        </span>
+                                        <%= programvenues_form.select :country_id, 
+                                        options_from_collection_for_select(Country.all, :id, :name, :country_id), {}, { :class => 'form-control' } %>
+                                    </div>
+                                </div><br /><br />
+                                 <% if programvenues_form.index == new_objects.count-1 %>   
+                                </div>
+                                <% end %>
+                                <% end %>
+                            </div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  training_id:
+  invoice_date: 2015-09-22
+  invoice_terms: MyText
+  currency: MyString
+
+two:
+  training_id:
+  invoice_date: 2015-09-22
+  invoice_terms: MyText
+  currency: MyString

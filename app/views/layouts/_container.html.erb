@@ -1,14 +1,17 @@
 		<!-- BEGIN CONTENT -->
 		<div class="page-content-wrapper">
-			<div class="page-content" style="min-height:1269px">
+			<div class="page-content">
                 <!-- BEGIN PAGE HEADER-->
-                <h3 class="page-title">
-                  <% page_title = inline_title(params[:controller], yield(:minor_title)) %>
-                  <%= page_title[:major] %> <small> <i class="fa fa-angle-right"></i> <%= page_title[:minor] %> </small>
-                </h3>
+    			<div class="page-head">
+    				<!-- BEGIN PAGE TITLE -->
+    				<div class="page-title">
+                        <h1><% page_title = inline_title(params[:controller], yield(:minor_title)) %>
+                            <%= page_title[:major] %> <small> <i class="fa fa-angle-right"></i> <%= page_title[:minor] %> </small></h1>
+    				</div>
+    			</div>
                 <div class="page-bar">
                     <%= render 'layouts/breadcrumbs' %>
-                    <%= render 'layouts/actions' %>
+                    <!--<%= render 'layouts/actions' %>-->
                 </div>
                 <!-- END PAGE HEADER-->
 				<%= yield %>

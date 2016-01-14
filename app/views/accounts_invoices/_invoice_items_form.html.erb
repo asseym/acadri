@@ -1,0 +1,55 @@
+<%
+=begin
+%>
+        <%= @f.fields_for :accounts_invoice_items do |item_fields| %>
+        <div class="form-group">
+            <%= item_fields.label :description, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= item_fields.text_field :description, :class => 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= item_fields.label :units, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= item_fields.text_field :units, :class => 'form-control' %>
+            </div>
+        </div>        
+        <div class="form-group">
+            <%= item_fields.label :unit_cost, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= item_fields.text_field :unit_cost, :class => 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= item_fields.label :comp_action, :class => 'col-md-3 control-label' %>
+            <div class="col-md-2">
+                <%= item_fields.select :comp_action, AccountsInvoice::ADD_SUBTRACT_ACTIONS,  {}, { :class => 'form-control' } %>
+            </div>
+        </div>
+        
+        <% end %>
+        
+<%
+=end
+%>
+                <div class="form-group">
+                <%= @f.fields_for :accounts_invoice_items do |item_fields| %>
+                <%= item_fields.label "Invoice Items", :class => 'col-md-3 control-label' %>
+                <div class="col-md-9">
+                    <div class="input-inline">
+                        <div class="input-group">
+                            <%= item_fields.text_field 'description[]', :class => 'form-control', :placeholder => 'Item description...' %>
+                            <span class="input-group-addon">
+                            </span>
+                            <%= item_fields.text_field 'units[]', :class => 'form-control', :placeholder => 'Units...' %>
+                            <span class="input-group-addon">
+                            </span>
+                            <%= item_fields.text_field 'unit_cost[]', :class => 'form-control', :placeholder => 'Unit cost...' %>
+                            <span class="input-group-addon">
+                            </span>
+                            <%= item_fields.select 'comp_action[]', AccountsInvoice::ADD_SUBTRACT_ACTIONS,  {}, { :class => 'form-control' } %>
+                          </div>
+                      </div><br /><br /> 
+                  </div>           
+                <% end %>
+                </div> 

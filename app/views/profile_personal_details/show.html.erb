@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @profile_personal_detail.first_name %>
+</p>
+
+<p>
+  <strong>Other names:</strong>
+  <%= @profile_personal_detail.other_names %>
+</p>
+
+<p>
+  <strong>Religion:</strong>
+  <%= @profile_personal_detail.religion %>
+</p>
+
+<p>
+  <strong>Sex:</strong>
+  <%= @profile_personal_detail.sex %>
+</p>
+
+<p>
+  <strong>Marital status:</strong>
+  <%= @profile_personal_detail.marital_status %>
+</p>
+
+<p>
+  <strong>Birthday:</strong>
+  <%= @profile_personal_detail.birthday %>
+</p>
+
+<p>
+  <strong>Nationality:</strong>
+  <%= @profile_personal_detail.nationality %>
+</p>
+
+<p>
+  <strong>Languages:</strong>
+  <%= @profile_personal_detail.languages %>
+</p>
+
+<%= link_to 'Edit', edit_profile_personal_detail_path(@profile_personal_detail) %> |
+<%= link_to 'Back', profile_personal_details_path %>

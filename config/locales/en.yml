@@ -20,4 +20,27 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  passport_no: "Passport Number"
+  sex: "Gender"
+  activerecord:
+    models:
+      user: "Staff"
+      profile_personal_detail: "Personal Details"
+      profile_general_detail: "General Details"
+      participant: "Participant"
+      accounts_invoice: "Invoice"
+      attributes:
+        user:
+          user_level_admin: "Department"
+          admin: "Administrator"
+          is_staff: "Staff Member"
+        profile_personal_detail:
+          first_name: "First Name"
+        profile_general_detail:
+          staff_id: "Staff ID Number"
+          cv: "Employee CV"
+          photo: "Employee Portrait"
+        participant:
+          passport_no: "Passport Number"
+        accounts_invoice:
+          id: "Invoice Number"

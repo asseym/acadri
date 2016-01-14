@@ -1,0 +1,68 @@
+<%= form_for @opportunity, :html => { :class => "form-horizontal program", :multipart => true } do |f| %>
+        <div class="form-body">
+            <% if @opportunity.errors.any? %>
+            <div id="error_expl" class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <%= pluralize(@opportunity.errors.count, "error") %> prohibited this program from being saved:
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <% @opportunity.errors.full_messages.each do |msg| %>
+                        <li>
+                            <%= msg %>
+                        </li><% end %>
+                    </ul>
+                </div>
+            </div>
+            <% end %>
+            <div class="tab-pane active" id="tab1">
+                <h3 class="block">Provide Opportunity Details</h3>
+            <div class="form-group">
+                <%= f.label :title, :class => 'col-md-3 control-label' %>
+                <div class="col-md-9">
+                    <%= f.text_field :title, :class => 'form-control' %>
+                </div><%= error_span(@opportunity[:title]) %>
+            </div>
+            <div class="form-group">
+                <%= f.label :description, :class => 'col-md-3 control-label' %>
+                <div class="col-md-9">
+                    <%= f.text_area :description, :class => 'wysihtml5' %>
+                </div><%= error_span(@opportunity[:description]) %>
+            </div>
+            <div class="form-group">
+                <%= f.label :opportunity_status_id, :class => 'col-md-3 control-label' %>
+                <div class="col-md-3">
+                    <%= f.select :opportunity_status_id, 
+                                options_from_collection_for_select(OpportunityStatus.all, :id, :name, @opportunity.opportunity_status_id), {}, { :class => 'form-control' } %>
+                </div><%= error_span(@opportunity[:opportunity_status_id]) %>
+            </div>
+            <div class="form-group">
+                <%= f.label :user_id, :class => 'col-md-3 control-label' %>
+                <div class="col-md-3">
+                    <%= f.select :user_id, 
+                                options_from_collection_for_select(User.where(is_staff: true).all, :id, :name, @opportunity.user_id), {}, { :class => 'form-control disabled' } %>
+                </div><%= error_span(@opportunity[:opportunity_status_id]) %>
+            </div>
+            <div class="form-group">
+                <%= f.label :attachment, :class => 'col-md-3 control-label' %>
+                <div class="col-md-9">
+                    <%= f.file_field :attachment, :class => 'form-control' %>
+                </div><%= error_span(@opportunity[:attachment]) %>
+            </div>
+        </div>            
+            <!-- BEGIN FORM ACTIONS -->
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <!--<%= f.submit nil, :class => 'btn green', width: '20em' %>-->
+                        <%= link_to t('.Create', :default => t("helpers.links.create")), '#', 
+                                        :onclick => "$(this).closest('form').submit()", 
+                                        :class => 'btn green' %><%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                                        opportunities_path, :class => 'btn default' %>
+                    </div>
+                </div>
+            </div><!-- END FORM ACTIONS -->
+            <% end %>
+        </div>

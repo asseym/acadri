@@ -1,0 +1,2 @@
+module ProductVenuesHelper
+end

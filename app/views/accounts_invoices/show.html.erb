@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Organisation:</strong>
+  <%= @accounts_invoice.organisation %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @accounts_invoice.date %>
+</p>
+
+<p>
+  <strong>Invoice details:</strong>
+  <%= @accounts_invoice.invoice_details %>
+</p>
+
+<p>
+  <strong>Invoice terms:</strong>
+  <%= @accounts_invoice.invoice_terms %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @accounts_invoice.currency %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @accounts_invoice.amount %>
+</p>
+
+<%= link_to 'Edit', edit_accounts_invoice_path(@accounts_invoice) %> |
+<%= link_to 'Back', accounts_invoices_path %>

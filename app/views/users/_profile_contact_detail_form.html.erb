@@ -1,0 +1,42 @@
+
+        <%= @f.fields_for :profile_contact_detail  do |contact_fields| %>
+        <div class="form-group">
+            <%= contact_fields.label :address, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= contact_fields.text_field :address, :class => 'form-control' %>
+            </div><%= error_span(@user[:address]) %>
+        </div>
+        <div class="form-group">
+            <%= contact_fields.label :email_address, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= contact_fields.text_field :email_address, :class => 'form-control' %>
+            </div><%= error_span(@user[:email_address]) %>
+        </div>
+        <div class="form-group">
+            <%= contact_fields.label :business_phone, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= contact_fields.text_field :business_phone, :class => 'form-control' %>
+            </div><%= error_span(@user[:business_phone]) %>
+        </div>
+        <div class="form-group">
+            <%= contact_fields.label :mobile_phone, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= contact_fields.text_field :mobile_phone, :class => 'form-control' %>
+            </div><%= error_span(@user[:mobile_phone]) %>
+        </div>
+        <div class="form-group">
+            <%= contact_fields.label :home_phone, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= contact_fields.text_field :home_phone, :class => 'form-control' %>
+            </div><%= error_span(@user[:home_phone]) %>
+        </div>
+        <div class="form-group">
+            <%= contact_fields.label :fax, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= contact_fields.text_field :fax, :class => 'form-control' %>
+            </div><%= error_span(@user[:fax]) %>
+        </div>
+        <% end %>
+
+
+            

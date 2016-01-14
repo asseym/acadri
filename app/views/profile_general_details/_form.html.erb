@@ -1,0 +1,45 @@
+<%= form_for(@profile_general_detail) do |f| %>
+  <% if @profile_general_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile_general_detail.errors.count, "error") %> prohibited this profile_general_detail from being saved:</h2>
+
+      <ul>
+      <% @profile_general_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :education %><br>
+    <%= f.text_area :education %>
+  </div>
+  <div class="field">
+    <%= f.label :staff_id %><br>
+    <%= f.text_field :staff_id %>
+  </div>
+  <div class="field">
+    <%= f.label :date_hired %><br>
+    <%= f.date_select :date_hired %>
+  </div>
+  <div class="field">
+    <%= f.label :passport_number %><br>
+    <%= f.text_field :passport_number %>
+  </div>
+  <div class="field">
+    <%= f.label :drivers_licence %><br>
+    <%= f.text_field :drivers_licence %>
+  </div>
+  <div class="field">
+    <%= f.label :salary %><br>
+    <%= f.number_field :salary %>
+  </div>
+  <div class="field">
+    <%= f.label :NSSF_number %><br>
+    <%= f.text_field :NSSF_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

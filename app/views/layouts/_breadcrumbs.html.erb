@@ -1,4 +1,4 @@
-<ul class="page-breadcrumb">
+<ul class="page-breadcrumb breadcrumb">
 <% if @breadcrumbs %>
     <% @breadcrumbs.each do | bcrumb | %>
      <li>
@@ -7,7 +7,7 @@
      <% end %> 
      <%= link_to bcrumb[:options][:title], bcrumb[:url] %>
      <% if @breadcrumbs.last != bcrumb %>
-       <i class="fa fa-angle-right"></i>
+       <i class="fa fa-circle"></i>
      <% end %>
     </li>
    <% end %>

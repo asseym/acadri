@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <% if !(["home"].include?(action_name) && ["static_pages"].include?(params[:controller])) %>
+    <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" %>
+  <% end %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+	<%= render 'layouts/shim' %>
+    <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style>
+  </head>
+  <!-- END HEAD -->
+  <!-- BEGIN BODY -->
+  <% if [nil, "new"].include?(action_name) && [nil, "devise/sessions"].include?(params[:controller]) %>
+    <body class="login">
+  <% else %>
+    <body class="page-sidebar-closed-hide-logo page-container-bg-solid page-sidebar-closed-hide-logo page-header-fixed">
+        <%= render 'layouts/header' %>
+        <div class="clearfix">
+        </div>
+  <% end %>
+  <% if [nil, "new"].include?(action_name) && [nil, "devise/sessions"].include?(params[:controller]) %>
+      <%= render 'layouts/login' %>
+  <% else %>
+  <div class="page-container">
+      <%= render 'layouts/sidebar' %>
+      <%= render 'layouts/container' %>
+  </div>
+  <% end %>
+	  <%= render 'layouts/footer' %>
+	  <%= debug(params) if Rails.env.development? %>
+ 
+  </body>
+</html>

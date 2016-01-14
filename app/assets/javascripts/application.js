@@ -12,10 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
+//= require jquery-ui/tabs
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require twitter/bootstrap
 //= require bootstrap
+//= require bootstrap-wysihtml5
 //= require turbolinks
 //= require metronic/metronic.js
 //= require_tree .

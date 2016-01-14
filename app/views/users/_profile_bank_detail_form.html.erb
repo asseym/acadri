@@ -1,0 +1,13 @@
+
+        <%= @f.fields_for :profile_bank_detail do |bank_fields| %>
+        <div class="form-group">
+            <%= bank_fields.label :bank_details, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= bank_fields.text_area :bank_details, :class => 'wysihtml5' %>
+            </div>
+        </div>
+        
+        <% end %>
+
+
+            

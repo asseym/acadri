@@ -34,3 +34,7 @@ class ActiveSupport::TestCase
       defined?(post_via_redirect)
     end
 end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
+end

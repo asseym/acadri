@@ -1,0 +1,38 @@
+<%= form_for @program_venue, :html => { :class => "form-horizontal program_venue" } do |f| %>
+
+    <% if @program_venue.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@program_venue.errors.count, "error") %> prohibited this program_venue from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @program_venue.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@program_venue[:name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :country_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :country_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@program_venue[:country_id]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            program_venues_path, :class => 'btn btn-default' %>
+
+<% end %>

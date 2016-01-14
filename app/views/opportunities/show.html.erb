@@ -1,0 +1,60 @@
+<!--
+
+<%= link_to 'Edit', edit_opportunity_path(@opportunity) %> |
+<%= link_to 'Back', opportunities_path %>
+
+-->
+<%- model_class = Opportunity -%>
+<% provide(:title, model_class.model_name.human.pluralize.titleize) %>
+<% provide(:minor_title, OpportunityStatus.find(@opportunity.opportunity_status).name) %>
+    <div class="portlet light">
+        <div class="portlet-body">
+            <div class="col-md-12 blog-pane">
+                <div class="article-block">
+                <h3 style="margin-top: 0;"><%= @opportunity.title %></h3>
+                <p>
+                  <strong>Title:</strong>
+                  <%= @opportunity.title %>
+                </p>
+
+                <p>
+                  <strong>Opportunity status:</strong>
+                  <%= OpportunityStatus.find(@opportunity.opportunity_status).name %>
+                </p>
+
+                <p>
+                  <strong>Sales Person:</strong>
+                  <%= User.find(@opportunity.user).name %>
+                </p>
+
+                <p>
+                  <strong>Description:</strong><br />
+                  <%= @opportunity.description %>
+                </p>
+                <% if @opportunity.attachment %>
+                <p>
+                    <strong>Attachments</strong><br />
+                    <%= link_to "Download", @opportunity.attachment.url(:original, false) %>
+                </p>
+                <% end %>
+                        </div>
+                    </div>
+
+                <dl class="dl-horizontal">
+                </dl>
+
+                <%= link_to t('.back', :default => t("helpers.links.back")),
+                              opportunities_path, :class => 'btn btn-default'  %>
+                <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                              edit_opportunity_path(@opportunity), :class => 'btn btn-default' %>
+                <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                              opportunity_path(@opportunity),
+                              :method => 'delete',
+                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                              :class => 'btn btn-danger' %>
+            </div>
+            </div>
+            
+        </div>
+
+

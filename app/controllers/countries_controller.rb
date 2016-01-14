@@ -2,6 +2,9 @@ class CountriesController < ApplicationController
   
   #Restrict access to logged in users and limit behavior to edit and updates only
   before_action :authenticate_user!
+  
+  #Current user is needed for all views
+  before_filter :set_current_user
   before_action :set_country, only: [:show, :edit, :update, :destroy]
   
   add_breadcrumb "home", :root_path, { :title => "Home" }
@@ -10,7 +13,6 @@ class CountriesController < ApplicationController
   # GET /countries
   # GET /countries.json
   def index
-    @user = current_user
     @countries = Country.paginate(page: params[:page], :per_page => Settings.pagination_per_page)
     
     #breadcrumb
@@ -24,6 +26,9 @@ class CountriesController < ApplicationController
 
   # GET /countries/new
   def new
+    #breadcrumb
+    add_breadcrumb "countries", :countries_path, { :title => "Countries" }
+    
     @country = Country.new
   end
 
@@ -81,4 +86,10 @@ class CountriesController < ApplicationController
     def country_params
       params.require(:country).permit(:name, :c_code, :telephone_code)
     end
+    
+    #Set the current user from devise
+    def set_current_user
+      @user = current_user
+    end
+    
 end

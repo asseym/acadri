@@ -4,6 +4,11 @@ ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
+
+#mongo mapper
+gem 'mongo_mapper'
+gem 'bson_ext'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -20,6 +25,13 @@ gem 'jquery-plugins-rails'
 
 #jquery validate plugin
 gem 'jquery-validation-rails'
+
+#jquery Ui
+gem 'jquery-ui-rails'
+
+#jquery datepicker
+# gem 'jquery_datepicker'
+#gem 'jquery_datepicker', :git => 'git://github.com/albertopq/jquery_datepicker.git'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -41,16 +53,27 @@ gem 'twitter-bootstrap-rails'
 gem 'simple-line-icons-rails'
 gem 'font-awesome-rails'
 gem 'bootstrap-switch-rails'
+gem 'bootstrap-wysihtml5-rails', github: 'nerian/bootstrap-wysihtml5-rails'
+gem 'bootstrap-datepicker-rails'
 
 #Breadcrumbs
 gem "breadcrumbs_on_rails"
 
 #Application configiration
-gem 'rails_config'
+# gem 'rails_config'
+gem 'config', github: 'railsconfig/config'
 
 #authentication module
 gem 'devise'
+
+#MTI multiple table inheritence
+gem 'active_record-acts_as'
+
+#Wizardiser
+gem 'wicked'
    
+#error handling
+gem 'nokogiri'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -68,7 +91,16 @@ gem 'puma',             '~> 2.11.0'
 gem 'faker',            '~> 1.4.0' 
 gem 'will_paginate',           '~> 3.0.0'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
-gem 'install_theme'
+# gem 'install_theme'
+
+#Attachments
+gem "paperclip", "~> 4.3"
+
+#Time difference calculator
+gem 'time_difference'
+
+#Observers
+gem 'rails-observers'
            
 
 group :development, :test do

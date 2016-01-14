@@ -1,0 +1,21 @@
+<%- model_class = Program -%>
+<% provide(:title, model_class.model_name.human.pluralize.titleize) %>
+<% provide(:minor_title, 'new a program') %>
+<!--<div class="col-md-6 pull-left">-->
+    <!-- BEGIN SAMPLE FORM PORTLET-->
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">
+                New <%= model_class %> Form
+            </div>
+            <div class="tools">
+                <a href="" class="collapse" data-original-title="" title=""></a> <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""></a> <a href="" class="reload" data-original-title="" title=""></a> <a href="" class="remove" data-original-title="" title=""></a>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <div class="form-wizard">									
+                <%= render :partial => 'form' %>
+            </div>
+        </div>
+    </div><!-- END SAMPLE FORM PORTLET-->
+    <!--</div>-->

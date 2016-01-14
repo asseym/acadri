@@ -1,0 +1,54 @@
+
+        <%= @f.fields_for :profile_personal_detail do |personal_fields| %>
+        <div class="form-group">
+            <%= personal_fields.label :first_name, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= personal_fields.text_field :first_name, :class => 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= personal_fields.label :other_names, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= personal_fields.text_field :other_names, :class => 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= personal_fields.label :religion, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= personal_fields.text_field :religion, :class => 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= personal_fields.label :sex, :class => 'col-md-3 control-label' %>
+            <div class="col-md-2">
+                <%= personal_fields.select :sex, User::GENDER_TYPES,  {}, { :class => 'form-control' } %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= personal_fields.label :marital_status, :class => 'col-md-3 control-label' %>
+            <div class="col-md-2">
+                <%= personal_fields.select :marital_status, User::MARITAL_STATUS,  {}, { :class => 'form-control' } %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= personal_fields.label :birthday, :class => 'col-md-3 control-label' %>
+            <div class="col-md-3">
+                <%= personal_fields.text_field :birthday,  :class => 'form-control datepicker', :placeholder => 'Birthday...' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= personal_fields.label :nationality, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= personal_fields.text_field :nationality, :class => 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= personal_fields.label :languages, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+                <%= personal_fields.text_field :languages, :class => 'form-control' %>
+            </div>
+        </div>
+        <% end %>
+
+
+            

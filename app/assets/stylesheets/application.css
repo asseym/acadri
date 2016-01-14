@@ -11,8 +11,17 @@
  * file per style scope.
  *
  *= require bootstrap_and_overrides
- *= require_tree .
  *= require_self
+ *= require_tree .
+ *= require metronic/components-rounded
+ *= require metronic/plugins
+ *= require metronic/layout
+ *= require metronic/light
+ *= require metronic/custom
+ *= require metronic/login
  *= require simple-line-icons
  *= require font-awesome
+ *= require bootstrap-datepicker
+ *= require jquery-ui/tabs
+ *= require bootstrap-wysihtml5
  */

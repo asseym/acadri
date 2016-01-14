@@ -21,4 +21,5 @@ module ApplicationHelper
       return { major: 'Page Title', minor: 'sample description' }
     end 
   end
+
 end

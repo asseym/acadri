@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bank details:</strong>
+  <%= @profile_bank_detail.bank_details %>
+</p>
+
+<%= link_to 'Edit', edit_profile_bank_detail_path(@profile_bank_detail) %> |
+<%= link_to 'Back', profile_bank_details_path %>

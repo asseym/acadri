@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Profile General Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Education</th>
+      <th>Staff</th>
+      <th>Date hired</th>
+      <th>Passport number</th>
+      <th>Drivers licence</th>
+      <th>Salary</th>
+      <th>Nssf number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profile_general_details.each do |profile_general_detail| %>
+      <tr>
+        <td><%= profile_general_detail.education %></td>
+        <td><%= profile_general_detail.staff_id %></td>
+        <td><%= profile_general_detail.date_hired %></td>
+        <td><%= profile_general_detail.passport_number %></td>
+        <td><%= profile_general_detail.drivers_licence %></td>
+        <td><%= profile_general_detail.salary %></td>
+        <td><%= profile_general_detail.NSSF_number %></td>
+        <td><%= link_to 'Show', profile_general_detail %></td>
+        <td><%= link_to 'Edit', edit_profile_general_detail_path(profile_general_detail) %></td>
+        <td><%= link_to 'Destroy', profile_general_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile general detail', new_profile_general_detail_path %>

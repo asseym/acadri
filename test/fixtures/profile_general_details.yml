@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  education: MyText
+  staff_id: MyString
+  date_hired: 2015-10-28
+  passport_number: MyString
+  drivers_licence: MyString
+  salary: 1
+  NSSF_number: MyString
+
+two:
+  education: MyText
+  staff_id: MyString
+  date_hired: 2015-10-28
+  passport_number: MyString
+  drivers_licence: MyString
+  salary: 1
+  NSSF_number: MyString

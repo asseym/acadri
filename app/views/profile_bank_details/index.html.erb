@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Profile Bank Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bank details</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profile_bank_details.each do |profile_bank_detail| %>
+      <tr>
+        <td><%= profile_bank_detail.bank_details %></td>
+        <td><%= link_to 'Show', profile_bank_detail %></td>
+        <td><%= link_to 'Edit', edit_profile_bank_detail_path(profile_bank_detail) %></td>
+        <td><%= link_to 'Destroy', profile_bank_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile bank detail', new_profile_bank_detail_path %>

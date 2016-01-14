@@ -3,7 +3,7 @@ Core script to handle the entire theme and core functions
 **/
 var Layout = function () {
 
-    var layoutImgPath = '../images/metronic';
+    var layoutImgPath = '../images/';
 
     var layoutCssPath = '../stylesheets/';
 

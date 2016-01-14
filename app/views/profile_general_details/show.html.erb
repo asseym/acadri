@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Education:</strong>
+  <%= @profile_general_detail.education %>
+</p>
+
+<p>
+  <strong>Staff:</strong>
+  <%= @profile_general_detail.staff_id %>
+</p>
+
+<p>
+  <strong>Date hired:</strong>
+  <%= @profile_general_detail.date_hired %>
+</p>
+
+<p>
+  <strong>Passport number:</strong>
+  <%= @profile_general_detail.passport_number %>
+</p>
+
+<p>
+  <strong>Drivers licence:</strong>
+  <%= @profile_general_detail.drivers_licence %>
+</p>
+
+<p>
+  <strong>Salary:</strong>
+  <%= @profile_general_detail.salary %>
+</p>
+
+<p>
+  <strong>Nssf number:</strong>
+  <%= @profile_general_detail.NSSF_number %>
+</p>
+
+<%= link_to 'Edit', edit_profile_general_detail_path(@profile_general_detail) %> |
+<%= link_to 'Back', profile_general_details_path %>
