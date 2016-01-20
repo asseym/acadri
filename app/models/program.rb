@@ -1,8 +1,8 @@
 class Program < ActiveRecord::Base
   
   #A program is a product (Multi-table inherentance here MTI)
-  acts_as :product
-  
+  # acts_as :product
+  belongs_to :category
   has_many :programdates, autosave: true, :class_name => 'ProgramDate'
   has_many :programvenues, autosave: true, :class_name => 'ProgramVenue'
   

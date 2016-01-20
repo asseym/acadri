@@ -1,2 +1,0 @@
-module ProfileContactDetailsHelper
-end

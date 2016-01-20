@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104113636) do
+ActiveRecord::Schema.define(version: 20160119110751) do
 
   create_table "accounts_invoice_items", force: :cascade do |t|
     t.integer  "accounts_invoice_id"
@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20151104113636) do
     t.date     "invoice_date"
     t.text     "invoice_terms"
     t.string   "currency"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "invoice_number"
   end
 
   add_index "accounts_invoices", ["training_id"], name: "index_accounts_invoices_on_training_id"
@@ -112,18 +113,14 @@ ActiveRecord::Schema.define(version: 20151104113636) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "products", force: :cascade do |t|
-    t.integer  "actable_id"
-    t.string   "actable_type"
-    t.string   "name"
-    t.integer  "category_id"
-    t.text     "description"
-    t.boolean  "is_service",   default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+  create_table "permissions", force: :cascade do |t|
+    t.string   "permissions"
+    t.integer  "user_level_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "products", ["category_id"], name: "index_products_on_category_id"
+  add_index "permissions", ["user_level_id"], name: "index_permissions_on_user_level_id"
 
   create_table "profile_bank_details", force: :cascade do |t|
     t.integer  "user_id"
@@ -216,9 +213,15 @@ ActiveRecord::Schema.define(version: 20151104113636) do
   add_index "program_venues", ["program_id"], name: "index_program_venues_on_program_id"
 
   create_table "programs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.integer  "category_id"
+    t.text     "description"
+    t.boolean  "is_service",  default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
+
+  add_index "programs", ["category_id"], name: "index_programs_on_category_id"
 
   create_table "trainings", force: :cascade do |t|
     t.string   "title"
@@ -235,15 +238,6 @@ ActiveRecord::Schema.define(version: 20151104113636) do
 
   add_index "trainings", ["program_id"], name: "index_trainings_on_program_id"
   add_index "trainings", ["program_venue_id"], name: "index_trainings_on_program_venue_id"
-
-  create_table "user_levels", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "user_levels", ["user_id"], name: "index_user_levels_on_user_id"
 
   create_table "user_notifications", force: :cascade do |t|
     t.integer  "notification_id"
@@ -278,8 +272,9 @@ ActiveRecord::Schema.define(version: 20151104113636) do
     t.datetime "locked_at"
     t.string   "name"
     t.boolean  "admin",                  default: false
-    t.boolean  "is_staff",               default: true
+    t.boolean  "is_staff"
     t.integer  "user_level_id"
+    t.integer  "roles_mask"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

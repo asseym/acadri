@@ -1,9 +1,12 @@
 class AccountsInvoicesController < ApplicationController
-  
   before_action :authenticate_user!
   before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_accounts_invoice, only: [:show, :edit, :update, :destroy]
-  
+
+  # skip_load_resource :only => [:create]
+
   add_breadcrumb "home", :root_path, { :title => "Home" }
   add_breadcrumb "sales", :root_path, { :title => "Sales" }
 
@@ -79,7 +82,8 @@ class AccountsInvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accounts_invoice_params
-      params.require(:accounts_invoice).permit(:organisation_id, :date, :invoice_details, :invoice_terms, :currency, :amount)
+      params.require(:accounts_invoice).permit(:training_id, :invoice_date, :invoice_terms, :currency)
+      # params.require(:accounts_invoice).permit!
     end
     
     def set_current_user

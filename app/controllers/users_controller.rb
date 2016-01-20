@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   private
    
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_level, :admin, :is_staff,
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :is_staff,
       profile_personal_detail_attributes: [:first_name, :other_names, :religion, :sex, :marital_status, :birthday, :nationality, :language],
       profile_general_detail_attributes: [:title, :date_hired, :staff_id, :education, :passport_number, :drivers_licence, :salary, :NSSF_number],
       profile_contact_detail_attributes: [:address, :email_address, :business_phone, :mobile_phone, :home_phone, :fax],

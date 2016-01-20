@@ -1,4 +1,7 @@
 class AccountsInvoiceItemsController < ApplicationController
+
+  before_action :authenticate_user!
+  before_filter :set_current_user
   before_action :set_accounts_invoice_item, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts_invoice_items
@@ -70,5 +73,9 @@ class AccountsInvoiceItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def accounts_invoice_item_params
       params.require(:accounts_invoice_item).permit(:description, :units, :unit_cost, :subtotal)
+    end
+
+    def set_current_user
+      @user = current_user
     end
 end

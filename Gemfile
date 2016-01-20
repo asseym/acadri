@@ -66,6 +66,13 @@ gem 'config', github: 'railsconfig/config'
 #authentication module
 gem 'devise'
 
+#permissions
+# gem 'cancan'
+gem 'cancancan', '~> 1.10'
+
+#Roles
+gem 'role_model'
+
 #MTI multiple table inheritence
 gem 'active_record-acts_as'
 
@@ -88,7 +95,7 @@ gem 'rename'
 gem 'puma',             '~> 2.11.0'
 
 # Faking data
-gem 'faker',            '~> 1.4.0' 
+# gem 'faker',            '~> 1.4.0'
 gem 'will_paginate',           '~> 3.0.0'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 # gem 'install_theme'
@@ -115,6 +122,16 @@ group :development, :test do
   
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :production do

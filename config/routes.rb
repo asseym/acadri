@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :accounts_invoice_items
-  resources :user_levels
   resources :profile_general_details
   resources :profile_bank_details
   resources :profile_contact_details
