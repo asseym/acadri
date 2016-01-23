@@ -125,10 +125,11 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'rspec-activemodel-mocks'
 end
 
 group :test do
-  gem 'faker'
+  gem 'faker', github: 'stympy/faker'
   gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'

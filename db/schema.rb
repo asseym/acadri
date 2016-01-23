@@ -113,26 +113,17 @@ ActiveRecord::Schema.define(version: 20160119110751) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "permissions", force: :cascade do |t|
-    t.string   "permissions"
-    t.integer  "user_level_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "permissions", ["user_level_id"], name: "index_permissions_on_user_level_id"
-
   create_table "profile_bank_details", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "profile_id"
     t.text     "bank_details"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "profile_bank_details", ["user_id"], name: "index_profile_bank_details_on_user_id"
+  add_index "profile_bank_details", ["profile_id"], name: "index_profile_bank_details_on_profile_id"
 
   create_table "profile_contact_details", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "profile_id"
     t.string   "address"
     t.string   "email_address"
     t.string   "business_phone"
@@ -143,10 +134,10 @@ ActiveRecord::Schema.define(version: 20160119110751) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "profile_contact_details", ["user_id"], name: "index_profile_contact_details_on_user_id"
+  add_index "profile_contact_details", ["profile_id"], name: "index_profile_contact_details_on_profile_id"
 
   create_table "profile_general_details", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "profile_id"
     t.text     "education"
     t.string   "staff_id"
     t.date     "date_hired"
@@ -167,10 +158,10 @@ ActiveRecord::Schema.define(version: 20160119110751) do
     t.datetime "photo_updated_at"
   end
 
-  add_index "profile_general_details", ["user_id"], name: "index_profile_general_details_on_user_id"
+  add_index "profile_general_details", ["profile_id"], name: "index_profile_general_details_on_profile_id"
 
   create_table "profile_personal_details", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "profile_id"
     t.string   "first_name"
     t.string   "other_names"
     t.string   "religion"
@@ -183,13 +174,16 @@ ActiveRecord::Schema.define(version: 20160119110751) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "profile_personal_details", ["user_id"], name: "index_profile_personal_details_on_user_id"
+  add_index "profile_personal_details", ["profile_id"], name: "index_profile_personal_details_on_profile_id"
 
   create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "section_name"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
   create_table "program_dates", force: :cascade do |t|
     t.date     "start_date"
@@ -272,8 +266,7 @@ ActiveRecord::Schema.define(version: 20160119110751) do
     t.datetime "locked_at"
     t.string   "name"
     t.boolean  "admin",                  default: false
-    t.boolean  "is_staff"
-    t.integer  "user_level_id"
+    t.boolean  "is_staff",               default: true
     t.integer  "roles_mask"
   end
 
@@ -281,6 +274,5 @@ ActiveRecord::Schema.define(version: 20160119110751) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-  add_index "users", ["user_level_id"], name: "index_users_on_user_level_id"
 
 end

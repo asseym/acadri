@@ -1,2 +1,10 @@
 pagination_per_page: 30
 vat_rate: 18
+opportunity_notify:
+ - :ceo
+ - :program_coordinator
+ - :admin
+
+user_creation_notify:
+ - :ceo
+ - :admin

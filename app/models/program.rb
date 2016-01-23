@@ -6,8 +6,7 @@ class Program < ActiveRecord::Base
   has_many :programdates, autosave: true, :class_name => 'ProgramDate'
   has_many :programvenues, autosave: true, :class_name => 'ProgramVenue'
   
-  validates_presence_of :name, :category_id, :description #, :programdates, :programvenues
-  #validates_inclusion_of :field_name, :in => [true, false]
+  validates_presence_of :name, :category, :is_service
   
   accepts_nested_attributes_for :programdates
   accepts_nested_attributes_for :programvenues
@@ -17,6 +16,26 @@ class Program < ActiveRecord::Base
       return "Program Title"
     end
     super
+  end
+
+  def to_s
+    name
+  end
+
+  def dates
+    dts = []
+    for pg in programdates.all
+      dts.push(pg.to_s)
+    end
+    dts
+  end
+
+  def venues
+    vns = []
+    for pv in programvenues.all
+      vns.push(pv.to_s)
+    end
+    vns
   end
   
 end

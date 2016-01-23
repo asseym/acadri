@@ -1,7 +1,7 @@
 class CreateProfileContactDetails < ActiveRecord::Migration
   def change
     create_table :profile_contact_details do |t|
-      t.belongs_to :user, index: true
+      t.belongs_to :profile, index: true
       t.string :address
       t.string :email_address
       t.string :business_phone
