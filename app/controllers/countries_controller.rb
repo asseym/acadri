@@ -1,10 +1,8 @@
 class CountriesController < ApplicationController
-  
-  #Restrict access to logged in users and limit behavior to edit and updates only
   before_action :authenticate_user!
-  
-  #Current user is needed for all views
   before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_country, only: [:show, :edit, :update, :destroy]
   
   add_breadcrumb "home", :root_path, { :title => "Home" }

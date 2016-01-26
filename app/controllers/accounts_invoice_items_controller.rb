@@ -1,7 +1,8 @@
 class AccountsInvoiceItemsController < ApplicationController
-
   before_action :authenticate_user!
   before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_accounts_invoice_item, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts_invoice_items

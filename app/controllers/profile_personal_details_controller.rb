@@ -1,6 +1,8 @@
 class ProfilePersonalDetailsController < ApplicationController
   before_action :authenticate_user!
   before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_profile_personal_detail, only: [:show, :edit, :update, :destroy]
 
   # GET /profile_personal_details
@@ -71,7 +73,7 @@ class ProfilePersonalDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_personal_detail_params
-      params.require(:profile_personal_detail).permit(:first_name, :other_names, :religion, :sex, :marital_status, :birthday, :nationality, :languages)
+      params.require(:profile_personal_detail).permit(:profile_id, :first_name, :other_names, :religion, :sex, :marital_status, :birthday, :nationality, :languages)
     end
 
     def set_current_user

@@ -1,4 +1,8 @@
 class OrganisationsController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_organisation, only: [:show, :edit, :update, :destroy]
 
   # GET /organisations
@@ -70,5 +74,10 @@ class OrganisationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def organisation_params
       params.require(:organisation).permit(:name, :address, :postal_address, :country_id, :telephones, :email_address, :website)
+    end
+
+    #Set the current user from devise
+    def set_current_user
+      @user = current_user
     end
 end

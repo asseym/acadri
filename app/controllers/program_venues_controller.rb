@@ -1,4 +1,8 @@
 class ProgramVenuesController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_program_venue, only: [:show, :edit, :update, :destroy]
 
   # GET /program_venues
@@ -70,5 +74,10 @@ class ProgramVenuesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def program_venue_params
       params.require(:program_venue).permit(:name, :country_id)
+    end
+
+    #Set the current user from devise
+    def set_current_user
+      @user = current_user
     end
 end

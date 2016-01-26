@@ -1,4 +1,8 @@
 class ProgramDatesController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_program_date, only: [:show, :edit, :update, :destroy]
 
   # GET /program_dates
@@ -69,6 +73,11 @@ class ProgramDatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def program_date_params
-      params.require(:program_date).permit(:date)
+      params.require(:program_date).permit(:start_date, :end_date)
+    end
+
+    #Set the current user from devise
+    def set_current_user
+      @user = current_user
     end
 end

@@ -1,4 +1,8 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /profiles
@@ -69,6 +73,11 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:section_name)
+      params.require(:profile).permit(:user_id, :section_name)
+    end
+
+    #Set the current user from devise
+    def set_current_user
+      @user = current_user
     end
 end

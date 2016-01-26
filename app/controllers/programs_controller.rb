@@ -1,9 +1,8 @@
 class ProgramsController < ApplicationController
-  
-  #include Wicked::Wizard
-  
   before_action :authenticate_user!
   before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_program, only: [:show, :edit, :update, :destroy]
   
   add_breadcrumb "home", :root_path, { :title => "Home" }
@@ -46,17 +45,18 @@ class ProgramsController < ApplicationController
     @program = Program.create(name: program_params[:name], 
                            category_id: program_params[:category_id], 
                            description: program_params[:description])
-    #save dates
-    program_params[:programdates_attributes].each do |n, attributes|
-      @program.programdates.build(attributes)
+
+    if(program_params.include? :programdates_attributes and program_params.include? :programvenues_attributes)
+      #save dates
+      program_params[:programdates_attributes].each do |n, attributes|
+        @program.programdates.build(attributes)
+      end
+      #save venues
+      program_params[:programvenues_attributes].each do |n, attributes|
+        @program.programvenues.build(attributes)
+      end
+      @program.save
     end
-    
-    #save venues
-    program_params[:programvenues_attributes].each do |n, attributes|
-      @program.programvenues.build(attributes)
-    end
-    
-    @program.save
    
     respond_to do |format|
       if @program.save
@@ -78,6 +78,7 @@ class ProgramsController < ApplicationController
         format.html { redirect_to @program, notice: 'Program was successfully updated.' }
         format.json { render :show, status: :ok, location: @program }
       else
+        Rails.logger.info(@program.errors.messages.inspect)
         format.html { render :edit }
         format.json { render json: @program.errors, status: :unprocessable_entity }
       end

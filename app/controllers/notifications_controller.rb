@@ -1,4 +1,8 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
   # GET /notifications
@@ -70,5 +74,9 @@ class NotificationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def notification_params
       params.require(:notification).permit(:notification)
+    end
+
+    def set_current_user
+      @user = current_user
     end
 end

@@ -1,4 +1,8 @@
 class ProfileBankDetailsController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_profile_bank_detail, only: [:show, :edit, :update, :destroy]
 
   # GET /profile_bank_details
@@ -69,6 +73,11 @@ class ProfileBankDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_bank_detail_params
-      params.require(:profile_bank_detail).permit(:bank_details)
+      params.require(:profile_bank_detail).permit(:bank_details, :profile_id)
+    end
+
+    #Set the current user from devise
+    def set_current_user
+      @user = current_user
     end
 end

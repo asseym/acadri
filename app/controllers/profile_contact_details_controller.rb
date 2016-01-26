@@ -1,4 +1,8 @@
 class ProfileContactDetailsController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_profile_contact_detail, only: [:show, :edit, :update, :destroy]
 
   # GET /profile_contact_details
@@ -69,6 +73,11 @@ class ProfileContactDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_contact_detail_params
-      params.require(:profile_contact_detail).permit(:address, :email_address, :business_phone, :mobile_phone, :home_phone, :fax)
+      params.require(:profile_contact_detail).permit(:profile_id, :address, :email_address, :business_phone, :mobile_phone, :home_phone, :fax)
+    end
+
+    #Set the current user from devise
+    def set_current_user
+      @user = current_user
     end
 end

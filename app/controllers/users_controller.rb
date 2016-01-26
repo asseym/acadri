@@ -1,106 +1,100 @@
 class UsersController < ApplicationController
-  
-  #Restrict access to logged in users and limit behavior to edit and updates only
-  #before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  
   before_action :authenticate_user!
   before_filter :set_current_user
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
-  
+  load_and_authorize_resource
+
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   add_breadcrumb "home", :root_path, { :title => "Home" }
   add_breadcrumb "settings", :root_path, { :title => "Settings" }
-  
+
+  # GET /users
+  # GET /users.json
   def index
-    @user = current_user
     add_breadcrumb "Users", :users_path, { :title => "Users" }
     @users = User.paginate(page: params[:page], :per_page => Settings.pagination_per_page)
   end
-  
-  def new
-    add_breadcrumb "Users", :users_path, { :title => "Users" }
-    @steps_nav = [:Login, :Personal, :General]
-  end
-  
+
+  # GET /users/1
+  # GET /users/1.json
   def show
     add_breadcrumb "Users", :users_path, { :title => "Users" }
-    @user = User.find(params[:id])
   end
-  
+
+  # GET /users/new
   def new
     add_breadcrumb "Users", :users_path, { :title => "Users" }
+    @steps_nav = [:Login, :Personal, :General]
     @user = User.new
   end
-  
-  def create
-    add_breadcrumb "Users", :users_path, { :title => "Users" }
-    @steps_nav = [:Login, :Personal, :General]
-    @user = User.new(user_params)
-    if @user.save
-      flash[:success] = "Successfully Registered The New User"
-      redirect_to @user
-    else
-      render 'new'
-    end
-  end
-  
+
+  # GET /users/1/edit
   def edit
-    add_breadcrumb "Users", :programs_path, { :title => "Users" }
+    add_breadcrumb "Users", :users_path, { :title => "Users" }
   end
-  
-  def update
-    if @user.update_attributes(user_params)
-      flash[:success] = "Your Profile has been successfully updated"
-      redirect_to @user
-    else
-      render 'edit'
+
+  # POST /users
+  # POST /users.json
+  def create
+    @steps_nav = [:Login, :Personal, :General]
+
+    @user = User.new(user_params)
+
+    respond_to do |format|
+      if @user.save
+        #format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html {redirect_to users_url, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        Rails.logger.info(@user.errors.messages.inspect)
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
-  
+
+  # PATCH/PUT /users/1
+  # PATCH/PUT /users/1.json
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        Rails.logger.info(@user.errors.messages.inspect)
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /users/1
+  # DELETE /users/1.json
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User Deleted"
-    redirect_to users_url
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
-   
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :is_staff,
-      profile_personal_detail_attributes: [:first_name, :other_names, :religion, :sex, :marital_status, :birthday, :nationality, :language],
-      profile_general_detail_attributes: [:title, :date_hired, :staff_id, :education, :passport_number, :drivers_licence, :salary, :NSSF_number],
-      profile_contact_detail_attributes: [:address, :email_address, :business_phone, :mobile_phone, :home_phone, :fax],
-      profile_bank_detail_attributes: [:bank_details]
-      )
-    end
-    
-    #Filters
-    #Confirm logged in user
-    def logged_in_user
-      unless user_signed_in?
-        store_location
-        flash[:danger] = "Please log in first!"
-        redirect_to login_url
-      end
-    end
-    
-    def set_current_user
-      @user = current_user
-    end
-    
-    #Confirm correct user
-    def correct_user
-      @user = User.find(params[:id])
-      if !current_user?(@user) 
-        flash[:danger] = "Unauthorized access"
-        redirect_to root_url
-      end 
-      #redirect_to(root_url) unless @user == current_user
-    end
-    
-    # Confirms an admin user.
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  #def user_params
+  #  params[:user]
+  #end
+
+  def user_params
+    params.require(:user).permit!
+  end
+
+  def set_current_user
+    @user = current_user
+  end
     
 end

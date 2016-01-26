@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def create_notification
-    n = Notification.create!(notification:'New User #{self.name} Created')
+    n = Notification.create!(notification:"New User #{self.name} Created")
     notifiable_roles = Settings.user_creation_notify
     for usr in User.all
       user_roles = usr.role_symbols

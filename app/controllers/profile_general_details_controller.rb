@@ -1,4 +1,8 @@
 class ProfileGeneralDetailsController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_profile_general_detail, only: [:show, :edit, :update, :destroy]
 
   # GET /profile_general_details
@@ -69,6 +73,12 @@ class ProfileGeneralDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_general_detail_params
-      params.require(:profile_general_detail).permit(:education, :staff_id, :date_hired, :passport_number, :drivers_licence, :salary, :NSSF_number)
+      params.require(:profile_general_detail).permit(:profile_id, :education, :staff_id, :date_hired, :passport_number,
+                                                     :drivers_licence, :salary, :NSSF_number, :title, :cv, :photo)
+    end
+
+    #Set the current user from devise
+    def set_current_user
+      @user = current_user
     end
 end

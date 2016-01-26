@@ -1,7 +1,8 @@
 class TrainingsController < ApplicationController
-  
   before_action :authenticate_user!
   before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_training, only: [:show, :edit, :update, :destroy]
   
   add_breadcrumb "home", :root_path, { :title => "Home" }
@@ -55,6 +56,7 @@ class TrainingsController < ApplicationController
         format.html { redirect_to @training, notice: 'Training was successfully updated.' }
         format.json { render :show, status: :ok, location: @training }
       else
+        Rails.logger.info(@training.errors.messages.inspect)
         format.html { render :edit }
         format.json { render json: @training.errors, status: :unprocessable_entity }
       end
@@ -79,7 +81,7 @@ class TrainingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def training_params
-      params.require(:training).permit(:participants_id, :program_id, :start_date, :end_date, :fees, :fees_paid, :fees_balance, :program_venue_id)
+      params.require(:training).permit(:title, :participants_id, :program_id, :start_date, :end_date, :fees, :fees_paid, :fees_balance, :program_venue_id)
     end
     
     def set_current_user

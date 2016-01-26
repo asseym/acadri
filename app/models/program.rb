@@ -6,7 +6,8 @@ class Program < ActiveRecord::Base
   has_many :programdates, autosave: true, :class_name => 'ProgramDate'
   has_many :programvenues, autosave: true, :class_name => 'ProgramVenue'
   
-  validates_presence_of :name, :category, :is_service
+  validates_presence_of :name, :category
+  validates :is_service, :inclusion => {:in => [true, false]}
   
   accepts_nested_attributes_for :programdates
   accepts_nested_attributes_for :programvenues

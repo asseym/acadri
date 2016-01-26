@@ -1,7 +1,8 @@
 class ParticipantsController < ApplicationController
-  
   before_action :authenticate_user!
   before_filter :set_current_user
+  load_and_authorize_resource
+
   before_action :set_participant, only: [:show, :edit, :update, :destroy]
   
   add_breadcrumb "home", :root_path, { :title => "Home" }

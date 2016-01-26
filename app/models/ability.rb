@@ -50,20 +50,21 @@ class Ability
 
 
     elsif user.has_role? :finance
-      can :manage, [AccountsInvoice, AccountsInvoiceItem]
+      can :manage, [AccountsInvoice, AccountsInvoiceItem, Opportunity, OpportunityStatus, Organisation]
       can :read, :all
 
 
     elsif user.has_role? :program_coordinator
-      can :manage, [Program, ProgramVenue, ProgramDate]
+      can :manage, [Program, ProgramVenue, ProgramDate, Opportunity, OpportunityStatus, Organisation, Participant, Participation, Training]
       can :read, :all
 
     elsif user.has_role? :manager
-      can :manage, [Program, ProgramVenue, ProgramDate]
+      can :manage, [Program, ProgramVenue, ProgramDate, Opportunity, OpportunityStatus, Organisation, Participant, Participation,
+                    Profile, ProfileBankDetail, ProfilePersonalDetail, ProfileContactDetail, ProfileGeneralDetail]
       can :read, :all
 
     elsif user.has_role? :marketing
-      can :manage, [Program, ProgramVenue, ProgramDate]
+      can :manage, [Program, ProgramVenue, ProgramDate, Opportunity, OpportunityStatus, Organisation, Participant, Participation]
       can :read, :all
 
 
