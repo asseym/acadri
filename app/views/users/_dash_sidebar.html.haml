@@ -1,0 +1,33 @@
+.profile-sidebar{:style => "width: 250px;"}
+
+  .portlet.light.profile-sidebar-portlet
+    .profile-userpic
+      = gravator_for(@user, "img-responsive", {:s => 120 })
+    .profile-usertitle
+      .profile-usertitle-name
+        = @user.name
+      .profile-usertitle-job
+        = user_job_title(@user)
+    .profile-userbuttons
+    .profile-usermenu
+      %ul.nav
+        = build_menu(@user, Settings.user_menu)
+
+  .portlet.light
+    .row.list-separated.profile-stat
+      .col-md-4.col-sm-4.col-xs-6
+        .uppercase.profile-stat-title 37
+        .uppercase.profile-stat-text Projects
+
+      .col-md-4.col-sm-4.col-xs-6
+        .uppercase.profile-stat-title 51
+        .uppercase.profile-stat-text Tasks
+
+      .col-md-4.col-sm-4.col-xs-6
+        .uppercase.profile-stat-title 61
+        .uppercase.profile-stat-text Tasks
+
+    %div
+      %h4.profile-desc-title About #{@user.name}
+      %span.profile-desc-text
+        = user_desc(@user)

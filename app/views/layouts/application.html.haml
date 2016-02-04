@@ -1,0 +1,33 @@
+%html
+  %head
+    %title= full_title(yield(:title))
+    %meta{'http-equiv' => "X-UA-Compatible", :content => "IE=edge"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{'http-equiv' => "Content-type", :content => "text/html; charset=utf-8"}
+    %meta{:content => "ACADRI ERP System", :name => "description"}
+    %meta{:content => "AAM", :name => "author"}
+    - if @session_exists == false
+      = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = render 'layouts/shim'
+    %link{:rel => "shortcut icon", :href => "favicon.ico"}
+
+  - if @session_exists == false
+    %body.login
+      = render 'layouts/login'
+      = render 'layouts/footer'
+
+      = debug(params) if Rails.env.development?
+
+  - else
+    %body.page-header-fixed.page-sidebar-closed-hide-logo.page-sidebar-closed-hide-logo
+      = render 'layouts/header'
+      .clearfix
+      .page-container
+      = render 'layouts/sidebar'
+      = render 'layouts/container'
+      = render 'layouts/footer'
+
+      = debug(params) if Rails.env.development?
+

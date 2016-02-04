@@ -1,0 +1,14 @@
+- provide(:title, 'Dashboard')
+- provide(:page_name, 'Dashboard')
+- provide(:minor_title, "dashboard for #{@user.name}")
+/ BEGIN PAGE CONTENT
+.row
+  .col-md-12
+    = render 'users/dash_sidebar'
+    .profile-content
+      .row
+        = render 'users/dash_activity'
+        = render 'users/dash_tasks'
+
+/ END PAGE CONTENT
+

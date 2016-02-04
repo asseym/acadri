@@ -8,3 +8,142 @@ opportunity_notify:
 user_creation_notify:
  - :ceo
  - :admin
+
+can_see_general_dashboard:
+  - :admin
+  - :ceo
+  - :finance
+
+#If key `accessible:` is left out, it is assumed that
+#the user has access to the menu
+system_menu:
+  Dashboard:
+    path: '/'
+    icon: 'icon-home'
+  Sales:
+    path:
+    icon: 'icon-basket'
+    accessible: :all
+    submenus:
+      Opportunities:
+        path: '/opportunities/'
+        icon:
+        accessible: :all
+      Training:
+        path: '/trainings/'
+        icon:
+        accessible: :all
+      Invoices:
+        path: '/accounts_invoices/'
+        icon:
+        accessible: :all
+      Expenses:
+        path: '#'
+        icon:
+        accessible: :all
+      Assets:
+        path: '#'
+        icon:
+        accessible: :all
+      ProgramsList:
+        path: '/programs/'
+        icon:
+        accessible: :all
+      ParticipantsList:
+        path: '/participants/'
+        icon:
+        accessible: :all
+      SuppliersList:
+        path: '#'
+        icon:
+        accessible: :all
+  Purchases:
+    path:
+    icon: 'icon-briefcase'
+    accessible: :all
+    submenus:
+      RFQs:
+        path: '#'
+        icon:
+        accessible: :all
+      Purchase Orders:
+        path: '#'
+        icon:
+        accessible: :all
+  Marketing:
+    path:
+    icon: 'icon-diamond'
+    accessible: :all
+    submenus:
+      MassMailings:
+        path: '#'
+        icon:
+        accessible: :all
+      MailingLists:
+        path: '#'
+        icon:
+        accessible: :all
+      MarketingEvents:
+        path: '#'
+        icon:
+        accessible: :all
+  HumanResources:
+    path:
+    icon: 'icon-puzzle'
+    accessible: :all
+    submenus:
+      EmployeesList:
+        path: '#'
+        icon:
+        accessible: :all
+      Contracts:
+        path: '#'
+        icon:
+        accessible: :all
+      Loans:
+        path: '#'
+        icon:
+        accessible: :all
+      Leave:
+        path: '#'
+        icon:
+        accessible: :all
+  Settings:
+      path:
+      icon: 'icon-settings'
+      accessible:
+        - :admin
+        - :ceo
+      submenus:
+        Countries:
+          path: '/countries/'
+          icon:
+          accessible:
+            - :admin
+            - :ceo
+        Users:
+          path: '/users/'
+          icon:
+          accessible:
+            - :admin
+            - :ceo
+        CourseCategories:
+          path: '/categories/'
+          icon:
+          accessible:
+            - :admin
+            - :ceo
+
+user_menu:
+  UserHome:
+    path: '/'
+    icon: 'icon-home'
+  Tasks:
+    path: '#'
+    icon: 'icon-check'
+  AccountSettings:
+    path: '#'
+    icon: 'icon-settings'
+  Help:
+    path: '#'
+    icon: 'icon-info'

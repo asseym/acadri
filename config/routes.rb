@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :program_dates
   resources :categories
   #devise_for           :users
+  # devise_for :users, :path_prefix => 'dvs'
   devise_for :users, controllers: { sessions: 'users/sessions' }, :path_prefix => 'dvs'
   devise_for           :views
   resources            :countries

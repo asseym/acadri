@@ -1,0 +1,15 @@
+- model_class = User
+- provide(:title, model_class.model_name.human.pluralize.titleize)
+- provide(:minor_title, 'edit a user')
+/BEGIN FORM PORTLET
+.portlet.box.green
+  .portlet-title
+    .caption
+      %i.fa.fa-cogs "Edit #{model_class} Form"
+    .tools
+      %a.collapse{:href => "", 'data-original-title' => "", :title => ""}
+      %a.config{:href => "#portlet-config", 'data-toggle' => "modal", 'data-original-title' => "", :title => ""}
+      %a.reload{:href => "", 'data-original-title' => "", :title => ""}
+  .portlet-body.form
+    = render :partial => 'userform'
+/END FORM PORTLET

@@ -59,6 +59,7 @@ FactoryGirl.define do
 
     factory :ordinary_user,   traits: [:is_guest_user]
     factory :staff_user,        traits: [:is_staff, :has_staff_role]
+    factory :superadmin,      traits: [:is_staff, :is_admin, :has_admin_role]
     factory :admin_user,      traits: [:is_staff, :is_admin, :has_admin_role]
     factory :ceo_user,    traits: [:is_staff, :has_ceo_role]
     factory :finance_user,    traits: [:is_staff, :has_finance_role]

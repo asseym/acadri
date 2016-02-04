@@ -1,0 +1,13 @@
+%ul.page-breadcrumb.breadcrumb
+  - if @breadcrumbs
+    - @breadcrumbs.each do | bcrumb |
+      %li
+        - if @breadcrumbs.first == bcrumb
+          %i.fa.fa-home
+        = link_to bcrumb[:options][:title], bcrumb[:url]
+        - if @breadcrumbs.last != bcrumb
+          %i.fa.fa-circle
+  - else
+    %li
+      %i.fa.fa-home
+      = link_to "Home", root_path

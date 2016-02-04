@@ -1,0 +1,17 @@
+- provide(:title, "Dashboard")
+- provide(:page_name, "Dashboard")
+- provide(:minor_title, 'statistics summary and reports')
+
+/BEGIN CONTENT
+.row.margin-top-10
+  = render 'profit_stat'
+  = render 'feedback_stat'
+  = render 'opportunity_stat'
+  = render 'training_stat'
+  .row
+    = render 'sales_summary'
+    = render 'staff_activity'
+  .row
+    = render 'tasks_summary'
+
+/END CONTENT

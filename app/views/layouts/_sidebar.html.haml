@@ -1,0 +1,6 @@
+/BEGIN SIDEBAR
+.page-sidebar-wrapper
+  .page-sidebar.navbar-collapse.collapse
+    %ul.page-sidebar-menu{'data-keep-expanded' => "false", 'data-auto-scroll' => "true", 'data-slide-speed' => "200"}
+      = build_menu(current_user, menu_hash)
+/END SIDEBAR MENU

@@ -22,4 +22,5 @@
 //= require bootstrap-wysihtml5
 //= require turbolinks
 //= require metronic/metronic.js
+//= require cocoon
 //= require_tree .

@@ -1,7 +1,14 @@
 class StaticPagesController < ApplicationController
+  # before_filter :authenticate_user!
+  before_action :authenticate_user!
+
+  before_filter :set_current_user
+  before_filter :set_logged_in
+
+  load_and_authorize_resource
   
   def home
-    @user = current_user
+    # debugger
   end
 
   def help
@@ -12,4 +19,14 @@ class StaticPagesController < ApplicationController
   
   def contact
   end
+
+  private
+
+    def set_current_user
+      @user = current_user
+    end
+
+    def set_logged_in
+      @session_exists = user_signed_in?
+    end
 end

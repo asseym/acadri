@@ -1,0 +1,56 @@
+.col-md-6.col-sm-12
+  .portlet.light
+    .portlet-title
+      .caption.caption-md
+        %i.icon-bar-chart.theme-font-color.hide
+        %span.caption-subject.theme-font-color.bold.uppercase Staff Activity
+        %caption-helper.hide
+      .actions
+        .btn-group.btn-group-devided{'data-toggle'=> "buttons"}
+          %button.btn.btn-transparent.grey-salsa.btn-circle.btn-sm.active Today
+          %button.btn.btn-transparent.grey-salsa.btn-circle.btn-sm Week
+          %button.btn.btn-transparent.grey-salsa.btn-circle.btn-sm Month
+    .portlet-body
+      .row.number-stats.margin-bottom-30
+        .col-md-6.col-sm-6.col-xs-6
+          .stat-left
+            .stat-chart
+              .sparkline_bar
+                %canvas{:width => "90", :height => "45", :style => "display: inline-block; width: 90px; height: 45px; vertical-align: top;"}
+            .stat-number
+              .title Total
+              .number 2460
+            .col-md-6.col-sm-6.col-xs-6
+              .stat-right
+                .stat-chart
+                  .sparkline_bar2
+                    %canvas{:width => "90", :height => "45", :style => "display: inline-block; width: 90px; height: 45px; vertical-align: top;"}
+                .stat-number
+                  .title New
+                  .number 746
+            .table-scrollable.table-scrollable-borderless
+              %table.table.table-hover.table-light
+                %thead
+                  %tr.uppercase
+                    %th{:colspan => "2"} WORK
+                    %th Earnings
+                    %th CASES
+                    %th CLOSED
+                    %th RATE
+                %tbody
+                  %tr
+                    %td.fit
+                      = image_tag("avatar2.jpg", class: "user-pic")
+                    %td Proposals
+                    %td $345
+                    %td 45
+                    %td 67
+                    %td 86%
+                  %tr
+                    %td.fit
+                      = image_tag("avatar3.jpg", class: "user-pic")
+                    %td Calls
+                    %td $345
+                    %td 45
+                    %td 67
+                    %td 86%

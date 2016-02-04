@@ -1,0 +1,137 @@
+- provide(:title, @user.name)
+- provide(:minor_title, "dashboard for #{@user.name}")
+/ BEGIN PAGE CONTENT
+.row
+  .col-md-12
+
+    .profile-sidebar{:style => "width: 250px;"}
+
+      .portlet.light.profile-sidebar-portlet
+        .profile-userpic
+          = gravator_for(@user, "img-responsive", {:s => 120 })
+        .profile-usertitle
+          .profile-usertitle-name
+            = @user.name
+          .profile-usertitle-job
+            = user_job_title(@user)
+        .profile-userbuttons
+        .profile-usermenu
+          %ul.nav
+            = build_menu(@user, Settings.user_menu)
+
+      .portlet.light
+        .row.list-separated.profile-stat
+          .col-md-4.col-sm-4.col-xs-6
+            .uppercase.profile-stat-title 37
+            .uppercase.profile-stat-text Projects
+
+          .col-md-4.col-sm-4.col-xs-6
+            .uppercase.profile-stat-title 51
+            .uppercase.profile-stat-text Tasks
+
+          .col-md-4.col-sm-4.col-xs-6
+            .uppercase.profile-stat-title 61
+            .uppercase.profile-stat-text Tasks
+
+        %div
+          %h4.profile-desc-title About #{@user.name}
+          %span.profile-desc-text
+            = user_desc(@user)
+
+    .profile-content
+      .row
+        .col-md-6
+          .portlet.light
+            .portlet-title
+              .caption.caption-md
+                %i.icon-bar-chart.theme-font.hide
+                %span.caption-subject.font-blue-madison.bold.uppercase Activity
+                %span.caption-helper.hide weekly stats...
+              .actions
+                .btn-group.btn-group-devided{'data-toggle' => "buttons"}
+                  %label.btn.btn-transparent.grey-salsa.btn-circle.btn-sm.active
+                  %input#option1.toggle{:type => "radio", :name => "options"} Today
+                  %label.btn.btn-transparent.grey-salsa.btn-circle.btn-sm
+                  %input#option2.toggle{:type => "radio", :name => "options"} Week
+                  %label.btn.btn-transparent.grey-salsa.btn-circle.btn-sm
+                  %input#option2.toggle{:type => "radio", :name => "options"} Month
+            .portlet-body
+              .row.number-stats.margin-bottom-30
+                .col-md-6.col-sm-6.col-xs-6
+                  .stat-left
+                    .stat-chart
+                      .sparkline_bar
+                        %canvas{:width => "90", :height => "45", :style => "display: inline-block; width: 90px; height: 45px; vertical-align: top;"}
+                    .stat-number
+                      .title Total
+                      .number 246
+              .col-md-6.col-sm-6.col-xs-6
+                .stat-right
+                  .stat-chart
+                    .sparkline_bar2
+                      %canvas{:width => "90", :height => "45", :style => "display: inline-block; width: 90px; height: 45px; vertical-align: top;"}
+                  .stat-number
+                    .title New
+                    .number 746
+              .table-scrollable.table-scrollable-borderless
+                %table.table.table-hover.table-light
+                  %thead
+                    %tr.uppercase
+                      %th{:colspan => "2"} WORK
+                      %th Earnings
+                      %th CASES
+                      %th CLOSED
+                      %th RATE
+                  %tbody
+                    %tr
+                      %td.fit
+                        = image_tag("avatar2.jpg", class: "user-pic")
+                      %td Proposals
+                      %td $345
+                      %td 45
+                      %td 67
+                      %td 86%
+
+        .col-md-6
+          .portlet.light
+            .portlet-title
+              .caption.caption-md
+                %i.icon-bar-chart.theme-font.hide
+                %span.caption-subject.font-blue-madison.bold.uppercase Tasks
+                %span.caption-helper 16 pending...
+              .inputs
+                .portlet-input.input-small.input-inline
+                  .input-icon.right
+                    %i.icon-magnifier
+                    %input.form-control.form-control-solid{:type => "text", :placeholder => "search..."}
+            .portlet-body
+              .task-content
+                .slimScrollDiv{:style =>"position: relative; overflow: hidden; width: auto; height: 282px;"}
+                  .scroller{:style => "height: 282px; overflow: hidden; width: auto;", 'data-always-visible' => "1", 'data-rail-visible1' => "0", 'data-handle-color' => "#D7DCE2", 'data-initialized' => "1"}
+                    %ul.task-list
+                      %li
+                        .task-checkbox
+                          %input{:type =>"hidden", :value =>"1", :name =>"test"}
+                          .checker
+                            %span
+                              %input.liChild{:type =>"checkbox", :value =>"2", :name =>"test"}
+                        .task-title
+                          %span.task-title-sp Present 2015 Sales Report at Board Meeting
+                          %span.label.label-sm.label-success Company
+                          %span.task-bell
+                            %i.fa.fa-bell-o
+                        .task-config
+                          .task-config-btn.btn-group
+                            %a.btn.btn-xs.default{:href =>"javascript:;", 'data-toggle' => "dropdown", 'data-hover' => "dropdown", 'data-close-others' => "true"}
+                              %i.fa.fa-cog
+                              %i.fa.fa-angle-down
+                            %ul.dropdown-menu.pull-right
+                              %li
+                                %a{:href => "javascript:;"}
+                                %i.fa.fa-check Complete
+                              %li
+                                %a{:href => "javascript:;"}
+                                %i.fa.fa-pencil Edit
+                              %li
+                                %a{:href => "javascript:;"}
+                                %i.fa.fa-trash-o Cancel

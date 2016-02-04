@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  # alias_attribute :profile_details, :profiles
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
 
@@ -10,7 +8,7 @@ class User < ActiveRecord::Base
 
   # declare the valid roles -- do not change the order if you add more
   # roles later, always append them at the end!
-  roles :admin, :ceo, :finance, :program_coordinator, :manager, :marketing, :guest, :staff
+  roles :admin, :ceo, :finance, :program_coordinator, :manager, :marketing, :guest, :staff, :superadmin
 
   has_many :user_notifications
   has_many :notifications, through: :user_notifications
@@ -18,20 +16,22 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :email, :password, :roles
   validates :email, email: true
+  accepts_nested_attributes_for :profiles, reject_if: :all_blank, allow_destroy: true
 
         
   GENDER_TYPES = [:Male, :Female]
   MARITAL_STATUS = [:Single, :Married, :Complicated]
+  ROLES = [:admin, :ceo, :finance, :program_coordinator, :manager, :marketing, :guest, :staff, :superadmin]
 
-  class << self
-    def current_user=(user)
-      Thread.current[:current_user] = user
-    end
-
-    def current_user
-      Thread.current[:current_user]
-    end
-  end
+  # class << self
+  #   def current_user=(user)
+  #     Thread.current[:current_user] = user
+  #   end
+  #
+  #   def current_user
+  #     Thread.current[:current_user]
+  #   end
+  # end
 
   def create_notification
     n = Notification.create!(notification:"New User #{self.name} Created")

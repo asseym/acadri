@@ -1,0 +1,17 @@
+- model_class = User
+- provide(:title, model_class.model_name.human.pluralize.titleize)
+- provide(:minor_title, 'create a user')
+/ BEGIN FORM PORTLET
+.portlet.box.green
+  .portlet-title
+    .caption
+      Create New #{model_class} Form
+
+    .tools
+      %a.collapse{:href => "", 'data-original-title' => "", :title => ""}
+      %a.config.data-original-title{:href => "#portlet-config", 'data-toggle' => "modal", 'data-original-title' => "", :title => ""}
+      %a.reload{:href => "", 'data-original-title' => "", :title => ""}
+  .portlet-body.form
+    .form-wizard
+      = render :partial => 'userform'
+/END FORM PORTLET

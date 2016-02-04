@@ -1,0 +1,11 @@
+= f.simple_fields_for :profile_general_detail do |general_fields|
+  = general_fields.input :title
+  = general_fields.input :education
+  = general_fields.input :staff_id
+  = general_fields.input :date_hired, as: :datepicker, placeholder: 'Date...'
+  = general_fields.input :passport_number
+  = general_fields.input :drivers_licence
+  = general_fields.input :salary
+  = general_fields.input :NSSF_number
+  = general_fields.input :photo, as: :file
+  = general_fields.input :cv, as: :file

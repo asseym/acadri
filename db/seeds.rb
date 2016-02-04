@@ -7,31 +7,33 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #User Levels
-UserLevel.create!(name: 'Not Defined')
-UserLevel.create!(name: 'Finance')
-UserLevel.create!(name: 'Program Coordinator')
-UserLevel.create!(name: 'Manager')
-UserLevel.create!(name: 'Marketing')
-UserLevel.create!(name: 'CEO')
+# UserLevel.create!(name: 'Not Defined')
+# UserLevel.create!(name: 'Finance')
+# UserLevel.create!(name: 'Program Coordinator')
+# UserLevel.create!(name: 'Manager')
+# UserLevel.create!(name: 'Marketing')
+# UserLevel.create!(name: 'CEO')
 
-User.create!(name:  "Example User",
+usr = User.create!(name:  "Example User",
              email: "example@example.com",
-             password:              "foobar311", 
+             password: "foobar311",
              admin: true,
-             is_staff: true
+             is_staff: true,
+              roles: [:admin]
              )
 
-User.update(1, :confirmation_token => nil, :confirmed_at => DateTime.now)
+User.update(usr.id, :confirmation_token => nil, :confirmed_at => DateTime.now)
 
 
-10.times do |n|
+2.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@example.com"
   password = "password"
   User.create!(name:  name,
                email: email,
                password: password,
-               is_staff: true)
+               is_staff: true,
+                roles: [:staff])
 end
 
 countries = [

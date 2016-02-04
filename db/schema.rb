@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119110751) do
+ActiveRecord::Schema.define(version: 20160131121848) do
 
   create_table "accounts_invoice_items", force: :cascade do |t|
     t.integer  "accounts_invoice_id"
@@ -216,6 +216,14 @@ ActiveRecord::Schema.define(version: 20160119110751) do
   end
 
   add_index "programs", ["category_id"], name: "index_programs_on_category_id"
+
+  create_table "static_pages", force: :cascade do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "trainings", force: :cascade do |t|
     t.string   "title"

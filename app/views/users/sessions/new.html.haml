@@ -1,0 +1,45 @@
+/BEGIN LOGIN
+.content
+  = form_for(resource, :html => {:class => 'login-form', :id => 'login-form'}, as: resource_name, url: session_path(resource_name)) do |f|
+    %h3.form-title
+      Sign In
+      - flash.each do |message_type, message|
+        %div{:class => "alert alert-#{message_type}"}
+          %button.close{'data-close' => "alert"}
+          %span= message
+
+    .form-group
+      = f.label :email, class: 'control-label visible-ie8 visible-ie9'
+      %br/
+      = f.email_field :email, autofocus: true, class: 'form-control form-control-solid placeholder-no-fix', placeholder: 'Email Address'
+
+    .field
+      = f.label :password, class: 'control-label visible-ie8 visible-ie9'
+      %br/
+      = f.password_field :password, autocomplete: "off", class: 'form-control form-control-solid placeholder-no-fix', placeholder: 'Password'
+
+    .form-actions
+      %button.btn.btn-success.uppercase{:type => "submit"} Login
+      - if devise_mapping.rememberable?
+        = f.label :remember_me, class: 'rememberme check' do
+          .checker
+            %span= f.check_box :remember_me, cheked: true
+            Remember
+      %a.forget-password#forget-password{:href => "javascript:;"} Forgot Password?
+
+  .create-account
+    %p &nbsp;
+
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, :class => "forget-form", novalidate: :novalidate }) do |f|
+    = devise_error_messages!
+    %h3 Forget Password ?
+    %p Enter your e-mail address below to reset your password.
+
+    .form-group
+      = f.label :email, class: 'control-label visible-ie8 visible-ie9'
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "off", class: 'form-control form-control-solid placeholder-no-fix', placeholder: 'Email'
+
+    .form-actions
+      %button#back-btn.btn.btn-default Back
+      %button.btn.btn-success.uppercase.pull-right{:type => "submit"} Submit

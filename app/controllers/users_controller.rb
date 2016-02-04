@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_filter :set_current_user
+  before_filter :set_logged_in
   load_and_authorize_resource
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
@@ -95,6 +96,10 @@ class UsersController < ApplicationController
 
   def set_current_user
     @user = current_user
+  end
+
+  def set_logged_in
+    @session_exists = user_signed_in?
   end
     
 end

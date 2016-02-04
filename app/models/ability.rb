@@ -32,17 +32,20 @@ class Ability
     # Define abilities for the passed in user here.
     user ||= User.new # guest user (not logged in)
     # a signed-in user can do everything
-    if user.has_role? :admin
-      # an admin can do everything
+    if user.has_role? :superadmin
       can :manage, :all
 
+
+    elsif user.has_role? :admin
+      # an admin can do everything
+      can :manage, :all
 
 
     elsif user.has_role? :ceo
       # an ceo can do everything to the following
       can :manage, [AccountsInvoice, AccountsInvoiceItem, Category, Country, Notification,
                     Opportunity, Organisation, Participant, Participation, Program, ProgramDate, ProgramVenue, Training, UserNotification,
-                    Profile, ProfileBankDetail, ProfilePersonalDetail, ProfileContactDetail, ProfileGeneralDetail]
+                    Profile, ProfileBankDetail, ProfilePersonalDetail, ProfileContactDetail, ProfileGeneralDetail, StaticPage, User]
       # can [:read, :create, :update], Chart
       # an editor can only view the annual report
       # can :read, AnnualReport
@@ -69,10 +72,12 @@ class Ability
 
 
     elsif user.has_role? :staff
+      can :manage, [StaticPage]
       can :read, :all
 
 
     elsif user.has_role? :guest
+      can :manage, [StaticPage]
       can :read, [Profile, ProfileContactDetail, ProfilePersonalDetail, ProfileBankDetail, ProfileGeneralDetail]
     end
 

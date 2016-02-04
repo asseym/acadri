@@ -57,7 +57,7 @@ gem 'bootstrap-wysihtml5-rails', github: 'nerian/bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
 
 #Breadcrumbs
-gem "breadcrumbs_on_rails"
+#gem "breadcrumbs_on_rails"
 
 #Application configiration
 # gem 'rails_config'
@@ -108,6 +108,12 @@ gem 'time_difference'
 
 #Observers
 gem 'rails-observers'
+
+#Simple template parsers
+gem 'haml'
+gem 'cocoon'
+gem 'simple_form'
+gem 'html2haml'
            
 
 group :development, :test do
@@ -126,11 +132,14 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'rspec-activemodel-mocks'
+  # gem 'warden'
 end
 
 group :test do
   gem 'faker', github: 'stympy/faker'
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'launchy'
 end

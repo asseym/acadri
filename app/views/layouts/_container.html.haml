@@ -1,0 +1,16 @@
+/BEGIN CONTENT
+.page-content-wrapper
+  .page-content
+    .page-head
+      .page-title
+        %h1
+          - ttl = yield(:page_name).empty? ? params[:controller] : yield(:page_name)
+          - page_title = inline_title(ttl, yield(:minor_title))
+          = page_title[:major]
+          %small
+            %i.fa.fa-angle-right
+            = page_title[:minor]
+    .page-bar
+      = render 'layouts/breadcrumbs'
+    = yield
+/END CONTENT

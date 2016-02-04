@@ -1,0 +1,13 @@
+.nested-fields
+  - section_name = "#{section.humanize} Details"
+  = f.input :section_name, disabled: true, hint: 'You cannot change the section name.', input_html: { value: section_name }
+  %hr
+  - if section == 'personal'
+    = render 'shared/personal_detail_fields', f: f
+  - if section == 'general'
+    = render 'shared/general_detail_fields', f: f
+  - if section == 'contact'
+    = render 'shared/contact_detail_fields', f: f
+  - if section == 'bank'
+    = render 'shared/bank_detail_fields', f: f
+  -#= link_to_remove_association "remove section", f

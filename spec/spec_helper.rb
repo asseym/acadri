@@ -15,8 +15,17 @@
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
 #
-
+# include Warden::Test::Helpers
+# Warden.test_mode!
 require "capybara/rspec"
+require "warden"
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.javascript_driver = :chrome
+Capybara.app_host = 'http://localhost:3000'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -45,6 +54,15 @@ RSpec.configure do |config|
 
   config.warnings = false
   config.raise_errors_for_deprecations!
+
+  #Waden config
+  config.include Warden::Test::Helpers
+  config.before :suite do
+    Warden.test_mode!
+  end
+  config.after :each do
+    Warden.test_reset!
+  end
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.

@@ -1,0 +1,43 @@
+.col-md-6
+  .portlet.light.tasks-widget
+    .portlet-title
+      .caption.caption-md
+        %i.icon-bar-chart.theme-font.hide
+        %span.caption-subject.font-blue-madison.bold.uppercase Tasks
+        %span.caption-helper 16 pending...
+      .inputs
+        .portlet-input.input-small.input-inline
+          .input-icon.right
+            %i.icon-magnifier
+            %input.form-control.form-control-solid{:type => "text", :placeholder => "search..."}
+    .portlet-body
+      .task-content
+        .slimScrollDiv{:style =>"position: relative; overflow: hidden; width: auto; height: 282px;"}
+          .scroller{:style => "height: 282px; overflow: hidden; width: auto;", 'data-always-visible' => "1", 'data-rail-visible1' => "0", 'data-handle-color' => "#D7DCE2", 'data-initialized' => "1"}
+            %ul.task-list
+              %li
+                .task-checkbox
+                  %input{:type =>"hidden", :value =>"1", :name =>"test"}
+                  .checker
+                    %span
+                      %input.liChild{:type =>"checkbox", :value =>"2", :name =>"test"}
+                .task-title
+                  %span.task-title-sp Present 2015 Sales Report at Board Meeting
+                  %span.label.label-sm.label-success Company
+                  %span.task-bell
+                    %i.fa.fa-bell-o
+                .task-config
+                  .task-config-btn.btn-group
+                    %a.btn.btn-xs.default{:href =>"javascript:;", 'data-toggle' => "dropdown", 'data-hover' => "dropdown", 'data-close-others' => "true"}
+                      %i.fa.fa-cog
+                      %i.fa.fa-angle-down
+                    %ul.dropdown-menu.pull-right
+                      %li
+                        %a{:href => "javascript:;"}
+                        %i.fa.fa-check Complete
+                      %li
+                        %a{:href => "javascript:;"}
+                        %i.fa.fa-pencil Edit
+                      %li
+                        %a{:href => "javascript:;"}
+                        %i.fa.fa-trash-o Cancel

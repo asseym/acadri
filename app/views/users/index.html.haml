@@ -1,0 +1,42 @@
+- model_class = User
+- provide(:title, model_class.model_name.human.pluralize.titleize)
+- provide(:minor_title, 'list of users')
+
+.portlet.box.green
+  .portlet-title
+    .caption
+      %i.fa.fa-cogs= yield(:title)
+      Table
+    .tools
+      %a.collapse{:href => "javascript:;", 'data-original-title' => "", :title => ""}
+      %a.config{:href => "#portlet-config", 'data-toggle' => "modal", 'data-original-title' => "", :title => ""}
+      %a.reload{:href => "javascript:;", 'data-original-title' => "", :title => ""}
+  .portlet-body
+    .btn-group
+      = link_to(new_user_path, :class => 'btn green' ) do
+        %span
+          %i.fa.fa-plus
+        = t('.new', :default => t("helpers.links.new"))
+    .table-scrollable
+      %table.table.table-hover
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)
+            %th= model_class.human_attribute_name(:name)
+            %th= model_class.human_attribute_name(:email)
+            %th= t('.actions', :default => t("helpers.actions"))
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td= user.id
+              %td= link_to user.name, edit_user_path(user)
+              %td= user.email
+              %td
+                = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(user), :class => 'btn btn-default btn-xs'
+                = link_to t('.destroy', :default => t("helpers.links.destroy")),
+                            user_path(user),
+                            :method => :delete,
+                            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                            :class => 'btn btn-xs btn-danger'
+    .btn-group.pull-right
+      = will_paginate :previous_label => '<i class="fa fa-angle-left"></i>', :next_label => '<i class="fa fa-angle-right"></i>'

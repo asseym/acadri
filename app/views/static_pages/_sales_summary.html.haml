@@ -1,0 +1,60 @@
+.col-md-6.col-sm-12
+  .portlet.light
+    .portlet-title
+      .caption.caption-md
+        %i.icon-bar-chart.theme-font-color.hide
+        %span.caption-subject.theme-font-color.bold.uppercase Sales Summary
+        %caption-helper.hide
+      .actions
+        .btn-group.btn-group-devided{'data-toggle'=> "buttons"}
+          %button.btn.btn-transparent.grey-salsa.btn-circle.btn-sm.active Today
+          %button.btn.btn-transparent.grey-salsa.btn-circle.btn-sm Week
+          %button.btn.btn-transparent.grey-salsa.btn-circle.btn-sm Month
+    .portlet-body
+      .row.list-separated
+        .col-md-3.col-sm-3.col-xs-6
+          .font-grey-mint.font-sm Total Sales
+          .uppercase.font-hg.font-red-flamingo
+            13,760
+            %span.font-lg.font-grey-mint $
+        .col-md-3.col-sm-3.col-xs-6
+          .font-grey-mint.font-sm Revenue
+          .uppercase.font-hg.theme-font-color
+            4,760
+            %span.font-lg.font-grey-mint $
+        .col-md-3.col-sm-3.col-xs-6
+          .font-grey-mint.font-sm Expenses
+          .uppercase.font-hg.font-purple
+            11,760
+            %span.font-lg.font-grey-mint $
+        .col-md-3.col-sm-3.col-xs-6
+          .font-grey-mint.font-sm Growth
+          .uppercase.font-hg.font-blue-sharp
+            9,760
+            %span.font-lg.font-grey-mint $
+
+      %ul.list-separated.list-inline-xs.hide
+        %li
+          .font-grey-mint.font-sm Total Sales
+          .uppercase.font-hg.font-red-flamingo
+            13,760
+            %span.font-lg.font-grey-mint $
+        %li
+        %li.border
+          .font-grey-mint.font-sm Revenue
+          .uppercase.font-hg.theme-font-color
+            4,760
+            %span.font-lg.font-grey-mint $
+        %li.divider
+        %li
+          .font-grey-mint.font-sm Expenses
+          .uppercase.font-hg.font-purple
+            11,760
+            %span.font-lg.font-grey-mint $
+        %li.divider
+        %li
+          .font-grey-mint.font-sm Growth
+          .uppercase.font-hg.font-blue-sharp
+            9,760
+            %span.font-lg.font-grey-mint $
+      #sales_statistics.portlet-body-morris-fit.morris-chart{:style => "height: 260px; position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"} Sales Chart

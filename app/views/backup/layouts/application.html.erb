@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta content="" name="description">
+  <meta content="" name="author">
+  <% if @session_exists == false %>
+    <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" %>
+  <% end %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+	<%= render 'layouts/shim' %>
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <!-- END HEAD -->
+  <!-- BEGIN BODY -->
+  <% if @session_exists == false %>
+    <body class="login">
+        <%= render 'layouts/login' %>
+        <%= render 'layouts/footer' %>
+        <%= debug(params) if Rails.env.development? %>
+    </body>
+  <% else %>
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-sidebar-closed-hide-logo">
+        <%= render 'layouts/header' %>
+        <div class="clearfix">
+        </div>
+        <div class="page-container">
+          <%= render 'layouts/sidebar' %>
+          <%= render 'layouts/container' %>
+        </div>
+        <%= render 'layouts/footer' %>
+        <%= debug(params) if Rails.env.development? %>
+    </body>
+  <% end %>
+  <!-- END BODY -->
+</html>

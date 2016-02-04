@@ -1,0 +1,9 @@
+= f.simple_fields_for :profile_personal_detail do |personal_fields|
+  = personal_fields.input :first_name
+  = personal_fields.input :other_names
+  = personal_fields.input :religion
+  = personal_fields.input :sex, collection: User::GENDER_TYPES
+  = personal_fields.input :marital_status, collection: User::MARITAL_STATUS
+  = personal_fields.input :birthday, placeholder: 'Birthday...', input_html: { class: 'form-control datepicker' }
+  = personal_fields.input :nationality
+  = personal_fields.input :languages

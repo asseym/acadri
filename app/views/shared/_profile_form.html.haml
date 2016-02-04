@@ -1,0 +1,5 @@
+= f.simple_fields_for :profiles  do |profile|
+  = render 'shared/profile_fields', f: profile
+.row
+  .col-md-offset-9.col-md-3
+    = link_to_add_association "Add #{section.humanize} Details", f, :profiles, partial: 'shared/profile_fields', class: 'btn', role: 'button', :render_options => {:class => 'btn green', locals: {section: section}}

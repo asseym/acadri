@@ -1,0 +1,83 @@
+/BEGIN HEADER
+.page-header.navbar.navbar-fixed-top
+  .page-header-inner
+    .page-logo
+      = link_to(root_path) do
+        = image_tag("acadri-light.png", alt: "logo", class: "logo-default")
+      .menu-toggler.sidebar-toggler
+
+    %a#menu-toggler.menu-toggler.responsive-toggler{:href => "javascript:;", 'data-toggle' => "collapse", 'data-target' => ".navbar-collapse"}
+
+    .page-top
+      = form_tag "/search", method: "get", :class => "search-form" do
+        .input-group
+          = text_field_tag(:query, nil, class: "form-control input-sm", placeholder: "Search...")
+          %span.input-group-btn
+            %a#search-link.btn.submit{:href => "javascript:;"}
+              %i.icon-magnifier
+
+      .top-menu
+        %ul.nav.navbar-nav.pull-right
+
+          %li.separator.hide
+
+          %li#header_notification_bar.dropdown.dropdown-extended.dropdown-notification.dropdown-dark
+            %a#notification-notifier.dropdown-toggle{:href => "javascript:;", 'data-toggle' => "dropdown", 'data-hover' =>"dropdown", 'data-close-others' => "true"}
+              %i.icon-bell
+              %span.badge.badge-success
+                = number_of_notifications(current_user)
+            %ul.dropdown-menu
+              %li.external
+                = notifications_header(number_of_notifications(current_user))
+                = link_to "view all", user_path(current_user)
+              %li
+                .slimScrollDiv{:style => "position: relative; overflow: hidden; width: auto; height: 250px;"}
+                  %ul.dropdown-menu-list.scroller{:style => "height: 250px; overflow: hidden; width: auto;", 'data-handle-color' => "#637283", 'data-initialized' => "1"}
+                    = latest_notifcations(current_user)
+                  .slimScrollBar{:style => "width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; background: rgb(99, 114, 131);"}
+                  .slimScrollRail{:style => "width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(234, 234, 234);"}
+
+          %li.separator.hide
+
+          %li#header_inbox_bar.dropdown.dropdown-extended.dropdown-inbox.dropdown-dark
+            %a#message-notifier.dropdown-toggle{:href => "javascript:;", 'data-toggle' => "dropdown", 'data-hover' =>"dropdown", 'data-close-others' => "true"}
+              %i.icon-envelope-open
+              %span.badge.badge-danger
+                = number_of_messages(current_user)
+            %ul.dropdown-menu
+              %li.external
+                = messages_header(number_of_messages(current_user))
+                = link_to "view all", user_path(current_user)
+              %li
+                .slimScrollDiv{:style => "position: relative; overflow: hidden; width: auto; height: 275px;"}
+                  %ul.dropdown-menu-list.scroller{:style => "height: 275px; overflow: hidden; width: auto;", 'data-handle-color' => "#637283", 'data-initialized' => "1"}
+                    = latest_messages(current_user)
+                  .slimScrollBar{:style => "width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; background: rgb(99, 114, 131);"}
+                  .slimScrollRail{:style => "width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(234, 234, 234);"}
+
+          %li.separator.hide
+
+          %li#header_task_bar.dropdown.dropdown-extended.dropdown-inbox.dropdown-dark
+            %a#calendar-notifier.dropdown-toggle{:href => "javascript:;", 'data-toggle' => "dropdown", 'data-hover' =>"dropdown", 'data-close-others' => "true"}
+              %i.icon-calendar
+              %span.badge.badge-primary
+                = number_of_calendar_events(current_user)
+            %ul.dropdown-menu
+              %li.external
+                = calendar_header(number_of_calendar_events(current_user))
+                = link_to "view all", user_path(current_user)
+              %li
+                .slimScrollDiv{:style => "position: relative; overflow: hidden; width: auto; height: 250px;"}
+                  %ul.dropdown-menu-list.scroller{:style => "height: 250px; overflow: hidden; width: auto;", 'data-handle-color' => "#637283", 'data-initialized' => "1"}
+                    = latest_calendar_events(current_user)
+                  .slimScrollBar{:style => "width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; background: rgb(99, 114, 131);"}
+                  .slimScrollRail{:style => "width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(234, 234, 234);"}
+
+          %li.dropdown.dropdown-user.dropdown-dark
+            %a.dropdown-toggle{:href => "javascript:;", 'data-toggle' => "dropdown", 'data-hover' =>"dropdown", 'data-close-others' => "true"}
+              %span.username.username-hide-on-mobile
+                = current_user.name.split[0]
+              = gravator_for(current_user, "img-circle", {:s => 50})
+            %ul.dropdown-menu.dropdown-menu-default
+              = render 'layouts/usermenu'
+/END HEADER

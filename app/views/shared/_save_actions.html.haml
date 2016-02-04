@@ -1,0 +1,9 @@
+.form-actions
+  .row
+    .col-md-offset-9.col-md-3
+      = link_to t('.Create', :default => t("helpers.links.create")), '#',
+          :onclick => "$(this).closest('form').submit()",
+          :class => 'btn green'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")),
+          @object_path,
+          :class => 'btn default'

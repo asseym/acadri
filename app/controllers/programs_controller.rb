@@ -5,8 +5,10 @@ class ProgramsController < ApplicationController
 
   before_action :set_program, only: [:show, :edit, :update, :destroy]
   
-  add_breadcrumb "home", :root_path, { :title => "Home" }
-  add_breadcrumb "sales", :root_path, { :title => "Sales" }
+  # add_breadcrumb "home", :root_path, { :title => "Home" }
+  add_breadcrumb :root
+  # add_breadcrumb "sales", :root_path, { :title => "Sales" }
+  add_breadcrumb :sales, :root_path
   
   #steps :new, :venues, :dates
 
