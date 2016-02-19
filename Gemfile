@@ -138,10 +138,12 @@ end
 group :test do
   gem 'faker', github: 'stympy/faker'
   gem 'capybara'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'email_spec'
 end
 
 group :production do

@@ -5,21 +5,17 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery with: :exception
 
-  # before_filter :authenticate_user!
-  # before_action :authenticate_user!
-  #
-  # before_filter :set_current_user
-  before_filter :set_logged_in
+  before_action :set_logged_in
 
-  # if :is_login_page?
-  #   skip_authorization_check
-  # else
-  #   check_authorization
-  # end
-
-  # def current_user
-  #   @current_user ||= (warden.authenticate(scope: :user) || GuestUser.new)
-  # end
+  rescue_from CanCan::AccessDenied do |exception|
+    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
+    # flash[:alert] = exception.message
+    # redirect_to root_path
+    respond_to do |format|
+      format.json { render nothing: true, status: :forbidden }
+      format.html { redirect_to main_app.root_url, :alert => exception.message }
+    end
+  end
   
   private
 

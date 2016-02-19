@@ -3,10 +3,10 @@ require 'faker'
 FactoryGirl.define do
   factory :user do
     name { Faker::Lorem.word }
-    email { Faker::Internet.email(name='Example User') }
+    email { Faker::Internet.email }
     password { Faker::Internet.password }
     confirmation_token { nil }
-    confirmed_at { Faker::Date.forward(days=0) }
+    confirmed_at { Faker::Date.backward(days=1) }
     roles {['guest']}
 
     trait :is_guest_user do
@@ -57,8 +57,13 @@ FactoryGirl.define do
       association :profile, :factory => :profile_with_contact_details
     end
 
+    trait :is_unconfirmed do
+      confirmed_at { nil }
+    end
+
     factory :ordinary_user,   traits: [:is_guest_user]
     factory :staff_user,        traits: [:is_staff, :has_staff_role]
+    factory :unconfirmed_user,  traits: [:is_staff, :has_staff_role, :is_unconfirmed]
     factory :superadmin,      traits: [:is_staff, :is_admin, :has_admin_role]
     factory :admin_user,      traits: [:is_staff, :is_admin, :has_admin_role]
     factory :ceo_user,    traits: [:is_staff, :has_ceo_role]

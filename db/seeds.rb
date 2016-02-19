@@ -24,6 +24,17 @@ usr = User.create!(name:  "Example User",
 
 User.update(usr.id, :confirmation_token => nil, :confirmed_at => DateTime.now)
 
+roles = [:superadmin, :ceo, :program_coordinator, :finance, :manager, :staff, :guest]
+
+roles.each do |role|
+  usr = User.create!(name:  "#{role.to_s.humanize} User",
+                       email: "#{role.to_s}@example.com",
+                       password: "foobar311",
+                       admin: true,
+                       is_staff: true,
+                       roles: [role])
+  User.update(usr.id, :confirmation_token => nil, :confirmed_at => DateTime.now)
+end
 
 2.times do |n|
   name  = Faker::Name.name

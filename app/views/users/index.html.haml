@@ -5,7 +5,8 @@
 .portlet.box.green
   .portlet-title
     .caption
-      %i.fa.fa-cogs= yield(:title)
+      %i.fa.fa-cogs
+      = yield(:title)
       Table
     .tools
       %a.collapse{:href => "javascript:;", 'data-original-title' => "", :title => ""}

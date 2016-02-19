@@ -18,13 +18,19 @@
 # include Warden::Test::Helpers
 # Warden.test_mode!
 require "capybara/rspec"
-require "warden"
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+# require 'rspec/autorun'
+require "capybara/rspec"
+require 'database_cleaner'
+require "email_spec"
 
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
-
-Capybara.javascript_driver = :chrome
+# Capybara.register_driver :chrome do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+# end
+#
+# Capybara.javascript_driver = :chrome
 Capybara.app_host = 'http://localhost:3000'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
@@ -55,14 +61,23 @@ RSpec.configure do |config|
   config.warnings = false
   config.raise_errors_for_deprecations!
 
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+
+  # If you're not using ActiveRecord, or you'd prefer not to run each of your
+  # examples within a transaction, remove the following line or assign false
+  # instead of true.
+  # config.use_transactional_fixtures = false
+  # DatabaseCleaner.strategy = :truncation
+
   #Waden config
-  config.include Warden::Test::Helpers
-  config.before :suite do
-    Warden.test_mode!
-  end
-  config.after :each do
-    Warden.test_reset!
-  end
+  # config.include Warden::Test::Helpers
+  # config.before :suite do
+  #   Warden.test_mode!
+  # end
+  # config.after :each do
+  #   Warden.test_reset!
+  # end
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.

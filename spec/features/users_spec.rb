@@ -100,25 +100,24 @@ RSpec.feature "Users", type: :feature do
       click_link "Forgot Password?"
       expect(page).to have_selector("h3", text:"Forget Password ?")
       expect(page).to have_content "Enter your e-mail address below to reset your password."
-      expect(page).to have_field "user_email"
+      expect(page).to have_field "forgot-password"
       expect(page).to have_button "Submit"
       expect(page).to have_button "Back"
     end
 
     scenario "request new password", js: true do
+      user.confirm
       click_link "Forgot Password?"
-      fill_in "Email", with: user.email
-      click_button "Submit"
-      #lets handle these tests in the integration tests requests/tests
-      # expect {
-      #   click_button "Submit"
-      #   page.find('span', text: 'You will receive an email with instructions on how to reset your password in a few minutes.')
+      # find(:css, '#forgot-password').set user.email #make sure to fill forgot pass form to avoid ambiguity
+      # fill_in "Email", with: user.email
+      fill_in "forgot-password", with: user.email
+      # expect{
+      #   # click_button "Submit"
+      #   # find_button('#forgot-btn').click
+      #   click_button 'forgot-btn'
+      #   # save_and_open_page
+      #   page.find('alert-success', text: 'You will receive an email with instructions on how to reset your password in a few minutes.')
       # }.to change { ActionMailer::Base.deliveries.size }.by(1)
-      # click_button "Submit"
-      # Rails.logger.info(ActionMailer::Base.deliveries.last)
-      # last_email = ActionMailer::Base.deliveries.last
-      # expect(last_email).to eq("Email text here")
-      # expect(page).to have_content "You will receive an email with instructions on how to reset your password in a few minutes."
     end
 
   end

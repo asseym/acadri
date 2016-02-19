@@ -1,23 +1,14 @@
 class StaticPagesController < ApplicationController
-  # before_filter :authenticate_user!
+  # before_action :authenticate_user!, :except => [:index]
   before_action :authenticate_user!
 
-  before_filter :set_current_user
-  before_filter :set_logged_in
+  before_action :set_current_user
+  before_action :set_logged_in
 
+  # load_and_authorize_resource except: :index
   load_and_authorize_resource
-  
-  def home
-    # debugger
-  end
 
-  def help
-  end
-  
-  def about
-  end
-  
-  def contact
+  def index
   end
 
   private

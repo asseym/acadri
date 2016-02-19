@@ -5,11 +5,11 @@
   .field
     = f.label :password, "New password"
     %br/
-    = f.password_field :password, autofocus: true, autocomplete: "off"
+    = f.password_field :password, autofocus: true, autocomplete: "off", id: "pass_reset"
   .field
     = f.label :password_confirmation, "Confirm new password"
     %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
+    = f.password_field :password_confirmation, autocomplete: "off", id: "pass_reset_confirmation"
   .actions
     = f.submit "Change my password"
 = render "devise/shared/links"

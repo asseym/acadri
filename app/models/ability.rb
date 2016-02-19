@@ -53,32 +53,39 @@ class Ability
 
 
     elsif user.has_role? :finance
-      can :manage, [AccountsInvoice, AccountsInvoiceItem, Opportunity, OpportunityStatus, Organisation]
+      can :manage, [AccountsInvoice, AccountsInvoiceItem, Opportunity, OpportunityStatus, Organisation, UserNotification, Notification]
       can :read, :all
 
 
     elsif user.has_role? :program_coordinator
-      can :manage, [Program, ProgramVenue, ProgramDate, Opportunity, OpportunityStatus, Organisation, Participant, Participation, Training]
+      can :manage, [Program, ProgramVenue, ProgramDate, Opportunity, OpportunityStatus, Organisation, Participant, Participation, Training,
+                 Notification, UserNotification]
       can :read, :all
 
     elsif user.has_role? :manager
       can :manage, [Program, ProgramVenue, ProgramDate, Opportunity, OpportunityStatus, Organisation, Participant, Participation,
-                    Profile, ProfileBankDetail, ProfilePersonalDetail, ProfileContactDetail, ProfileGeneralDetail]
+                    Profile, ProfileBankDetail, ProfilePersonalDetail, ProfileContactDetail, ProfileGeneralDetail, Notification,
+                 UserNotification]
       can :read, :all
 
     elsif user.has_role? :marketing
-      can :manage, [Program, ProgramVenue, ProgramDate, Opportunity, OpportunityStatus, Organisation, Participant, Participation]
+      can :manage, [Program, ProgramVenue, ProgramDate, Opportunity, OpportunityStatus, Organisation, Participant, Participation, Notification,
+                 UserNotification]
       can :read, :all
 
 
     elsif user.has_role? :staff
-      can :manage, [StaticPage]
+      can :manage, [UserNotification, Notification]
       can :read, :all
+      can [:read, :update], User, :user => user
+      can :update, Profile, :user => user
 
 
     elsif user.has_role? :guest
-      can :manage, [StaticPage]
-      can :read, [Profile, ProfileContactDetail, ProfilePersonalDetail, ProfileBankDetail, ProfileGeneralDetail]
+      can :manage, [UserNotification, Notification]
+      can [:read, :update], User, :user => user
+      can :read, [StaticPage, Profile, ProfileContactDetail, ProfilePersonalDetail, ProfileBankDetail, ProfileGeneralDetail]
+      can :update, [Profile], :user => user
     end
 
   end

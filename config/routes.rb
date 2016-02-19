@@ -20,13 +20,20 @@ Rails.application.routes.draw do
   #devise_for           :users
   # devise_for :users, :path_prefix => 'dvs'
   devise_for :users, controllers: { sessions: 'users/sessions' }, :path_prefix => 'dvs'
+  devise_scope :user do
+    get '/dvs/users/sign_out' => 'users/sessions#destroy'
+  end
   devise_for           :views
   resources            :countries
   resources  :users
-  root                 'static_pages#home'
+  # root                 'static_pages#index'
   get 'help'        => 'static_pages#help'
   get 'about'       => 'static_pages#about'
   get 'contact'     => 'static_pages#contact'
+  authenticated :user do
+    root to: 'static_pages#index', as: :authenticated_root
+  end
+  root to: redirect('/dvs/users/sign_in')
   #get 'users'       => 'users#index'
   #get 'users/:id'   => 'users#show'
   #get 'signup'      => 'users#new'

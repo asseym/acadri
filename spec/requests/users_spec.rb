@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActionView::Helpers::UrlHelper
 
 RSpec.describe "Users", type: :request do
   describe "User Management" do
@@ -18,14 +19,21 @@ RSpec.describe "Users", type: :request do
         expect(response).to render_template(:new)
 
         post users_path, :user => FactoryGirl.attributes_for(:ordinary_user)
-
-        expect(response).to redirect_to(assigns(:user))
+        expect(response).to redirect_to users_path
         follow_redirect!
-
-        expect(response).to render_template(:show)
-        expect(response.body).to include("Widget was successfully created.")
-        expect(response.body).to include(:user[:name])
+        # expect(response).to redirect_to(assigns(:user))
+        # follow_redirect!
+        expect(response).to render_template(:index)
+        expect(User.count).to eq(2)
+        within 'div.alert' do
+          expect(response.body).to include("User was successfully created.")
+        end
+        within "a[href=#{url_for user_path(@user)}" do
+          expect(response.body).to include(@user[:name])
+        end
       end
+
+
     end
   end
 end

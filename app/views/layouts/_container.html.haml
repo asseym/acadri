@@ -7,10 +7,11 @@
           - ttl = yield(:page_name).empty? ? params[:controller] : yield(:page_name)
           - page_title = inline_title(ttl, yield(:minor_title))
           = page_title[:major]
-          %small
+          %small#page-title-sub-header
             %i.fa.fa-angle-right
             = page_title[:minor]
     .page-bar
       = render 'layouts/breadcrumbs'
+      = render 'layouts/notices'
     = yield
 /END CONTENT

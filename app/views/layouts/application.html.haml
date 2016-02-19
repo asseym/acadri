@@ -6,12 +6,10 @@
     %meta{'http-equiv' => "Content-type", :content => "text/html; charset=utf-8"}
     %meta{:content => "ACADRI ERP System", :name => "description"}
     %meta{:content => "AAM", :name => "author"}
-    - if @session_exists == false
-      = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = render 'layouts/shim'
-    %link{:rel => "shortcut icon", :href => "favicon.ico"}
+    %link{:rel => "shortcut icon", :href => "/favicon.ico"}
 
   - if @session_exists == false
     %body.login
