@@ -1,0 +1,3 @@
+<%# update.js.erb %>
+<%= smart_listing_item :countries, :update, @country,
+                       @country.valid? ? "countries/country" : "countries/form" %>

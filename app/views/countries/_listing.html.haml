@@ -1,0 +1,17 @@
+- model_class = Country
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= smart_listing.sortable model_class.human_attribute_name(:name), :name
+        %th= model_class.human_attribute_name(:c_code)
+        %th= model_class.human_attribute_name(:telephone_code)
+        %th{colspan: 2}= model_class.human_attribute_name(:created_at)
+    %tbody
+      - smart_listing.collection.each do |country|
+        %tr.editable{data: {id: country.id}}
+          = smart_listing.render object: country, partial: 'countries/country', locals: {object: country}
+      = smart_listing.item_new colspan: 5, link: new_country_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

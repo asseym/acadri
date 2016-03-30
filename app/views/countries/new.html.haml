@@ -1,0 +1,13 @@
+- model_class = Country
+- provide(:title, model_class.model_name.human.pluralize.titleize)
+- provide(:minor_title, 'create a country')
+/ BEGIN FORM PORTLET
+.portlet.box.green
+  .portlet-title
+    .caption
+      Create New #{model_class} Form
+    .tools
+  .portlet-body.form
+    .form-wizard
+      = render :partial => 'form'
+/END FORM PORTLET

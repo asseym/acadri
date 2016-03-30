@@ -1,6 +1,7 @@
 class CountriesController < ApplicationController
   before_action :authenticate_user!
   before_filter :set_current_user
+  before_filter :set_logged_in
   load_and_authorize_resource
 
   before_action :set_country, only: [:show, :edit, :update, :destroy]
@@ -11,10 +12,8 @@ class CountriesController < ApplicationController
   # GET /countries
   # GET /countries.json
   def index
-    @countries = Country.paginate(page: params[:page], :per_page => Settings.pagination_per_page)
-    
-    #breadcrumb
     add_breadcrumb "countries", :countries_path, { :title => "Countries" }
+    smart_listing_create partial: "countries/listing"
   end
 
   # GET /countries/1
@@ -26,52 +25,29 @@ class CountriesController < ApplicationController
   def new
     #breadcrumb
     add_breadcrumb "countries", :countries_path, { :title => "Countries" }
-    
-    @country = Country.new
   end
 
   # GET /countries/1/edit
   def edit
+    add_breadcrumb "countries", :countries_path, { :title => "Countries" }
   end
 
   # POST /countries
   # POST /countries.json
   def create
-    @country = Country.new(country_params)
-
-    respond_to do |format|
-      if @country.save
-        format.html { redirect_to @country, notice: 'Country was successfully created.' }
-        format.json { render :show, status: :created, location: @country }
-      else
-        format.html { render :new }
-        format.json { render json: @country.errors, status: :unprocessable_entity }
-      end
-    end
+    @country = Country.create(country_params)
   end
 
   # PATCH/PUT /countries/1
   # PATCH/PUT /countries/1.json
   def update
-    respond_to do |format|
-      if @country.update(country_params)
-        format.html { redirect_to @country, notice: 'Country was successfully updated.' }
-        format.json { render :show, status: :ok, location: @country }
-      else
-        format.html { render :edit }
-        format.json { render json: @country.errors, status: :unprocessable_entity }
-      end
-    end
+    @country.update_attributes(country_params)
   end
 
   # DELETE /countries/1
   # DELETE /countries/1.json
   def destroy
     @country.destroy
-    respond_to do |format|
-      format.html { redirect_to countries_url, notice: 'Country was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -89,5 +65,19 @@ class CountriesController < ApplicationController
     def set_current_user
       @user = current_user
     end
+
+    def set_logged_in
+      @session_exists = user_signed_in?
+    end
+
+    def smart_listing_resource
+      @countries ||= params[:id] ? Country.find(params[:id]) : Country.new(params[:user])
+    end
+    helper_method :smart_listing_resource
+
+    def smart_listing_collection
+      @countries ||= Country.all
+    end
+    helper_method :smart_listing_collection
     
 end
