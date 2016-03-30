@@ -1,0 +1,3 @@
+<%# create.js.erb %>
+<%= smart_listing_item :categories, :create, @category,
+                       @category.valid? ? "categories/category" : "categories/form" %>

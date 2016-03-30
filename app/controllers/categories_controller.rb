@@ -1,68 +1,53 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_filter :set_current_user
+  before_filter :set_logged_in
   load_and_authorize_resource
 
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "home", :root_path, { :title => "Home" }
+  add_breadcrumb "settings", :root_path, { :title => "Settings" }
+
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    add_breadcrumb "categories", :categories_path, { :title => "Categories" }
+    smart_listing_create partial: "categories/listing"
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+    add_breadcrumb "categories", :categories_path, { :title => "Categories" }
   end
 
   # GET /categories/new
   def new
-    @category = Category.new
+    add_breadcrumb "categories", :categories_path, { :title => "Categories" }
   end
 
   # GET /categories/1/edit
   def edit
+    add_breadcrumb "categories", :categories_path, { :title => "Categories" }
   end
 
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(category_params)
-
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
-      else
-        format.html { render :new }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
-    end
+    @category = Category.create(category_params)
   end
 
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @category }
-      else
-        format.html { render :edit }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
-    end
+    @category.update_attributes(category_params)
   end
 
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
     @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -79,4 +64,18 @@ class CategoriesController < ApplicationController
     def set_current_user
       @user = current_user
     end
+
+    def set_logged_in
+      @session_exists = user_signed_in?
+    end
+
+    def smart_listing_resource
+      @categories ||= params[:id] ? Category.find(params[:id]) : Category.new(params[:user])
+    end
+    helper_method :smart_listing_resource
+
+    def smart_listing_collection
+      @categories ||= Category.all
+    end
+    helper_method :smart_listing_collection
 end
