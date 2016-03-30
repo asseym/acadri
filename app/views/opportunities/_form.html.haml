@@ -1,0 +1,18 @@
+%td{colspan: 6}
+  = simple_form_for object, url: object.new_record? ? opportunities_path : opportunity_path(object),
+                     remote: true,
+                     :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+    = f.input :title
+    = f.input :description
+    = f.association :opportunity_status
+    = f.association :user
+    -#= f.input :attachment, as: :file
+    .file-drop
+      %span{ 'data-placeholder' => 'Drop files here' } Drop files here
+
+    = f.input :attachment, as: :file, input_html: {class: "standard-attachment",
+    accept: "application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document", multiple: :multiple }
+
+    = f.submit "Save", class: "btn btn-primary", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.cancel Cancel

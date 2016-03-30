@@ -1,0 +1,12 @@
+- model_class = Opportunity
+- provide(:title, model_class.model_name.human.pluralize.titleize)
+- provide(:minor_title, 'edit opportunity')
+/BEGIN FORM PORTLET
+.portlet.box.green
+  .portlet-title
+    .caption
+      %i.fa.fa-cogs.fa-lg "Edit #{model_class} Form"
+    .tools
+  .portlet-body.form
+    = render :partial => 'form'
+/END FORM PORTLET

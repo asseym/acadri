@@ -1,0 +1,21 @@
+- model_class = Opportunity
+- unless smart_listing.empty?
+  .table-scrollable
+    %table.table.table-hover
+      %thead
+        %tr
+          %th= model_class.human_attribute_name(:title)
+          %th= smart_listing.sortable model_class.human_attribute_name(:opportunit_status), :opportunity_status
+          %th= smart_listing.sortable model_class.human_attribute_name(:user), :user
+          %th= smart_listing.sortable model_class.human_attribute_name(:created_at), :created_at
+          %th{colspan: 2}= smart_listing.sortable model_class.human_attribute_name(:updated_at), :updated_at
+      %tbody
+        - smart_listing.collection.each do |opportunity|
+          %tr.editable{data: {id: opportunity.id}}
+            = smart_listing.render object: opportunity, partial: 'opportunities/opportunity_row', locals: {object: opportunity}
+        = smart_listing.item_new colspan: 6, link: new_opportunity_path
+
+  = smart_listing.paginate
+  = smart_listing.pagination_per_page_links
+- else
+  %p.warning No records!

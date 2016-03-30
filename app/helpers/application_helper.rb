@@ -47,7 +47,7 @@ module ApplicationHelper
     "<h3><span class='bold'>#{num} pending</span> notifications</h3>".html_safe
   end
 
-  def latest_notifcations(current_user)
+  def latest_notifications(current_user)
     notifications_list = ""
     UserNotification.where(user_id: current_user.id).limit(5).order('created_at DESC').each do |notification|
       notifications_list +="<li>#{notification_text(notification)}</li>"
@@ -137,7 +137,7 @@ module ApplicationHelper
       if can_access
         menu_li_string += '<li>'
         if menu[:path]
-          menu_li_string += link_to menu[:path] do
+          menu_li_string += link_to menu[:path], {id: "#{name.downcase}-btn"} do
             if menu[:icon]
               link_name +="<i class='#{menu[:icon]}'></i>"
             end
@@ -153,7 +153,7 @@ module ApplicationHelper
           end
           link_name = ''
         else
-          menu_li_string += '<a href="javascript:;">'
+          menu_li_string += "<a href='javascript:;' id='#{name.downcase}-btn'>"
           if menu[:icon]
             menu_li_string +="<i class='#{menu[:icon]}'></i>"
           end

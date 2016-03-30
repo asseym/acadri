@@ -13,6 +13,7 @@
  *= require bootstrap_and_overrides
  *= require_self
  *= require_tree .
+ *= require jquery-ui
  *= require metronic/components-rounded
  *= require metronic/plugins
  *= require metronic/layout
@@ -21,7 +22,6 @@
  *= require metronic/login
  *= require simple-line-icons
  *= require font-awesome
- *= require bootstrap-datepicker
- *= require jquery-ui/tabs
+ * require bootstrap-datepicker
  *= require bootstrap-wysihtml5
  */

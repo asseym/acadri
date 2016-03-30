@@ -7,3 +7,7 @@ Capybara.server do |app, port|
   require 'rack/handler/webrick'
   Rack::Handler::WEBrick.run(app, :Port => port, :AccessLog => [], :Logger => WEBrick::Log::new(Rails.root.join("log/capybara_test.log").to_s))
 end
+
+Capybara.add_selector(:linkhref) do
+  xpath {|href| ".//a[@href='#{href}']"}
+end

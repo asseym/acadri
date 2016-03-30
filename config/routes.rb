@@ -26,10 +26,9 @@ Rails.application.routes.draw do
   devise_for           :views
   resources            :countries
   resources  :users
-  # root                 'static_pages#index'
-  get 'help'        => 'static_pages#help'
-  get 'about'       => 'static_pages#about'
-  get 'contact'     => 'static_pages#contact'
+
+  get '/search'      => 'static_pages#search'
+
   authenticated :user do
     root to: 'static_pages#index', as: :authenticated_root
   end

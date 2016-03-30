@@ -1,8 +1,10 @@
 class Opportunity < ActiveRecord::Base
   belongs_to :user
   belongs_to :opportunity_status
-  has_attached_file :attachment, { hash_secret: "longSecretString" }
-  do_not_validate_attachment_file_type :attachment
+  has_attached_file :attachment, { url: "/system/:hash.:extension", hash_secret: "acadriInternalEnt3rpriseResourcePlanning2015"}
+  validates_attachment :attachment,
+                       content_type: { :content_type => %w(application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document) },
+                       size: { in: 0..1500.kilobytes }
 
   validates_presence_of :title, :description, :opportunity_status, :user
   
@@ -36,6 +38,22 @@ class Opportunity < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def status
+    self.opportunity_status
+  end
+
+  def created
+    self.created_at.to_formatted_s(:long)
+  end
+
+  def last_updated
+    self.updated_at.to_formatted_s(:long)
+  end
+
+  def sales_person
+    self.user.name
   end
 
   def to_s

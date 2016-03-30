@@ -1,0 +1,3 @@
+<%# update.js.erb %>
+<%= smart_listing_item :accounts_invoices, :update, @accounts_invoice,
+                       @accounts_invoice.valid? ? "accounts_invoices/accounts_invoice" : "accounts_invoices/form" %>

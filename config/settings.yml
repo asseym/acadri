@@ -21,7 +21,6 @@ system_menu:
     path: '/'
     icon: 'icon-home'
   Sales:
-    path:
     icon: 'icon-basket'
     accessible: :all
     submenus:
@@ -32,19 +31,37 @@ system_menu:
       Training:
         path: '/trainings/'
         icon:
-        accessible: :all
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :program_coordinator
+          - :finance
       Invoices:
         path: '/accounts_invoices/'
         icon:
-        accessible: :all
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :finance
       Expenses:
         path: '#'
         icon:
-        accessible: :all
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :finance
       Assets:
         path: '#'
         icon:
-        accessible: :all
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :finance
+          - :manager
       ProgramsList:
         path: '/programs/'
         icon:
@@ -56,7 +73,13 @@ system_menu:
       SuppliersList:
         path: '#'
         icon:
-        accessible: :all
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :finance
+          - :manager
+          - :program_coordinator
   Purchases:
     path:
     icon: 'icon-briefcase'
@@ -95,15 +118,24 @@ system_menu:
       EmployeesList:
         path: '#'
         icon:
-        accessible: :all
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
       Contracts:
         path: '#'
         icon:
-        accessible: :all
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
       Loans:
         path: '#'
         icon:
-        accessible: :all
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
       Leave:
         path: '#'
         icon:
@@ -112,6 +144,7 @@ system_menu:
       path:
       icon: 'icon-settings'
       accessible:
+        - :superadmin
         - :admin
         - :ceo
       submenus:
@@ -119,18 +152,20 @@ system_menu:
           path: '/countries/'
           icon:
           accessible:
+            - :superadmin
             - :admin
             - :ceo
         Users:
           path: '/users/'
           icon:
           accessible:
-            - :admin
+            - :superadmin
             - :ceo
         CourseCategories:
           path: '/categories/'
           icon:
           accessible:
+            - :superadmin
             - :admin
             - :ceo
 

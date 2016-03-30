@@ -1,0 +1,17 @@
+%td{colspan: 6}
+  = simple_form_for object, url: object.new_record? ? accounts_invoices_path : accounts_invoice_path(object),
+                     remote: true,
+                     :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+    = f.association :training
+    = f.input :invoice_date, :as => :date, label_html: { class: 'col-sm-3' }
+    = f.input :invoice_terms
+    = f.input :currency, collection: AccountsInvoice::CURRENCIES
+    %h3 Invoice Items
+    #accounts_invoice_items
+      = f.simple_fields_for :accounts_invoice_items do |invoice_item|
+        = render 'accounts_invoice_item_fields', :f => invoice_item, locals: {f: invoice_item}
+      .links
+        = link_to_add_association 'Add Invoice Item', f, :accounts_invoice_items
+    = f.submit "Save", class: "btn btn-primary", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.cancel Cancel

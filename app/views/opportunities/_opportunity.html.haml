@@ -1,0 +1,23 @@
+- model_class = Opportunity
+- provide(:title, model_class.model_name.human.pluralize.titleize)
+- provide(:minor_title, @opportunity.title)
+
+%td{colspan: 6}
+  .portlet.light
+    .portlet-body
+      .col-md-12.blog-pane
+        .article-block
+          %h3{style: "margin-top: 0;"}= @opportunity.title
+          %p
+            %strong Opportunity status:
+            = @opportunity.opportunity_status
+          %p
+            %strong Sales Person:
+            = @opportunity.sales_person
+          %p
+            %strong Description:
+            = @opportunity.description
+          - if @opportunity.attachment
+            %p
+              %strong Attachments:
+              = link_to "Download", @opportunity.attachment.url(:original, false)

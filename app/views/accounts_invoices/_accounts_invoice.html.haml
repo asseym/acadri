@@ -1,0 +1,81 @@
+- model_class = AccountsInvoice
+- provide(:title, model_class.model_name.human.pluralize.titleize)
+- provide(:minor_title, invoice_number(@accounts_invoice) )
+
+%td{colspan: 6}
+  .portlet.light
+    .portlet-body
+      .row
+        .col-xs-6
+          %h1 ACADRI
+        .col-xs-6.text-right
+          %h1 INVOICE
+          %h1
+            %small
+              Invoice #
+              = invoice_number(@accounts_invoice)
+      .row
+        .col-xs-5
+          .panel.panel-default
+            .panel-heading
+              %h4
+                From:
+                %a{href: "www.acadri.org", _blank:true} ACADRI
+            .panel-body= acadri_address
+
+        .col-xs-5.col-xs-offset-2.text-right
+          .panel.panel-default
+            .panel-heading
+              %h4
+                To:
+                %a{ href: "#{org_details(@accounts_invoice, "website")}"}= org_details(@accounts_invoice, "name")
+            .panel-body= org_details(@accounts_invoice, "address")
+
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th.text-right Description
+            %th.text-right Units
+            %th.text-right Unit Cost
+            %th.text-right Sub-Total
+        %tbody
+          - @accounts_invoice.accounts_invoice_items.each_with_index do |item, index|
+            - if index == @accounts_invoice.accounts_invoice_items.size - 1
+              %tr.item.last
+            - else
+              %tr.item
+            %td.text-right= item.description
+            %td.text-right= item.units
+            %td.text-right= item.unit_cost
+            %td.text-right= item_subtotal(item)
+      .row.text-right
+        .col-xs-2.col-xs-offset-8
+          %p
+            %strong TOTAL:
+        .col-xs-2
+          %strong= invoice_total(@accounts_invoice)
+      .row
+        .col-xs-5
+          .panel.panel-info
+            .panel-heading
+              %h4 Bank details
+            .panel-body
+              %p AFRICA CAPACITY DEVELOPMENT AND RESEARCH INSTITUTE
+              %p Bank Name :
+              %p SWIFT : --------
+              %p Account Number : --------
+              %p IBAN : --------
+
+        .col-xs-7
+          .span7
+            .panel.panel-info
+              .panel-heading
+                %h4 Contact Details
+              .panel-body
+                %p Email : info@acadri.org
+                %br
+                %br
+                Mobile : --------
+                %br
+                %br
+                %h4 All Payments should be made by Bank Transfer

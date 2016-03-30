@@ -1,0 +1,7 @@
+%td= link_to object.training, object, {:id => "js_accounts_invoice_#{object.id}"}
+%td= invoice_number(object)
+%td= object.invoice_date
+%td= object.invoice_terms
+%td= object.currency
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_accounts_invoice_path(object)},
+ {name: :destroy, url: accounts_invoice_path(object), confirmation: "Are you sure you want to delete this item?"}]

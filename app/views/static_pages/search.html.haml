@@ -1,0 +1,20 @@
+- model_class = StaticPage
+- provide(:title, "Search Results")
+- provide(:page_name, "Search Results")
+- provide(:minor_title, 'list of the search operation results')
+
+/BEGIN FORM PORTLET
+.portlet.box.green
+  .portlet-title
+    .caption
+      %i.fa.fa-cogs
+        Search Results for "
+        %strong= @search_term
+        "
+    .tools
+      %a.collapse{:href => "", 'data-original-title' => "", :title => ""}
+      %a.config{:href => "#portlet-config", 'data-toggle' => "modal", 'data-original-title' => "", :title => ""}
+      %a.reload{:href => "", 'data-original-title' => "", :title => ""}
+  .portlet-body.form
+    = @search_results.inspect
+    /END FORM PORTLET

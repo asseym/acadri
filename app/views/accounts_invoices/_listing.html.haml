@@ -1,0 +1,21 @@
+- model_class = AccountsInvoice
+-#- unless smart_listing.empty?
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:training)
+        %th= smart_listing.sortable model_class.human_attribute_name(:invoice_number), :invoice_number
+        %th= smart_listing.sortable model_class.human_attribute_name(:invoice_date), :invoice_date
+        %th= model_class.human_attribute_name(:invoice_terms)
+        %th{colspan: 2}= model_class.human_attribute_name(:currency)
+    %tbody
+      - smart_listing.collection.each do |invoice|
+        %tr.editable{data: {id: invoice.id}}
+          = smart_listing.render object: invoice, partial: 'accounts_invoices/invoice', locals: {object: invoice}
+      = smart_listing.item_new colspan: 6, link: new_accounts_invoice_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links
+-#- else
+-#  %p.warning No records!

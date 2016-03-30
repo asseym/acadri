@@ -37,11 +37,11 @@
         $(elem).wysihtml5();
       });
 
-      $('.form-control.datepicker').datepicker({
-        format: 'yyyy-mm-dd', //'mm/dd/yyyy',
-        altFormat: 'yyyy-mm-dd'
-      //startDate: '-3d'
-      });
+      //$('.form-control.datepicker').datepicker({
+      //  format: 'yyyy-mm-dd', //'mm/dd/yyyy',
+      //  altFormat: 'yyyy-mm-dd'
+      ////startDate: '-3d'
+      //});
 
       $('.form-wizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
         var $total = navigation.find('li').length;
@@ -52,12 +52,16 @@
 
     });
 
+    //$(document).on("page:load ready", function(){
+    //  $("input.datepicker").datepicker();
+    ////});
+    //
     $(document).on("page:load ready", function(){
       $("input.datepicker").datepicker({
         format: 'yyyy-mm-dd',
         altFormat: 'yyyy-mm-dd'
       });
-     });
+    });
 /END JAVASCRIPTS
 /END BODY
 %span.select2-hidden-accessible{:role => "status", 'aria-live' => "polite"}

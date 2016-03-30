@@ -1,0 +1,6 @@
+.nested-fields
+  = f.input :description
+  = f.input :units
+  = f.input :unit_cost
+  = f.input :comp_action, collection: AccountsInvoiceItem::ADD_SUBTRACT_ACTIONS
+  = link_to_remove_association "Remove Invoice Item", f

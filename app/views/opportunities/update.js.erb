@@ -1,0 +1,3 @@
+<%# update.js.erb %>
+<%= smart_listing_item :opportunities, :update, @opportunity,
+                       @opportunity.valid? ? "opportunities/opportunity" : "opportunities/form" %>

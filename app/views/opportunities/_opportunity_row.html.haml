@@ -1,0 +1,7 @@
+%td= link_to object.title, object
+%td= object.status
+%td= object.sales_person
+%td= object.created
+%td= object.last_updated
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_opportunity_path(object)},
+ {name: :destroy, url: opportunities_path(object), confirmation: "Are you sure you want to delete this item?"}]

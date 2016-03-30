@@ -96,12 +96,15 @@ gem 'puma',             '~> 2.11.0'
 
 # Faking data
 # gem 'faker',            '~> 1.4.0'
-gem 'will_paginate',           '~> 3.0.0'
-gem 'bootstrap-will_paginate', '~> 0.0.10'
+# gem 'will_paginate',           '~> 3.0.0'
+#gem 'bootstrap-will_paginate', '~> 0.0.10'
 # gem 'install_theme'
 
 #Attachments
 gem "paperclip", "~> 4.3"
+gem 'rack-raw-upload'
+gem 'underscore-rails', github: "rweng/underscore-rails"
+gem 'jack_up'
 
 #Time difference calculator
 gem 'time_difference'
@@ -114,6 +117,13 @@ gem 'haml'
 gem 'cocoon'
 gem 'simple_form'
 gem 'html2haml'
+
+#additional utility gems
+gem 'rails-simple-search', '0.9.9', :path => "vendor/gems/rails-simple-search-0.9.9"
+gem "smart_listing", github: "Sology/smart_listing"
+
+#Ajax file upload
+# gem 'remotipart', '~> 1.2', github: "JangoSteve/remotipart"
            
 
 group :development, :test do
