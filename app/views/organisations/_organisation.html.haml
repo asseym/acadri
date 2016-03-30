@@ -1,0 +1,9 @@
+%td= object.name
+%td= object.address
+%td= object.postal_address
+%td= object.country
+%td= object.telephones
+%td= object.email_address
+%td= object.website
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_organisation_path(object)},
+ {name: :destroy, url: organisation_path(object), confirmation: "Are you sure you want to delete this item?"}]

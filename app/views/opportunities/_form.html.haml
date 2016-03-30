@@ -14,5 +14,5 @@
     = f.input :attachment, as: :file, input_html: {class: "standard-attachment",
     accept: "application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document", multiple: :multiple }
 
-    = f.submit "Save", class: "btn btn-primary", :disable_with => 'Please wait ...'
-    %button.btn.btn-link.cancel Cancel
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.pull-right.cancel Cancel

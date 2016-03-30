@@ -1,0 +1,20 @@
+- model_class = Organisation
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= smart_listing.sortable model_class.human_attribute_name(:name), :name
+        %th= model_class.human_attribute_name(:address)
+        %th= model_class.human_attribute_name(:postal_address)
+        %th= model_class.human_attribute_name(:country)
+        %th= model_class.human_attribute_name(:telephones)
+        %th= model_class.human_attribute_name(:email_address)
+        %th{colspan: 2}= model_class.human_attribute_name(:website)
+    %tbody
+      - smart_listing.collection.each do |organisation|
+        %tr.editable{data: {id: organisation.id}}
+          = smart_listing.render object: organisation, partial: 'organisations/organisation', locals: {object: organisation}
+      = smart_listing.item_new colspan: 8, link: new_organisation_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

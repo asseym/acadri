@@ -62,6 +62,10 @@ system_menu:
           - :ceo
           - :finance
           - :manager
+      ClientsList:
+        path: '/organisations/'
+        icon:
+        accessible: :all
       ProgramsList:
         path: '/programs/'
         icon:

@@ -4,5 +4,5 @@
                      :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
 
     = f.input :name
-    = f.submit "Save", class: "btn btn-primary", :disable_with => 'Please wait ...'
-    %button.btn.btn-link.cancel Cancel
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.pull-right.cancel Cancel

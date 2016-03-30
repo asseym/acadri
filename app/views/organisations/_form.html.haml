@@ -1,10 +1,14 @@
-%td{colspan: 5}
-  = simple_form_for object, url: object.new_record? ? countries_path : country_path(object),
+%td{colspan: 8}
+  = simple_form_for object, url: object.new_record? ? organisations_path : organisation_path(object),
                      remote: true,
                      :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
 
     = f.input :name
-    = f.input :c_code
-    = f.input :telephone_code
+    = f.input :address
+    = f.input :postal_address
+    = f.association :country
+    = f.input :telephones
+    = f.input :email_address
+    = f.input :website
     = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
     %button.btn.btn-link.pull-right.cancel Cancel

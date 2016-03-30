@@ -13,5 +13,5 @@
         = render 'accounts_invoice_item_fields', :f => invoice_item, locals: {f: invoice_item}
       .links
         = link_to_add_association 'Add Invoice Item', f, :accounts_invoice_items
-    = f.submit "Save", class: "btn btn-primary", :disable_with => 'Please wait ...'
-    %button.btn.btn-link.cancel Cancel
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.pull-right.cancel Cancel

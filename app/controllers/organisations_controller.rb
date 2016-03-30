@@ -1,14 +1,19 @@
 class OrganisationsController < ApplicationController
   before_action :authenticate_user!
   before_filter :set_current_user
+  before_filter :set_logged_in
   load_and_authorize_resource
 
   before_action :set_organisation, only: [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "home", :root_path, { :title => "Home" }
+  add_breadcrumb "sales", :root_path, { :title => "Sales" }
+
   # GET /organisations
   # GET /organisations.json
   def index
-    @organisations = Organisation.all
+    add_breadcrumb "organisations", :organisations_path, { :title => "Organisations" }
+    smart_listing_create partial: "organisations/listing"
   end
 
   # GET /organisations/1
@@ -18,51 +23,30 @@ class OrganisationsController < ApplicationController
 
   # GET /organisations/new
   def new
-    @organisation = Organisation.new
+    add_breadcrumb "organisations", :organisations_path, { :title => "Organisations" }
   end
 
   # GET /organisations/1/edit
   def edit
+    add_breadcrumb "organisations", :organisations_path, { :title => "Organisations" }
   end
 
   # POST /organisations
   # POST /organisations.json
   def create
-    @organisation = Organisation.new(organisation_params)
-
-    respond_to do |format|
-      if @organisation.save
-        format.html { redirect_to @organisation, notice: 'Organisation was successfully created.' }
-        format.json { render :show, status: :created, location: @organisation }
-      else
-        format.html { render :new }
-        format.json { render json: @organisation.errors, status: :unprocessable_entity }
-      end
-    end
+    @organisation = Organisation.create(organisation_params)
   end
 
   # PATCH/PUT /organisations/1
   # PATCH/PUT /organisations/1.json
   def update
-    respond_to do |format|
-      if @organisation.update(organisation_params)
-        format.html { redirect_to @organisation, notice: 'Organisation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @organisation }
-      else
-        format.html { render :edit }
-        format.json { render json: @organisation.errors, status: :unprocessable_entity }
-      end
-    end
+    @organisation.update_attributes(organisation_params)
   end
 
   # DELETE /organisations/1
   # DELETE /organisations/1.json
   def destroy
     @organisation.destroy
-    respond_to do |format|
-      format.html { redirect_to organisations_url, notice: 'Organisation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -80,4 +64,18 @@ class OrganisationsController < ApplicationController
     def set_current_user
       @user = current_user
     end
+
+    def set_logged_in
+      @session_exists = user_signed_in?
+    end
+  
+    def smart_listing_resource
+      @organisations ||= params[:id] ? Organisation.find(params[:id]) : Organisation.new(params[:user])
+    end
+    helper_method :smart_listing_resource
+  
+    def smart_listing_collection
+      @organisations ||= Organisation.all
+    end
+    helper_method :smart_listing_collection
 end
