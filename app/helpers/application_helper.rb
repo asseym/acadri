@@ -197,4 +197,8 @@ module ApplicationHelper
     return true if (roles - user.role_symbols).count < roles.count
   end
 
+  def formatted_date(d)
+    d.strftime("%m/%d/%Y")
+  end
+
 end

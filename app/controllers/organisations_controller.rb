@@ -70,7 +70,7 @@ class OrganisationsController < ApplicationController
     end
   
     def smart_listing_resource
-      @organisations ||= params[:id] ? Organisation.find(params[:id]) : Organisation.new(params[:user])
+      @organisations ||= params[:id] ? Organisation.find(params[:id]) : Organisation.new(params[:participant])
     end
     helper_method :smart_listing_resource
   

@@ -1,0 +1,21 @@
+- model_class = Participant
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= smart_listing.sortable model_class.human_attribute_name(:name), :name
+        %th= model_class.human_attribute_name(:other_names)
+        %th= model_class.human_attribute_name(:sex)
+        %th= model_class.human_attribute_name(:passport_no)
+        %th= model_class.human_attribute_name(:job_title)
+        %th= smart_listing.sortable model_class.human_attribute_name(:organisation), :organisation
+        %th= smart_listing.sortable model_class.human_attribute_name(:created_at), :created_at
+        %th{colspan: 2}= smart_listing.sortable model_class.human_attribute_name(:updated_at), :updated_at
+    %tbody
+      - smart_listing.collection.each do |participant|
+        %tr.editable{data: {id: participant.id}}
+          = smart_listing.render object: participant, partial: 'participants/participant', locals: {object: participant}
+      = smart_listing.item_new colspan: 9, link: new_participant_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

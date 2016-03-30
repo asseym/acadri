@@ -71,7 +71,7 @@ class CountriesController < ApplicationController
     end
 
     def smart_listing_resource
-      @countries ||= params[:id] ? Country.find(params[:id]) : Country.new(params[:user])
+      @countries ||= params[:id] ? Country.find(params[:id]) : Country.new(params[:country])
     end
     helper_method :smart_listing_resource
 

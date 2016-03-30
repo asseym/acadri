@@ -1,6 +1,7 @@
 class ParticipantsController < ApplicationController
   before_action :authenticate_user!
   before_filter :set_current_user
+  before_filter :set_logged_in
   load_and_authorize_resource
 
   before_action :set_participant, only: [:show, :edit, :update, :destroy]
@@ -12,7 +13,7 @@ class ParticipantsController < ApplicationController
   # GET /participants.json
   def index
     add_breadcrumb "Participants", :participants_path, { :title => "Participants" }
-    @participants = Participant.paginate(page: params[:page], :per_page => Settings.pagination_per_page)
+    smart_listing_create partial: "participants/listing"
   end
 
   # GET /participants/1
@@ -35,41 +36,19 @@ class ParticipantsController < ApplicationController
   # POST /participants
   # POST /participants.json
   def create
-    @participant = Participant.new(participant_params)
-
-    respond_to do |format|
-      if @participant.save
-        format.html { redirect_to @participant, notice: 'Participant was successfully created.' }
-        format.json { render :show, status: :created, location: @participant }
-      else
-        format.html { render :new }
-        format.json { render json: @participant.errors, status: :unprocessable_entity }
-      end
-    end
+    @participant = Participant.create(participant_params)
   end
 
   # PATCH/PUT /participants/1
   # PATCH/PUT /participants/1.json
   def update
-    respond_to do |format|
-      if @participant.update(participant_params)
-        format.html { redirect_to @participant, notice: 'Participant was successfully updated.' }
-        format.json { render :show, status: :ok, location: @participant }
-      else
-        format.html { render :edit }
-        format.json { render json: @participant.errors, status: :unprocessable_entity }
-      end
-    end
+    @participant.update_attributes(participant_params)
   end
 
   # DELETE /participants/1
   # DELETE /participants/1.json
   def destroy
     @participant.destroy
-    respond_to do |format|
-      format.html { redirect_to participants_url, notice: 'Participant was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -86,4 +65,18 @@ class ParticipantsController < ApplicationController
     def set_current_user
       @user = current_user
     end
+
+    def set_logged_in
+      @session_exists = user_signed_in?
+    end
+  
+    def smart_listing_resource
+      @participants ||= params[:id] ? Participant.find(params[:id]) : Participant.new(params[:participant])
+    end
+    helper_method :smart_listing_resource
+  
+    def smart_listing_collection
+      @participants ||= Participant.all
+    end
+    helper_method :smart_listing_collection
 end

@@ -1,0 +1,10 @@
+%td= object.name
+%td= object.other_names
+%td= object.sex
+%td= object.passport_no
+%td= object.job_title
+%td= object.organisation
+%td= formatted_date(object.created_at)
+%td= formatted_date(object.updated_at)
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_participant_path(object)},
+ {name: :destroy, url: participant_path(object), confirmation: "Are you sure you want to delete this item?"}]

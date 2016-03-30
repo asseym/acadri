@@ -70,7 +70,7 @@ class CategoriesController < ApplicationController
     end
 
     def smart_listing_resource
-      @categories ||= params[:id] ? Category.find(params[:id]) : Category.new(params[:user])
+      @categories ||= params[:id] ? Category.find(params[:id]) : Category.new(params[:category])
     end
     helper_method :smart_listing_resource
 
