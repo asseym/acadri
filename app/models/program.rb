@@ -9,8 +9,8 @@ class Program < ActiveRecord::Base
   validates_presence_of :name, :category
   validates :is_service, :inclusion => {:in => [true, false]}
   
-  accepts_nested_attributes_for :programdates
-  accepts_nested_attributes_for :programvenues
+  accepts_nested_attributes_for :programdates, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :programvenues, reject_if: :all_blank, allow_destroy: true
   
   def self.human_attribute_name(*args)
     if args[0].to_s == "name"

@@ -54,11 +54,19 @@ FactoryGirl.define do
     end
 
     trait :has_personal_details do
-      association :profile, :factory => :profile_with_personal_details
+      association :profile_personal_detail, :factory => :profile_personal_detail
+    end
+
+    trait :has_general_details do
+      association :profile_general_detail, :factory => :profile_general_detail
     end
 
     trait :has_contact_details do
-      association :profile, :factory => :profile_with_contact_details
+      association :profile_contact_detail, :factory => :profile_contact_detail
+    end
+
+    trait :has_bank_details do
+      association :profile_bank_detail, :factory => :profile_bank_detail
     end
 
     trait :is_unconfirmed do
@@ -79,12 +87,14 @@ FactoryGirl.define do
     # factory :ordinary_user_with_profile, traits: [:is_guest_user, :has_personal_details, :has_contact_details]
     # factory :admin_user_with_profile, traits: [:is_staff, :is_admin, :has_admin_role, :has_personal_details, :has_contact_details]
 
-    factory :user_with_profile do
-      after(:create) do |user|
-        FactoryGirl.create(:profile_with_personal_details, user: user)
-        FactoryGirl.create(:profile_with_contact_details, user:user)
-      end
-    end
+    # factory :user_with_profile do
+    #   after(:create) do |user|
+    #     FactoryGirl.create(:profile_with_personal_details, user: user)
+    #     FactoryGirl.create(:profile_with_contact_details, user:user)
+    #   end
+    # end
+
+    factory :user_with_profile, traits: [:has_personal_details, :has_general_details, :has_contact_details, :has_bank_details]
 
   end
 

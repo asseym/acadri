@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryGirl.define do
   factory :profile_personal_detail do
-    association :profile, :factory => :profile
+    association :user, :factory => :user
     first_name { Faker::Name.first_name }
     other_names { Faker::Name.last_name }
     religion { Faker::Lorem.word }

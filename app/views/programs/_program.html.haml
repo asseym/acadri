@@ -1,0 +1,4 @@
+%td= object.name
+%td= object.category.name
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_program_path(object)},
+ {name: :destroy, url: program_path(object), confirmation: "Are you sure you want to delete this item?"}]

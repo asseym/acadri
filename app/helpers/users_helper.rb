@@ -12,7 +12,11 @@ module UsersHelper
     gravator_url = args ? "https://secure.gravatar.com/avatar/#{gravator_id}" + "?" + args :\
      "https://secure.gravatar.com/avatar/#{gravator_id}"
      cls = cls.empty? ? "gravatar" : cls
-    image_tag(gravator_url, alt: user.name, class: cls)
+    image_tag(gravator_url, alt: current_user_name(user), class: cls)
+  end
+
+  def current_user_name(user)
+    "#{user.profile_personal_detail.first_name} #{user.profile_personal_detail.other_names}"
   end
 
   def user_job_title(user)
@@ -21,5 +25,11 @@ module UsersHelper
 
   def user_desc(user)
     "Lorem ipsum dolor sit amet diam nonummy nibh dolore."
+  end
+
+  def staff_personal_details(user, detail)
+    if user.profile_personal_detail
+      user.profile_personal_detail.send(detail)
+    end
   end
 end

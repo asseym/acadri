@@ -1,0 +1,52 @@
+%td{colspan: 6}
+  = simple_form_for object, url: object.new_record? ? users_path : user_path(object),
+                     remote: true,
+                     :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+    %h3.block New User Login Details
+    -#= f.input :name
+    = f.input :email, label: 'Login Email'
+    = f.input :password
+    = f.input :password_confirmation
+    = f.input :roles, collection: User::ROLES
+    = f.input :is_staff, as: :boolean
+    = f.input :admin, as: :boolean
+
+    %h3.block Personal Details
+    = f.simple_fields_for :profile_personal_detail do |af|
+      = af.input :first_name
+      = af.input :other_names
+      = af.input :religion
+      = af.input :sex, collection: User::GENDER_TYPES
+      = af.input :marital_status, collection: User::MARITAL_STATUS
+      = af.input :birthday, :as => :date, label_html: { class: 'col-sm-3' }
+      = af.input :nationality
+      = af.input :languages
+
+    %h3.block General Details
+    = f.simple_fields_for :profile_general_detail do |af|
+      = af.input :title
+      = af.input :education
+      = af.input :staff_id, label: 'Staff ID'
+      = af.input :date_hired, :as => :date, label_html: { class: 'col-sm-3' }
+      = af.input :passport_number
+      = af.input :drivers_licence
+      = af.input :salary
+      = af.input :NSSF_number
+      = af.input :photo, as: :file
+      = af.input :cv, as: :file
+
+    %h3.block Contact Details
+    = f.simple_fields_for :profile_contact_detail do |af|
+      = af.input :address
+      = af.input :email_address
+      = af.input :business_phone
+      = af.input :mobile_phone
+      = af.input :fax
+
+    %h3.block Bank Details
+    = f.simple_fields_for :profile_bank_detail do |bank_fields|
+      = bank_fields.input :bank_details
+
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.pull-right.cancel Cancel

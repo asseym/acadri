@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryGirl.define do
   factory :profile_contact_detail do
-    association :profile, :factory => :profile
+    association :user, :factory => :user
     address { Faker::Address.street_address }
     email_address { Faker::Internet.email }
     business_phone { Faker::PhoneNumber.phone_number }

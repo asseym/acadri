@@ -14,17 +14,17 @@
 # UserLevel.create!(name: 'Marketing')
 # UserLevel.create!(name: 'CEO')
 
-usr = User.create!(name:  "Example User",
-             email: "example@example.com",
-             password: "foobar311",
-             admin: true,
-             is_staff: true,
-              roles: [:admin]
-             )
+# usr = User.create!(name:  "Admin User",
+#              email: "example@example.com",
+#              password: "foobar311",
+#              admin: true,
+#              is_staff: true,
+#               roles: [:admin]
+#              )
+#
+# User.update(usr.id, :confirmation_token => nil, :confirmed_at => DateTime.now)
 
-User.update(usr.id, :confirmation_token => nil, :confirmed_at => DateTime.now)
-
-roles = [:superadmin, :ceo, :program_coordinator, :finance, :manager, :staff, :guest]
+roles = [:superadmin, :ceo, :program_coordinator, :finance, :manager, :staff, :admin, :guest]
 
 roles.each do |role|
   usr = User.create!(name:  "#{role.to_s.humanize} User",
@@ -34,18 +34,27 @@ roles.each do |role|
                        is_staff: true,
                        roles: [role])
   User.update(usr.id, :confirmation_token => nil, :confirmed_at => DateTime.now)
+  pd = usr.build_profile_personal_detail
+  pd.update(:first_name => Faker::Name.first_name, :other_names => Faker::Name.last_name, :sex => "Female", :nationality => "Ugandan")
+  gd = usr.build_profile_general_detail
+  gd.update(:title => Faker::Name.title, :education => Faker::Lorem.words(num=3),
+            :staff_id => Faker::Lorem.characters(9), :date_hired =>Faker::Date.backward(days=453), :salary => Faker::Number.between(1000, 5000))
+  cd = usr.build_profile_contact_detail
+  cd.update(:address => Faker::Address.street_address, :mobile_phone => Faker::PhoneNumber.cell_phone)
+  bd = usr.build_profile_bank_detail
+  bd.update(:bank_details => Faker::Hipster.sentence)
 end
 
-2.times do |n|
-  name  = Faker::Name.name
-  email = "example-#{n+1}@example.com"
-  password = "password"
-  User.create!(name:  name,
-               email: email,
-               password: password,
-               is_staff: true,
-                roles: [:staff])
-end
+# 2.times do |n|
+#   name  = Faker::Name.name
+#   email = "example-#{n+1}@example.com"
+#   password = "password"
+#   User.create!(name:  name,
+#                email: email,
+#                password: password,
+#                is_staff: true,
+#                 roles: [:staff])
+# end
 
 countries = [
   ["Uganda", "UG", 256],

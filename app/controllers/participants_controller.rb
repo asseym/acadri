@@ -25,7 +25,7 @@ class ParticipantsController < ApplicationController
   # GET /participants/new
   def new
     add_breadcrumb "Participants", :participants_path, { :title => "Participants" }
-    @participant = Participant.new
+    # @participant = Participant.new
   end
 
   # GET /participants/1/edit

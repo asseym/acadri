@@ -1,0 +1,15 @@
+- model_class = User
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= smart_listing.sortable model_class.human_attribute_name(:name), :name
+        %th{colspan: 2}= smart_listing.sortable model_class.human_attribute_name(:category_id), :category_id
+    %tbody
+      - smart_listing.collection.each do |program|
+        %tr.editable{data: {id: program.id}}
+          = smart_listing.render object: program, partial: 'programs/program', locals: {object: program}
+      = smart_listing.item_new colspan: 3, link: new_program_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

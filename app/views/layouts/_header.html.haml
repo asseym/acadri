@@ -76,7 +76,7 @@
           %li.dropdown.dropdown-user.dropdown-dark
             %a.dropdown-toggle{:href => "javascript:;", 'data-toggle' => "dropdown", 'data-hover' =>"dropdown", 'data-close-others' => "true"}
               %span.username.username-hide-on-mobile
-                = current_user.name.split[0]
+                = current_user_name(current_user).split[0]
               = gravator_for(current_user, "img-circle", {:s => 50})
             %ul.dropdown-menu.dropdown-menu-default
               = render 'layouts/usermenu'

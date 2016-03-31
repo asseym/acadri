@@ -12,26 +12,26 @@ class User < ActiveRecord::Base
 
   has_many :user_notifications
   has_many :notifications, through: :user_notifications
-  has_many :profiles
+  has_one :profile_personal_detail
+  has_one :profile_general_detail
+  has_one :profile_contact_detail
+  has_one :profile_bank_detail
+  accepts_nested_attributes_for :profile_personal_detail, :allow_destroy => true
+  accepts_nested_attributes_for :profile_general_detail, :allow_destroy => true
+  accepts_nested_attributes_for :profile_contact_detail, :allow_destroy => true
+  accepts_nested_attributes_for :profile_bank_detail, :allow_destroy => true
 
-  validates_presence_of :name, :email, :password, :roles
+  validates_presence_of :email, :roles
+  validates :password,  :presence     => true,
+                        :confirmation => true,
+                        :length       => { :minimum => 6 },
+                        :if           => :password # only validate if password changed!
   validates :email, email: true
-  accepts_nested_attributes_for :profiles, reject_if: :all_blank, allow_destroy: true
-
+  # accepts_nested_attributes_for :profiles, reject_if: :all_blank, allow_destroy: true
         
   GENDER_TYPES = [:Male, :Female]
   MARITAL_STATUS = [:Single, :Married, :Complicated]
   ROLES = [:admin, :ceo, :finance, :program_coordinator, :manager, :marketing, :guest, :staff, :superadmin]
-
-  # class << self
-  #   def current_user=(user)
-  #     Thread.current[:current_user] = user
-  #   end
-  #
-  #   def current_user
-  #     Thread.current[:current_user]
-  #   end
-  # end
 
   def create_notification
     notifiable_roles = Settings.user_creation_notify
@@ -48,19 +48,33 @@ class User < ActiveRecord::Base
   end
 
   def personal_details
-    profiles.all.find_by(section_name: 'Personal Details').profile_personal_details.first
+    self.profile_personal_detail
   end
 
   def contact_details
-    profiles.all.find_by(section_name: 'Contact Details').profile_contact_details.first
+    self.profile_contact_detail
   end
 
   def bank_details
-    profiles.all.find_by(section_name: 'Bank Details').profile_bank_details.first
+    self.profile_bank_detail
   end
 
   def general_details
-    profiles.all.find_by(section_name: 'General Details').profile_general_details.first
+    self.profile_general_detail
+  end
+
+  SEARCH_FIELDS = ["profile_personal_details.first_name", "profile_personal_details.other_names", :email]
+
+  def self.like(query)
+    joined = self.joins(:profile_personal_detail)
+    SEARCH_FIELDS.each_with_index { |field, index|
+      if joined.where("#{field.to_s} LIKE ?","%#{query}%").count > 0 then
+        return joined.where("#{field.to_s} LIKE ?", "%#{query}%")
+        break
+      elsif index == SEARCH_FIELDS.size - 1
+        return where(1)
+      end
+    }
   end
 
 end

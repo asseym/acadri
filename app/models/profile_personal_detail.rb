@@ -1,7 +1,7 @@
 class ProfilePersonalDetail < ActiveRecord::Base
-  belongs_to :profile
+  belongs_to :user
 
-  validates_presence_of :profile, :nationality, :sex, :birthday, :first_name, :other_names
+  validates_presence_of :nationality, :sex, :first_name, :other_names
 
   def age
     today = Date.today

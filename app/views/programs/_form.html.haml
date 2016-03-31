@@ -1,0 +1,26 @@
+%td{colspan: 3}
+  = simple_form_for object, url: object.new_record? ? programs_path : program_path(object),
+                     remote: true,
+                     :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+    = f.input :name, label: 'Program Name'
+    = f.association :category
+    = f.input :description
+    = f.input :is_service, inline_label: 'Is a Service'
+
+    %h3.block Dates
+    #dates
+      = f.simple_fields_for :programdates do |date|
+        = render 'programdate_fields', f: date
+      .link
+        = link_to_add_association 'add date', f, :programdates
+
+    %h3.block Venues
+    #venues
+      = f.simple_fields_for :programvenues do |venue|
+        = render 'programvenue_fields', f: venue
+      .link
+        = link_to_add_association 'add venue', f, :programvenues
+
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.pull-right.cancel Cancel

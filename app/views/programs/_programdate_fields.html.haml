@@ -1,0 +1,4 @@
+.nested-fields
+  = f.input :start_date, as: :date, label_html: { class: 'col-sm-3' }
+  = f.input :end_date, as: :date, label_html: { class: 'col-sm-3' }
+  = link_to_remove_association "remove date", f

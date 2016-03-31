@@ -13,7 +13,12 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     add_breadcrumb "Users", :users_path, { :title => "Users" }
-    @users = User.paginate(page: params[:page], :per_page => Settings.pagination_per_page)
+    users_scope = User.all
+    users_scope = users_scope.like(params[:filter]) if params[:filter]
+    @users = smart_listing_create(:users,
+                                   users_scope,
+                                   partial: "users/listing")
+    # smart_listing_create partial: "users/listing"
   end
 
   # GET /users/1
@@ -25,8 +30,11 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     add_breadcrumb "Users", :users_path, { :title => "Users" }
-    @steps_nav = [:Login, :Personal, :General]
     @user = User.new
+    @user.build_profile_bank_detail
+    @user.build_profile_contact_detail
+    @user.build_profile_general_detail
+    @user.build_profile_personal_detail
   end
 
   # GET /users/1/edit
@@ -37,69 +45,58 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @steps_nav = [:Login, :Personal, :General]
-
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        #format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.html {redirect_to users_url, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        Rails.logger.info(@user.errors.messages.inspect)
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    @user = User.create(user_params)
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        Rails.logger.info(@user.errors.messages.inspect)
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    @user.update_attributes(user_params)
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  #def user_params
-  #  params[:user]
-  #end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    #def user_params
+    #  params[:user]
+    #end
 
-  def user_params
-    params.require(:user).permit!
-  end
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :roles, :is_staff, :admin, :_destroy,
+                                   {:profile_personal_detail_attributes => [:first_name, :other_names, :religion, :sex, :marital_status, :birthday, :nationality, :languages, :_destroy],
+                                   :profile_general_detail_attributes => [:education, :staff_id, :date_hired, :passport_number,
+                                                                          :drivers_licence, :salary, :NSSF_number, :title, :cv, :photo, :_destroy],
+                                   :profile_contact_detail_attributes => [:address, :email_address, :business_phone, :mobile_phone, :home_phone, :fax, :_destroy],
+                                   :profile_bank_detail_attributes => [:bank_details, :_destroy]}
+      )
+    end
 
-  def set_current_user
-    @user = current_user
-  end
+    def set_current_user
+      @user = current_user
+    end
 
-  def set_logged_in
-    @session_exists = user_signed_in?
-  end
+    def set_logged_in
+      @session_exists = user_signed_in?
+    end
+
+    # def smart_listing_resource
+    #   @users ||= params[:id] ? User.find(params[:id]) : User.new(params[:user])
+    # end
+    # helper_method :smart_listing_resource
+    #
+    # def smart_listing_collection
+    #   @users ||= User.all
+    # end
+    # helper_method :smart_listing_collection
     
 end

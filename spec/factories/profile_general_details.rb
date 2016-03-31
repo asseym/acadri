@@ -4,7 +4,7 @@ include ActionDispatch::TestProcess
 
 FactoryGirl.define do
   factory :profile_general_detail do
-    association :profile, :factory => :profile
+    association :user, :factory => :user
     title { Faker::Name.title }
     education { Faker::Lorem.words(num=10) }
     staff_id { Faker::Code.ean }

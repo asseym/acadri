@@ -1,0 +1,18 @@
+- model_class = User
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= smart_listing.sortable "First name", :first_name
+        %th= smart_listing.sortable "Other names", :other_names
+        %th Sex
+        %th Marital Status
+        %th{colspan: 2} Nationality
+    %tbody
+      - smart_listing.collection.each do |user|
+        %tr.editable{data: {id: user.id}}
+          = smart_listing.render object: user, partial: 'users/user', locals: {object: user}
+      = smart_listing.item_new colspan: 6, link: new_user_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

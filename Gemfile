@@ -105,6 +105,7 @@ gem "paperclip", "~> 4.3"
 gem 'rack-raw-upload'
 gem 'underscore-rails', github: "rweng/underscore-rails"
 gem 'jack_up'
+gem 'fog'
 
 #Time difference calculator
 gem 'time_difference'

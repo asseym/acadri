@@ -1,6 +1,6 @@
-- model_class = User
+- model_class = Program
 - provide(:title, model_class.model_name.human.pluralize.titleize)
-- provide(:minor_title, 'list of staff')
+- provide(:minor_title, 'list of programs')
 
 .portlet.box.green
   .portlet-title
@@ -10,9 +10,9 @@
       Table
     .tools
   .portlet-body
-    = smart_listing_controls_for(:users, {class: "form-inline text-right"}) do
+    = smart_listing_controls_for(:programs, {class: "form-inline text-right"}) do
       .form-group.filter.input-append
         = text_field_tag :filter, '', class: "search form-control", placeholder: "Search...", autocomplete: :off
         %button.btn.btn-primary.disabled{type: :submit}
           %span.fa.fa-search
-    = smart_listing_render(:users)
+    = smart_listing_render(:programs)

@@ -1,7 +1,7 @@
 class CreateProfilePersonalDetails < ActiveRecord::Migration
   def change
     create_table :profile_personal_details do |t|
-      t.belongs_to :profile, index: true
+      t.belongs_to :user, index: true
       t.string :first_name
       t.string :other_names
       t.string :religion

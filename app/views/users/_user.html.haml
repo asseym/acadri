@@ -1,0 +1,7 @@
+%td= staff_personal_details(object, "first_name")
+%td= staff_personal_details(object, "other_names")
+%td= staff_personal_details(object, "sex")
+%td= staff_personal_details(object, "marital_status")
+%td= staff_personal_details(object, "nationality")
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_user_path(object)},
+ {name: :destroy, url: user_path(object), confirmation: "Are you sure you want to delete this item?"}]

@@ -19,8 +19,8 @@ RSpec.describe User, type: :model do
     end
   end
 
-  it "is invalid without a name" do
-    expect(FactoryGirl.build(:user, name:nil)).to be_invalid
+  it "is valid without a name" do
+    expect(FactoryGirl.build(:user, name:nil)).to be_valid
   end
 
   it "is invalid without an email" do
