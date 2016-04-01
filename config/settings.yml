@@ -46,7 +46,7 @@ system_menu:
           - :ceo
           - :finance
       Expenses:
-        path: '#'
+        path: '/expenses/'
         icon:
         accessible:
           - :superadmin

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :expenses
   resources :accounts_invoice_items
   resources :profile_general_details
   resources :profile_bank_details

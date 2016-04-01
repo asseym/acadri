@@ -1,0 +1,20 @@
+- model_class = Program
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:item)
+        %th= smart_listing.sortable model_class.human_attribute_name(:expense_date), :expense_date
+        %th= model_class.human_attribute_name(:qty)
+        %th= model_class.human_attribute_name(:unit_price)
+        %th Sub-total
+        %th= model_class.human_attribute_name(:tax)
+        %th{colspan: 2}= model_class.human_attribute_name(:invoice_ref)
+    %tbody
+      - smart_listing.collection.each do |expense|
+        %tr.editable{data: {id: expense.id}}
+          = smart_listing.render object: expense, partial: 'expenses/expense', locals: {object: expense}
+      = smart_listing.item_new colspan: 8, link: new_expense_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

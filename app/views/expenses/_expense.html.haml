@@ -1,0 +1,9 @@
+%td= object.item
+%td= formatted_date(object.expense_date)
+%td= object.qty
+%td= object.unit_price
+%td= expense_sub_total(object)
+%td= object.tax
+%td= object.invoice_ref
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_expense_path(object)},
+{name: :destroy, url: expense_path(object), confirmation: "Are you sure you want to delete this item?"}]
