@@ -1,5 +1,6 @@
 pagination_per_page: 30
 vat_rate: 18
+default_currency: :ugx
 opportunity_notify:
  - :ceo
  - :program_coordinator
@@ -54,7 +55,7 @@ system_menu:
           - :ceo
           - :finance
       Assets:
-        path: '#'
+        path: '/cpny/assets/'
         icon:
         accessible:
           - :superadmin

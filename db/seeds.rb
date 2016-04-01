@@ -138,3 +138,16 @@ UserNotification.create(notification: n, user: User.first)
 
 ai = AccountsInvoice.create!(training: Training.find(1), invoice_date: today, invoice_terms: 'Payment must be send in dollars etc etc', currency: 'USD')
 ai.accounts_invoice_items = [AccountsInvoiceItem.create!(description: 'Training fees', units: 3, unit_cost: 1500), AccountsInvoiceItem.create!(description: 'Other fees', units: 3, unit_cost: 150), AccountsInvoiceItem.create!(description: 'Taxes 18%', units: 1, unit_cost: 674)]
+
+4.times do
+  Expense.create(item: Faker::Commerce.product_name,
+               description: Faker::Hipster.paragraph,
+               expense_date: today, qty: Faker::Number.between(1, 20), unit_price: Faker::Number.between(600, 1500),
+                 tax: Faker::Number.between(100, 600), invoice_ref: Faker::Address.zip)
+end
+
+3.times do
+  Asset.create(name: Faker::Commerce.product_name,
+               description: Faker::Hipster.paragraph,
+               asset_category: Asset::ASSET_CATEGORIES[Faker::Number.between(0, 2)], current_value: Faker::Number.between(1200, 3000), country: Country.find(1))
+end

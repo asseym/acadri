@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  # resources :assets
+  scope "cpny" do
+    resources :assets
+  end
   resources :expenses
   resources :accounts_invoice_items
   resources :profile_general_details
@@ -18,6 +22,7 @@ Rails.application.routes.draw do
   resources :program_venues
   resources :program_dates
   resources :categories
+  resources :countries
   #devise_for           :users
   # devise_for :users, :path_prefix => 'dvs'
   devise_for :users, controllers: { sessions: 'users/sessions' }, :path_prefix => 'dvs'
@@ -25,7 +30,6 @@ Rails.application.routes.draw do
     get '/dvs/users/sign_out' => 'users/sessions#destroy'
   end
   devise_for           :views
-  resources            :countries
   resources  :users
 
   get '/search'      => 'static_pages#search'

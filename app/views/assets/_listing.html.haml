@@ -1,0 +1,17 @@
+- model_class = Asset
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= smart_listing.sortable model_class.human_attribute_name(:name), :name
+        %th= smart_listing.sortable model_class.human_attribute_name(:asset_category), :asset_category
+        %th= model_class.human_attribute_name(:country)
+        %th{colspan: 2}= model_class.human_attribute_name(:current_value)
+    %tbody
+      - smart_listing.collection.each do |asset|
+        %tr.editable{data: {id: asset.id}}
+          = smart_listing.render object: asset, partial: 'assets/asset', locals: {object: asset}
+      = smart_listing.item_new colspan: 5, link: new_asset_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links
