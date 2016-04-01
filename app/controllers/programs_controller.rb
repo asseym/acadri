@@ -71,8 +71,8 @@ class ProgramsController < ApplicationController
     def program_params
       # params.require(:program).permit!
       params.require(:program).permit(:name, :category_id, :description, :is_service, :_destroy,
-                                   {:programdates_attributes => [:start_date, :end_date, :_destroy],
-                                    :programvenues_attributes => [:name, :country_id, :_destroy]}
+                                   {:programdates_attributes => [:id, :start_date, :end_date, :_destroy],
+                                    :programvenues_attributes => [:id, :name, :country_id, :_destroy]}
       )
     end
     

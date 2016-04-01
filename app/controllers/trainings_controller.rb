@@ -1,6 +1,7 @@
 class TrainingsController < ApplicationController
   before_action :authenticate_user!
   before_filter :set_current_user
+  before_filter :set_logged_in
   load_and_authorize_resource
 
   before_action :set_training, only: [:show, :edit, :update, :destroy]
@@ -12,7 +13,11 @@ class TrainingsController < ApplicationController
   # GET /trainings.json
   def index
     add_breadcrumb "Trainings", :trainings_path, { :title => "Trainings" }
-    @trainings = Training.paginate(page: params[:page], :per_page => Settings.pagination_per_page)
+    trainings_scope = Training.all
+    trainings_scope = trainings_scope.like(params[:filter]) if params[:filter]
+    @trainings = smart_listing_create(:trainings,
+                                  trainings_scope,
+                                  partial: "trainings/listing")
   end
 
   # GET /trainings/1
@@ -25,6 +30,8 @@ class TrainingsController < ApplicationController
   def new
     add_breadcrumb "Trainings", :trainings_path, { :title => "Trainings" }
     @training = Training.new
+    @training.participants.build
+    @training.participations.build
   end
 
   # GET /trainings/1/edit
@@ -35,42 +42,22 @@ class TrainingsController < ApplicationController
   # POST /trainings
   # POST /trainings.json
   def create
-    @training = Training.new(training_params)
-
-    respond_to do |format|
-      if @training.save
-        format.html { redirect_to @training, notice: 'Training was successfully created.' }
-        format.json { render :show, status: :created, location: @training }
-      else
-        format.html { render :new }
-        format.json { render json: @training.errors, status: :unprocessable_entity }
-      end
-    end
+    @training = Training.create(training_params)
+    flash.now[:message] = 'Training was successfully created.'
   end
 
   # PATCH/PUT /trainings/1
   # PATCH/PUT /trainings/1.json
   def update
-    respond_to do |format|
-      if @training.update(training_params)
-        format.html { redirect_to @training, notice: 'Training was successfully updated.' }
-        format.json { render :show, status: :ok, location: @training }
-      else
-        Rails.logger.info(@training.errors.messages.inspect)
-        format.html { render :edit }
-        format.json { render json: @training.errors, status: :unprocessable_entity }
-      end
-    end
+    @training.update_attributes(training_params)
+    flash.now[:notice] = 'Training was successfully updated.'
   end
 
   # DELETE /trainings/1
   # DELETE /trainings/1.json
   def destroy
     @training.destroy
-    respond_to do |format|
-      format.html { redirect_to trainings_url, notice: 'Training was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash.now[:notice] = 'Training was successfully destroyed.'
   end
 
   private
@@ -81,10 +68,17 @@ class TrainingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def training_params
-      params.require(:training).permit(:title, :participants_id, :program_id, :start_date, :end_date, :fees, :fees_paid, :fees_balance, :program_venue_id)
+      params.require(:training).permit(:id, :title, :participants_id, :program_id, :start_date, :end_date, :fees, :fees_paid, :fees_balance, :program_venue_id, :_destroy,
+                                       {:participations_attributes => [:id, :participant_id, :_destroy]}
+
+      )
     end
     
     def set_current_user
       @user = current_user
+    end
+
+    def set_logged_in
+      @session_exists = user_signed_in?
     end
 end

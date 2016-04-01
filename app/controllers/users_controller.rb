@@ -72,12 +72,12 @@ class UsersController < ApplicationController
     #end
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :roles, :is_staff, :admin, :_destroy,
-                                   {:profile_personal_detail_attributes => [:first_name, :other_names, :religion, :sex, :marital_status, :birthday, :nationality, :languages, :_destroy],
-                                   :profile_general_detail_attributes => [:education, :staff_id, :date_hired, :passport_number,
+      params.require(:user).permit(:id, :email, :password, :password_confirmation, :roles, :is_staff, :admin, :_destroy,
+                                   {:profile_personal_detail_attributes => [:id, :first_name, :other_names, :religion, :sex, :marital_status, :birthday, :nationality, :languages, :_destroy],
+                                   :profile_general_detail_attributes => [:id, :education, :staff_id, :date_hired, :passport_number,
                                                                           :drivers_licence, :salary, :NSSF_number, :title, :cv, :photo, :_destroy],
-                                   :profile_contact_detail_attributes => [:address, :email_address, :business_phone, :mobile_phone, :home_phone, :fax, :_destroy],
-                                   :profile_bank_detail_attributes => [:bank_details, :_destroy]}
+                                   :profile_contact_detail_attributes => [:id, :address, :email_address, :business_phone, :mobile_phone, :home_phone, :fax, :_destroy],
+                                   :profile_bank_detail_attributes => [:id, :bank_details, :_destroy]}
       )
     end
 

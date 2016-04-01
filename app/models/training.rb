@@ -4,6 +4,9 @@ class Training < ActiveRecord::Base
   belongs_to :program
   belongs_to :program_venue
 
+  accepts_nested_attributes_for :participations
+  accepts_nested_attributes_for :participants
+
   validates_presence_of :program, :start_date, :end_date, :fees, :program_venue
 
   def to_s

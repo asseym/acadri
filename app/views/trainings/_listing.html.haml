@@ -1,0 +1,21 @@
+- model_class = Program
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:participants)
+        %th= model_class.human_attribute_name(:program)
+        %th= smart_listing.sortable model_class.human_attribute_name(:start_date), :start_date
+        %th= smart_listing.sortable model_class.human_attribute_name(:end_date), :end_date
+        %th= model_class.human_attribute_name(:fees)
+        %th= model_class.human_attribute_name(:fees_paid)
+        %th= model_class.human_attribute_name(:fees_balance)
+        %th{colspan: 2}= smart_listing.sortable model_class.human_attribute_name(:program_venue), :program_venue
+    %tbody
+      - smart_listing.collection.each do |training|
+        %tr.editable{data: {id: training.id}}
+          = smart_listing.render object: training, partial: 'trainings/training', locals: {object: training}
+      = smart_listing.item_new colspan: 9, link: new_training_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

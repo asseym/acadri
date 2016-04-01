@@ -1,0 +1,22 @@
+%td{:id => "participants_#{object.id}"}
+  %a{'data-toggle' => "modal", 'data-target' => "#modal_#{object.id}"} Show
+  .modal.fade{tabindex:-1, id: "modal_#{object.id}", role: 'dialog', 'aria-labelledby' => "ptsLabel", 'aria-hidden' => true}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{type: "button", 'data-dismiss' => "modal"} &times;
+          %h3.modal-title Participants
+        .modal-body
+          %p
+            = list_participants(object)
+        .modal-footer
+          %button.btn.btn-default{type: "button", 'data-dismiss' => "modal"} Close
+%td= training_title(object)
+%td= formatted_date(object.start_date)
+%td= formatted_date(object.end_date)
+%td= object.fees
+%td= fees_paid(object)
+%td= fees_balance(object)
+%td= training_venue(object)
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_training_path(object)},
+{name: :destroy, url: training_path(object), confirmation: "Are you sure you want to delete this item?"}]
