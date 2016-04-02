@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  # resources :assets
+  resources :suppliers
   scope "cpny" do
     resources :assets
   end

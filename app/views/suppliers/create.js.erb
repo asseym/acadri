@@ -1,0 +1,3 @@
+<%# create.js.erb %>
+<%= smart_listing_item :suppliers, :create, @supplier,
+                       @supplier.valid? ? "suppliers/supplier" : "suppliers/form" %>

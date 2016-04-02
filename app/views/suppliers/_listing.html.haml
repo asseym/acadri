@@ -1,0 +1,20 @@
+- model_class = Supplier
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= smart_listing.sortable model_class.human_attribute_name(:name), :name
+        %th= model_class.human_attribute_name(:shop_name)
+        %th= model_class.human_attribute_name(:contact_numbers)
+        %th= model_class.human_attribute_name(:address)
+        %th= model_class.human_attribute_name(:town)
+        %th= model_class.human_attribute_name(:country)
+        %th{colspan: 2} Supplys
+    %tbody
+      - smart_listing.collection.each do |supplier|
+        %tr.editable{data: {id: supplier.id}}
+          = smart_listing.render object: supplier, partial: 'suppliers/supplier', locals: {object: supplier}
+      = smart_listing.item_new colspan: 8, link: new_supplier_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

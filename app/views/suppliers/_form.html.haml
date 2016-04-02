@@ -1,0 +1,33 @@
+%td{colspan: 8}
+  = simple_form_for object, url: object.new_record? ? suppliers_path : supplier_path(object),
+                     remote: true,
+                     :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+    = f.input :name
+    = f.input :shop_name
+    = f.input :contact_numbers
+    = f.input :address
+    = f.input :town
+    = f.association :country
+
+    %h3.block Supplys?
+    #supplies
+      %table.table
+        %thead
+          %tr
+            %th Supply Category
+            %th Supply Items
+        %tbody
+          - @supply_item_categories.each do |si_cat|
+            %tr
+              %td
+                %h3
+                  %span.label.label-default
+                    = si_cat.name
+              %td
+                - get_category_items(si_cat).each do |item|
+                  = check_box_tag "supplier[supply_item_ids][]", item.id, object.supply_items.include?(item)
+                  = label_tag item
+
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.pull-right.cancel Cancel

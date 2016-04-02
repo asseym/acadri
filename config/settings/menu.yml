@@ -1,0 +1,158 @@
+#If key `accessible:` is left out, it is assumed that
+#the user has access to the menu
+system_menu:
+  Dashboard:
+    path: '/'
+    icon: 'icon-home'
+  Sales:
+    icon: 'icon-basket'
+    accessible: :all
+    submenus:
+      Opportunities:
+        path: '/opportunities/'
+        icon:
+        accessible: :all
+      Training:
+        path: '/trainings/'
+        icon:
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :program_coordinator
+          - :finance
+      Invoices:
+        path: '/accounts_invoices/'
+        icon:
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :finance
+      Expenses:
+        path: '/expenses/'
+        icon:
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :finance
+      Assets:
+        path: '/cpny/assets/'
+        icon:
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :finance
+          - :manager
+      ClientsList:
+        path: '/organisations/'
+        icon:
+        accessible: :all
+      ProgramsList:
+        path: '/programs/'
+        icon:
+        accessible: :all
+      ParticipantsList:
+        path: '/participants/'
+        icon:
+        accessible: :all
+      SuppliersList:
+        path: '/suppliers/'
+        icon:
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :finance
+          - :manager
+          - :program_coordinator
+  Purchases:
+    path:
+    icon: 'icon-briefcase'
+    accessible: :all
+    submenus:
+      RFQs:
+        path: '#'
+        icon:
+        accessible: :all
+      Purchase Orders:
+        path: '#'
+        icon:
+        accessible: :all
+  Marketing:
+    path:
+    icon: 'icon-diamond'
+    accessible: :all
+    submenus:
+      MassMailings:
+        path: '#'
+        icon:
+        accessible: :all
+      MailingLists:
+        path: '#'
+        icon:
+        accessible: :all
+      MarketingEvents:
+        path: '#'
+        icon:
+        accessible: :all
+  HumanResources:
+    path:
+    icon: 'icon-puzzle'
+    accessible: :all
+    submenus:
+      EmployeesList:
+        path: '/users/'
+        icon:
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
+      Contracts:
+        path: '#'
+        icon:
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
+      Loans:
+        path: '#'
+        icon:
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
+      Leave:
+        path: '#'
+        icon:
+        accessible: :all
+  Settings:
+      path:
+      icon: 'icon-settings'
+      accessible:
+        - :superadmin
+        - :admin
+        - :ceo
+      submenus:
+        Countries:
+          path: '/countries/'
+          icon:
+          accessible:
+            - :superadmin
+            - :admin
+            - :ceo
+        Users:
+          path: '/users/'
+          icon:
+          accessible:
+            - :superadmin
+            - :ceo
+        CourseCategories:
+          path: '/categories/'
+          icon:
+          accessible:
+            - :superadmin
+            - :admin
+            - :ceo

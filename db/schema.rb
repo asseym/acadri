@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401125110) do
+ActiveRecord::Schema.define(version: 20160401160810) do
 
   create_table "accounts_invoice_items", force: :cascade do |t|
     t.integer  "accounts_invoice_id"
@@ -239,6 +239,47 @@ ActiveRecord::Schema.define(version: 20160401125110) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "shop_name"
+    t.string   "contact_numbers"
+    t.string   "address"
+    t.string   "town"
+    t.integer  "country_id"
+    t.integer  "supply_items_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "suppliers", ["country_id"], name: "index_suppliers_on_country_id"
+  add_index "suppliers", ["supply_items_id"], name: "index_suppliers_on_supply_items_id"
+
+  create_table "supplies", force: :cascade do |t|
+    t.integer  "supplier_id"
+    t.integer  "supply_item_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "supplies", ["supplier_id"], name: "index_supplies_on_supplier_id"
+  add_index "supplies", ["supply_item_id"], name: "index_supplies_on_supply_item_id"
+
+  create_table "supply_item_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "supply_items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.integer  "supply_item_category_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "supply_items", ["supply_item_category_id"], name: "index_supply_items_on_supply_item_category_id"
 
   create_table "trainings", force: :cascade do |t|
     t.string   "title"

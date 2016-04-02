@@ -151,3 +151,35 @@ end
                description: Faker::Hipster.paragraph,
                asset_category: Asset::ASSET_CATEGORIES[Faker::Number.between(0, 2)], current_value: Faker::Number.between(1200, 3000), country: Country.find(1))
 end
+
+Settings.add_source!("#{Rails.root}/config/settings/supply_items_list.yml")
+Settings.reload!
+supplies = Settings.supplies_items_list
+
+supplies.each do |cat, items|
+  sc = SupplyItemCategory.create!(name: cat)
+  items.each do |item|
+    SupplyItem.create!(supply_item_category: sc, name: item)
+  end
+end
+
+3.times do
+  sp = Supplier.create!(name: Faker::Company.name, shop_name: Faker::Company.name,
+                   contact_numbers: Faker::PhoneNumber.phone_number, address: Faker::Address.street_address,
+                   town: Faker::Address.city, country: Country.find(1))
+
+  5.times do
+    Supply.create!(supplier:sp, supply_item: SupplyItem.find(Faker::Number.between(1, 20)))
+  end
+end
+
+# supply_item_categories = [
+#     'Paper products',
+#     'Filing Supplies',
+#     'Stationary/mailing supplies',
+#     'Computer/Printer supplies',
+#     'Time tracking supplies',
+#     'Binding supplies',
+#     'Supplies for hanging',
+#     'Indentification supplies'
+# ]

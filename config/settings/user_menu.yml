@@ -1,0 +1,13 @@
+user_menu:
+  UserHome:
+    path: '/'
+    icon: 'icon-home'
+  Tasks:
+    path: '#'
+    icon: 'icon-check'
+  AccountSettings:
+    path: '#'
+    icon: 'icon-settings'
+  Help:
+    path: '#'
+    icon: 'icon-info'
