@@ -21,31 +21,6 @@ system_menu:
           - :ceo
           - :program_coordinator
           - :finance
-      Invoices:
-        path: '/accounts_invoices/'
-        icon:
-        accessible:
-          - :superadmin
-          - :admin
-          - :ceo
-          - :finance
-      Expenses:
-        path: '/expenses/'
-        icon:
-        accessible:
-          - :superadmin
-          - :admin
-          - :ceo
-          - :finance
-      Assets:
-        path: '/cpny/assets/'
-        icon:
-        accessible:
-          - :superadmin
-          - :admin
-          - :ceo
-          - :finance
-          - :manager
       ClientsList:
         path: '/organisations/'
         icon:
@@ -56,29 +31,6 @@ system_menu:
         accessible: :all
       ParticipantsList:
         path: '/participants/'
-        icon:
-        accessible: :all
-      SuppliersList:
-        path: '/suppliers/'
-        icon:
-        accessible:
-          - :superadmin
-          - :admin
-          - :ceo
-          - :finance
-          - :manager
-          - :program_coordinator
-  Purchases:
-    path:
-    icon: 'icon-briefcase'
-    accessible: :all
-    submenus:
-      RFQs:
-        path: '#'
-        icon:
-        accessible: :all
-      Purchase Orders:
-        path: '#'
         icon:
         accessible: :all
   Marketing:
@@ -98,9 +50,67 @@ system_menu:
         path: '#'
         icon:
         accessible: :all
+  Work:
+    icon: 'icon-briefcase'
+    accessible:
+      - :superadmin
+      - :ceo
+      - :finance
+      - :manager
+    submenus:
+      Rfqs/Rfps:
+        path: '/rfqs/'
+        icon:
+        accessible: :all
+      Tasks:
+        path: '/tasks/'
+        icon:
+        accessible: :all
+  Accounts:
+    icon: 'icon-calculator'
+    accessible:
+        - :superadmin
+        - :ceo
+        - :finance
+    submenus:
+      Invoices:
+        path: '/accounts_invoices/'
+        icon:
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
+      Expenses:
+        path: '/expenses/'
+        icon:
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
+      Purchase Orders:
+        path: '#'
+        icon:
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
+      Assets:
+        path: '/cpny/assets/'
+        icon:
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
+      SuppliersList:
+        path: '/suppliers/'
+        icon:
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
   HumanResources:
     path:
-    icon: 'icon-puzzle'
+    icon: 'icon-users'
     accessible: :all
     submenus:
       EmployeesList:
@@ -128,6 +138,10 @@ system_menu:
         path: '#'
         icon:
         accessible: :all
+      Claims:
+        path: '#'
+        icon:
+        accessible: :all
   Settings:
       path:
       icon: 'icon-settings'
@@ -149,7 +163,7 @@ system_menu:
           accessible:
             - :superadmin
             - :ceo
-        CourseCategories:
+        ProgramCategories:
           path: '/categories/'
           icon:
           accessible:

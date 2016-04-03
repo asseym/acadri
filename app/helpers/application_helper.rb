@@ -82,7 +82,7 @@ module ApplicationHelper
   end
 
   def number_of_calendar_events(current_user)
-    4
+    Task.pending(current_user).count
   end
 
   def calendar_header(num)
@@ -91,27 +91,17 @@ module ApplicationHelper
 
   def latest_calendar_events(current_user)
     calendar_list = ""
-    for i in 0..3
-      calendar_list += "<li>#{calendar_text('UNDP proposal, due: 2/3/2016')}</li>"
+    Task.pending(current_user).each do |t|
+      due = formatted_date(t.end_date)
+      txt = "#{truncate(t.title, 2)}, due: #{due}"
+      calendar_list += "<li>#{calendar_text(txt)}</li>"
     end
     return calendar_list.html_safe
   end
 
   def calendar_text(cal_text)
     txt = cal_text
-    # t = human_readable_time_diff(notification.created_at, Time.now)
     icon = random_icon
-    # if txt.to_i > 0
-    #   link_to opportunity_path(Opportunity.find(txt.to_i)) do
-    #     raw "<span class=\"time\"> #{t}
-    #         </span>
-    # 		<span class=\"details\">
-    # 		<span class=\"label label-sm label-icon label-success\">
-    # 		<i class=\"fa #{icon}\"></i>
-    # 		</span>
-    # 		New invoice pending... </span>"
-    #   end
-    # else
       lnk = "<a href=\"javascript:;\">
     		<span class=\"time\">
             </span>
@@ -122,7 +112,6 @@ module ApplicationHelper
     		#{txt} </span>
         </a>"
       return raw lnk
-    # end
   end
 
   def menu_hash

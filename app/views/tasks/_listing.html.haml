@@ -1,0 +1,18 @@
+- model_class = Program
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:title)
+        %th= smart_listing.sortable model_class.human_attribute_name(:task_type), :task_type
+        %th= smart_listing.sortable model_class.human_attribute_name(:start_date), :start_date
+        %th= smart_listing.sortable model_class.human_attribute_name(:end_date), :end_date
+        %th{colspan: 2}= smart_listing.sortable model_class.human_attribute_name(:status), :status
+    %tbody
+      - smart_listing.collection.each do |task|
+        %tr.editable{data: {id: task.id}}
+          = smart_listing.render object: task, partial: 'tasks/task', locals: {object: task}
+      = smart_listing.item_new colspan: 6, link: new_task_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

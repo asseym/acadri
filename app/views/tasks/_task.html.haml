@@ -1,0 +1,7 @@
+%td= object.title
+%td= object.task_type
+%td= formatted_date(object.start_date)
+%td= formatted_date(object.end_date)
+%td= task_status(object)
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_task_path(object)},
+{name: :destroy, url: task_path(object), confirmation: "Are you sure you want to delete this item?"}]

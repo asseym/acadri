@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :tasks
+  resources :rfqs
   resources :suppliers
   scope "cpny" do
     resources :assets

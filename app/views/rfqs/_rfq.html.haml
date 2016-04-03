@@ -1,0 +1,7 @@
+%td= object.action
+%td= object.rfq_id
+%td= formatted_date(object.rfq_date)
+%td= formatted_date(object.due_date)
+%td= object.issuer
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_rfq_path(object)},
+{name: :destroy, url: rfq_path(object), confirmation: "Are you sure you want to delete this item?"}]

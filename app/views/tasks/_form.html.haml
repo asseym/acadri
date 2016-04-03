@@ -1,0 +1,21 @@
+%td{colspan: 9}
+  = simple_form_for object, url: object.new_record? ? tasks_path : task_path(object),
+                     remote: true,
+                     :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+    = f.input :status, collection: Task::TASK_STATUS
+    = f.input :task_type, collection: Task::TASK_TYPE
+    = f.input :title, label: 'Task'
+    = f.input :start_date, as: :date, label_html: {class: 'col-sm-3'}
+    = f.input :end_date, as: :date, label_html: {class: 'col-sm-3'}
+    = f.input :description
+
+    %h3.block Task Assignment
+    #assignments
+      = f.simple_fields_for :assignments do |assignment|
+        = render 'assignment_fields', f: assignment
+      .link
+        = link_to_add_association 'assign task', f, :assignments
+
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.pull-right.cancel Cancel

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401160810) do
+ActiveRecord::Schema.define(version: 20160403073936) do
 
   create_table "accounts_invoice_items", force: :cascade do |t|
     t.integer  "accounts_invoice_id"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 20160401160810) do
   end
 
   add_index "assets", ["country_id"], name: "index_assets_on_country_id"
+
+  create_table "assignments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "assignments", ["task_id"], name: "index_assignments_on_task_id"
+  add_index "assignments", ["user_id"], name: "index_assignments_on_user_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -232,6 +242,17 @@ ActiveRecord::Schema.define(version: 20160401160810) do
 
   add_index "programs", ["category_id"], name: "index_programs_on_category_id"
 
+  create_table "rfqs", force: :cascade do |t|
+    t.string   "rfq_id"
+    t.string   "action"
+    t.date     "rfq_date"
+    t.date     "due_date"
+    t.string   "issuer"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "static_pages", force: :cascade do |t|
     t.string   "name"
     t.string   "title"
@@ -247,13 +268,11 @@ ActiveRecord::Schema.define(version: 20160401160810) do
     t.string   "address"
     t.string   "town"
     t.integer  "country_id"
-    t.integer  "supply_items_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   add_index "suppliers", ["country_id"], name: "index_suppliers_on_country_id"
-  add_index "suppliers", ["supply_items_id"], name: "index_suppliers_on_supply_items_id"
 
   create_table "supplies", force: :cascade do |t|
     t.integer  "supplier_id"
@@ -280,6 +299,17 @@ ActiveRecord::Schema.define(version: 20160401160810) do
   end
 
   add_index "supply_items", ["supply_item_category_id"], name: "index_supply_items_on_supply_item_category_id"
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "status",      default: "New"
+    t.string   "title"
+    t.string   "task_type"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "description"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
   create_table "trainings", force: :cascade do |t|
     t.string   "title"

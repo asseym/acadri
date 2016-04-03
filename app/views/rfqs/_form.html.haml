@@ -1,0 +1,14 @@
+%td{colspan: 6}
+  = simple_form_for object, url: object.new_record? ? rfqs_path : rfq_path(object),
+                     remote: true,
+                     :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+    = f.input :rfq_id, label: 'RFQ/RFP #'
+    = f.input :rfq_date, as: :date, label_html: {class: 'col-sm-3'}
+    = f.input :due_date, as: :date, label_html: {class: 'col-sm-3'}
+    = f.input :issuer
+    = f.input :description
+    = f.input :action
+
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.pull-right.cancel Cancel

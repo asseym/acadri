@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   has_many :user_notifications
   has_many :notifications, through: :user_notifications
+  has_many :assignments
+  has_many :tasks, through: :assignments
   has_one :profile_personal_detail
   has_one :profile_general_detail
   has_one :profile_contact_detail
@@ -20,6 +22,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile_general_detail, :allow_destroy => true
   accepts_nested_attributes_for :profile_contact_detail, :allow_destroy => true
   accepts_nested_attributes_for :profile_bank_detail, :allow_destroy => true
+  accepts_nested_attributes_for :assignments
+  accepts_nested_attributes_for :tasks
 
   validates_presence_of :email, :roles
   validates :password,  :presence     => true,
@@ -75,6 +79,23 @@ class User < ActiveRecord::Base
         return where(1)
       end
     }
+  end
+
+  def to_s
+    if personal_details
+      return "#{personal_details.first_name} #{self.personal_details.other_names}"
+    else
+      return self.name
+    end
+  end
+
+  def name=(name)
+    write_attribute(:name, to_s)
+  end
+
+  def name
+    # read_attribute(:name).downcase  # No test for nil?
+    self.name = to_s
   end
 
 end

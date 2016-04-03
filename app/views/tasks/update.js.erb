@@ -1,0 +1,3 @@
+<%# update.js.erb %>
+<%= smart_listing_item :tasks, :update, @task,
+                       @task.valid? ? "tasks/task" : "tasks/form" %>

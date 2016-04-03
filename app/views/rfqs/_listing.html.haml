@@ -1,0 +1,18 @@
+- model_class = Expense
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:action)
+        %th= "RFQ/RFP #"
+        %th= model_class.human_attribute_name(:rfq_date)
+        %th= model_class.human_attribute_name(:due_date)
+        %th{colspan: 2}= model_class.human_attribute_name(:issuer)
+    %tbody
+      - smart_listing.collection.each do |rfq|
+        %tr.editable{data: {id: rfq.id}}
+          = smart_listing.render object: rfq, partial: 'rfqs/rfq', locals: {object: rfq}
+      = smart_listing.item_new colspan: 6, link: new_rfq_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

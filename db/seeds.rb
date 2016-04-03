@@ -173,13 +173,15 @@ end
   end
 end
 
-# supply_item_categories = [
-#     'Paper products',
-#     'Filing Supplies',
-#     'Stationary/mailing supplies',
-#     'Computer/Printer supplies',
-#     'Time tracking supplies',
-#     'Binding supplies',
-#     'Supplies for hanging',
-#     'Indentification supplies'
-# ]
+3.times do
+  rfq = Rfq.create!(rfq_id:Faker::Address.zip_code, action: 'Find partners, Research, Write and submit proposal',
+              rfq_date:today, due_date: today + 6.weeks, issuer: Faker::Company.name, description:Faker::Hipster.paragraph)
+end
+
+5.times do
+  ts = Task.create!(title: Faker::Lorem.sentence, task_type: Task::TASK_TYPE[Faker::Number.between(0,2)],
+                    start_date:today, end_date: today + 1.week, status: Task::TASK_STATUS[Faker::Number.between(0, 4)],
+                    description: Faker::Hipster.paragraph)
+
+  Assignment.create!(task:ts, user: User.find(Faker::Number.between(0, 8)))
+end
