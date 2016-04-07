@@ -149,6 +149,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-activemodel-mocks'
   # gem 'warden'
+  gem "capistrano", "~> 3.4"
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
 end
 
 group :test do
