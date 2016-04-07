@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
   MARITAL_STATUS = [:Single, :Married, :Complicated]
   ROLES = [:admin, :ceo, :finance, :program_coordinator, :manager, :marketing, :guest, :staff, :superadmin]
 
+  #mailboxer
+  acts_as_messageable
+
   def create_notification
     notifiable_roles = Settings.user_creation_notify
     for usr in User.all
@@ -96,6 +99,10 @@ class User < ActiveRecord::Base
   def name
     # read_attribute(:name).downcase  # No test for nil?
     self.name = to_s
+  end
+
+  def mailboxer_email(object)
+    self.email
   end
 
 end

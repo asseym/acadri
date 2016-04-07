@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
+  helper_method :mailbox
+  helper_method :conversation
     
   helper :all # include all helpers, all the time
   protect_from_forgery with: :exception
@@ -33,6 +35,14 @@ class ApplicationController < ActionController::Base
     def set_logged_in
       @session_exists = ["new"].include?(action_name) && ["user/sessions"].include?(params[:controller]) ||
           request.original_url == user_confirmation_url
+    end
+
+    def mailbox
+      @mailbox ||= current_user.mailbox
+    end
+
+    def conversation
+      @conversation ||= mailbox.conversations.find(params[:id])
     end
 
     # def set_logged_in

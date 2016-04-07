@@ -123,8 +123,13 @@ gem 'html2haml'
 gem 'rails-simple-search', '0.9.9', :path => "vendor/gems/rails-simple-search-0.9.9"
 gem "smart_listing", github: "Sology/smart_listing"
 
-#Ajax file upload
-# gem 'remotipart', '~> 1.2', github: "JangoSteve/remotipart"
+#Mailing and marketing
+# gem "maily_herald"
+# gem "maily_herald-webui"
+
+#internal messaging
+gem 'mailboxer', '~> 0.12.0'
+gem 'chosen-rails'
            
 
 group :development, :test do

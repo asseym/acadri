@@ -2,6 +2,9 @@ user_menu:
   UserHome:
     path: '/'
     icon: 'icon-home'
+  Messages:
+    path: "/mailbox/inbox"
+    icon: 'fa fa-inbox'
   Tasks:
     path: '#'
     icon: 'icon-check'

@@ -1,0 +1,17 @@
+- @receipts.each do |receipt|
+  - message = receipt.message
+  .media
+    .media-left
+      = gravator_for(current_user, "img-squre", {:s => 50})
+    .media-body
+      %h4.media-heading
+        = message.sender.name
+        %br
+        %small
+          %b Subject:
+          = message.subject
+          %br
+        %small
+          %b Date:
+          =  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p")
+      = message.body

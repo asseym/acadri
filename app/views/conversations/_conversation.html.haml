@@ -1,0 +1,17 @@
+.media
+  .media-left
+    = gravator_for(current_user, "img-squre", {:s => 50})
+  .media-body
+    %h4.media-heading
+      = conversation.originator.name
+      %br
+      %small
+        %b Subject:
+        = conversation.subject
+        %br
+      %small
+        %b Date:
+        =  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p")
+    = truncate conversation.messages.last.body, length: 145
+    = link_to "View", conversation_path(conversation)
+

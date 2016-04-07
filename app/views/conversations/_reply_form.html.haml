@@ -1,0 +1,5 @@
+= simple_form_for :message, url: reply_conversation_path(conversation),
+                          :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+  = f.input :reply do
+    = f.text_area :body, placeholder: "Reply Message", rows: 4, class: "form-control"
+  = f.submit "Reply", class: 'btn btn-danger pull-right'

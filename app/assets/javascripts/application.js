@@ -23,6 +23,7 @@
 //= require twitter/bootstrap
 // require bootstrap
 //= require bootstrap-wysihtml5
+//= require chosen-jquery
 //= require turbolinks
 //= require metronic/metronic.js
 //= require cocoon

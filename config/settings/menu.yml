@@ -21,6 +21,15 @@ system_menu:
           - :ceo
           - :program_coordinator
           - :finance
+      Admissions:
+        path: '#'
+        icon:
+        accessible:
+          - :superadmin
+          - :admin
+          - :ceo
+          - :program_coordinator
+          - :finance
       ClientsList:
         path: '/organisations/'
         icon:
@@ -88,6 +97,13 @@ system_menu:
           - :ceo
           - :finance
       Purchase Orders:
+        path: '#'
+        icon:
+        accessible:
+          - :superadmin
+          - :ceo
+          - :finance
+      Store:
         path: '#'
         icon:
         accessible:

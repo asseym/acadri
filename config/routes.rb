@@ -25,8 +25,16 @@ Rails.application.routes.draw do
   resources :program_dates
   resources :categories
   resources :countries
-  #devise_for           :users
-  # devise_for :users, :path_prefix => 'dvs'
+  get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
+  get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
+  get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
+  resources :conversations do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+    end
+  end
   devise_for :users, controllers: { sessions: 'users/sessions' }, :path_prefix => 'dvs'
   devise_scope :user do
     get '/dvs/users/sign_out' => 'users/sessions#destroy'

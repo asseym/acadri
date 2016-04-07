@@ -47,7 +47,7 @@
             %ul.dropdown-menu
               %li.external
                 = messages_header(number_of_messages(current_user))
-                = link_to "view all", user_path(current_user)
+                = link_to "view all", mailbox_inbox_path
               %li
                 .slimScrollDiv{:style => "position: relative; overflow: hidden; width: auto; height: 275px;"}
                   %ul.dropdown-menu-list.scroller{:style => "height: 275px; overflow: hidden; width: auto;", 'data-handle-color' => "#637283", 'data-initialized' => "1"}

@@ -56,7 +56,7 @@ module ApplicationHelper
   end
 
   def number_of_messages(current_user)
-    4
+    unread_messages_count
   end
 
   def messages_header(num)
@@ -64,19 +64,21 @@ module ApplicationHelper
   end
 
   def latest_messages(current_user)
+    messages = current_user.mailbox.inbox(:unread => true)
     messages_list = ""
-    for i in 0..3
+    messages.each_with_index do |msg,i |
       img_tag = image_tag("avatar3.jpg", class: "img-circle")
       messages_list += %{<li>
             <a href="#">
-              <span class="photo">#{img_tag}</span>
+              <span class="photo">#{gravator_for(msg.receiver, "img-circle", {:s => 40})}</span>
               <span class="subject">
-                <span class="from">Richard Doe </span>
-								<span class="time">16 mins </span>
+                <span class="from">#{msg.sender.name}</span>
+								<span class="time">#{msg.created_at.strftime("%I:%M%p")}</span>
               </span>
-							<span class="message">Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
+							<span class="message">#{msg.body.truncate(20)}</span>
             </a>
 						</li>}
+      break if i == 3
     end
     return messages_list.html_safe
   end
@@ -188,6 +190,10 @@ module ApplicationHelper
 
   def formatted_date(d)
     d.strftime("%m/%d/%Y")
+  end
+
+  def active_mbox(active_page)
+    @active == active_page ? "active" : ""
   end
 
 end
