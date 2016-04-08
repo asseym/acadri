@@ -5,7 +5,7 @@ pid               "#{app_path}/current/tmp/pids/unicorn.pid"
 # pid "/var/run/unicorn.pid"
 
 # listen
-listen "/tmp/unicorn-rails_project.socket", :backlog => 64
+listen "/tmp/sockets/unicorn-rails_project.socket", :backlog => 64
 # listen "/var/run/unicorn.sock", :backlog => 64
 
 # logging
