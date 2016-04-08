@@ -150,6 +150,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-activemodel-mocks'
   # gem 'warden'
+  gem 'capistrano3-nginx', '~> 2.0'
   gem "capistrano", "~> 3.4"
   gem 'capistrano-rails'
   gem 'capistrano-rvm'

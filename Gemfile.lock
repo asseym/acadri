@@ -112,6 +112,8 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano3-nginx (2.1.4)
+      capistrano (>= 3.0.0)
     capybara (2.7.0)
       addressable
       mime-types (>= 1.16)
@@ -616,6 +618,7 @@ DEPENDENCIES
   capistrano (~> 3.4)
   capistrano-rails
   capistrano-rvm
+  capistrano3-nginx (~> 2.0)
   capybara
   chosen-rails
   cocoon
