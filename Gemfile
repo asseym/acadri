@@ -84,7 +84,7 @@ gem 'wicked'
 gem 'nokogiri'
 
 # Use Unicorn as the app server
-gem 'unicorn'
+gem 'unicorn', '~>5.0.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
