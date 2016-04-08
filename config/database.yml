@@ -27,6 +27,7 @@ test: &test
 
 production:
   <<: *postgres
+  host: localhost
   database: rails
   user: <%= ENV['POSTGRES_USERNAME'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
