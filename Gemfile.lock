@@ -88,8 +88,6 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-addons-rails (0.1.2)
-      rails
     bootstrap-datepicker-rails (1.5.0)
       railties (>= 3.0)
     bootstrap-sass (3.2.0.2)
@@ -604,7 +602,6 @@ PLATFORMS
 DEPENDENCIES
   active_record-acts_as
   bcrypt (~> 3.1.7)
-  bootstrap-addons-rails
   bootstrap-datepicker-rails
   bootstrap-sass (~> 3.2.0)
   bootstrap-switch-rails

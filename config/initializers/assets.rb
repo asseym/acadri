@@ -17,4 +17,4 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( custom.css )
 
 Rails.application.config.assets.precompile += %w(*.svg *.eot *.woff *.ttf *.gif *jpg *.png *.ico)
-Rails.application.config.assets.precompile += [/.*\.js/,/.*\.css/]
+# Rails.application.config.assets.precompile += [/.*\.js/,/.*\.css/]

@@ -46,7 +46,7 @@ gem 'bcrypt', '~> 3.1.7'
 #bootstrap sass
 
 gem 'bootstrap-sass', '~> 3.2.0'
-gem 'bootstrap-addons-rails'
+# gem 'bootstrap-addons-rails'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
