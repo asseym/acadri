@@ -41,7 +41,8 @@ set :rvm_type, :system
 # set :rails_env, 'staging'
 
 # Defaults to 'db'
-set :migration_role, 'migrator'
+# set :migration_role, 'migrator'
+set :migration_role, 'db'
 
 # Defaults to false
 # Skip migration if files in db/migrate were not modified

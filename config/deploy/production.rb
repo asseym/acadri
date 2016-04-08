@@ -25,7 +25,7 @@ role :web, %w{asseym@178.62.112.46}
 role :db,  %w{asseym@178.62.112.46}
 
 set :stage, :production
-server '178.62.112.46', roles: %w{web app db }, user: 'asseym'
+server '178.62.112.46', roles: %w{web app db}, user: 'asseym'
 set :branch, 'master'
 
 # Configuration
