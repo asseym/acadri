@@ -189,9 +189,7 @@ namespace :unicorn do
   desc 'Stop Unicorn'
   task :stop do
     on roles(:app) do
-      if test("[ -f #{fetch(:unicorn_pid)} ]")
-        execute :kill, capture(:cat, fetch(:unicorn_pid))
-      end
+      execute :kill, capture("cat #{fetch(:unicorn_pid)}") if test("[ -f #{fetch(:unicorn_pid)} ]")
     end
   end
 
@@ -210,7 +208,7 @@ namespace :unicorn do
   task :reload do
     on roles(:app) do
       if test("[ -f #{fetch(:unicorn_pid)} ]")
-        execute :kill, '-s USR2', capture(:cat, fetch(:unicorn_pid))
+        execute :kill, '-s USR2', capture("cat #{fetch(:unicorn_pid)}")
       else
         error 'Unicorn process not running'
       end
