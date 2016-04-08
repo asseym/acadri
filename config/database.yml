@@ -11,8 +11,6 @@ default: &default
 
 postgres: &postgres
   adapter: postgresql
-  username: <%= ENV['POSTGRES_USERNAME'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
   pool: 5
   timeout: 5000
 
@@ -29,7 +27,9 @@ test: &test
 
 production:
   <<: *postgres
-  database: acadri_erp
+  database: rails_project_production
+  user: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 staging:
   <<: *default
