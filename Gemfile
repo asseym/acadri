@@ -154,6 +154,7 @@ group :development, :test do
   gem "capistrano", "~> 3.4"
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
+  gem 'capistrano3-unicorn', github: 'tablexi/capistrano3-unicorn', :require => false
 end
 
 group :test do

@@ -36,6 +36,13 @@ GIT
     faker (1.6.3)
       i18n (~> 0.5)
 
+GIT
+  remote: git://github.com/tablexi/capistrano3-unicorn.git
+  revision: 7ea712c013f4630f6d369e87701ee3013c4d7750
+  specs:
+    capistrano3-unicorn (0.2.1)
+      capistrano (~> 3.1, >= 3.1.0)
+
 PATH
   remote: vendor/gems/rails-simple-search-0.9.9
   specs:
@@ -619,6 +626,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   capistrano3-nginx (~> 2.0)
+  capistrano3-unicorn!
   capybara
   chosen-rails
   cocoon
