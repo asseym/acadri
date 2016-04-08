@@ -11,8 +11,8 @@ default: &default
 
 postgres: &postgres
   adapter: postgresql
-  user: rails
-  password:
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
   pool: 5
   timeout: 5000
 
