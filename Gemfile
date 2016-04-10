@@ -131,6 +131,8 @@ gem "smart_listing", github: "Sology/smart_listing"
 #internal messaging
 gem 'mailboxer', '~> 0.12.0'
 gem 'chosen-rails'
+
+gem 'faker', github: 'stympy/faker'
            
 
 group :development, :test do
@@ -158,7 +160,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'faker', github: 'stympy/faker'
   gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
