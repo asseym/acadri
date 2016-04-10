@@ -131,7 +131,6 @@ gem "smart_listing", github: "Sology/smart_listing"
 #internal messaging
 gem 'mailboxer', '~> 0.12.0'
 gem 'chosen-rails'
-
 gem 'faker', github: 'stympy/faker'
            
 
