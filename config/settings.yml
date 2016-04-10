@@ -5,12 +5,15 @@ opportunity_notify:
  - :ceo
  - :program_coordinator
  - :admin
+ - :superadmin
 
 user_creation_notify:
  - :ceo
  - :admin
+ - :superadmin
 
 can_see_general_dashboard:
+  - :superadmin
   - :admin
   - :ceo
   - :finance
