@@ -20,12 +20,12 @@
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
-role :app, %w{asseym@178.62.112.46}
-role :web, %w{asseym@178.62.112.46}
-role :db,  %w{asseym@178.62.112.46}
+role :app, %w{rails@178.62.112.46}
+role :web, %w{rails@178.62.112.46}
+role :db,  %w{rails@178.62.112.46}
 
 set :stage, :production
-server '178.62.112.46', roles: %w{web app db}, user: 'asseym'
+server '178.62.112.46', roles: %w{web app db}, user: 'rails'
 set :branch, 'master'
 
 # Configuration
