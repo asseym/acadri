@@ -93,12 +93,14 @@ class User < ActiveRecord::Base
   end
 
   def name=(name)
-    write_attribute(:name, to_s)
+    n = personal_details ? "#{personal_details.first_name} #{self.personal_details.other_names}" : 'Annonymous User'
+    write_attribute(:name, n)
   end
 
   def name
     # read_attribute(:name).downcase  # No test for nil?
-    self.name = to_s
+    n = personal_details ? "#{personal_details.first_name} #{self.personal_details.other_names}" : 'Annonymous User'
+    self.name = n
   end
 
   def mailboxer_email(object)

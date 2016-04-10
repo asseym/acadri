@@ -27,8 +27,7 @@
 roles = [:superadmin, :ceo, :program_coordinator, :finance, :manager, :staff, :admin, :guest]
 
 roles.each do |role|
-  usr = User.create!(name:  "#{role.to_s.humanize} User",
-                       email: "#{role.to_s}@example.com",
+  usr = User.create!(email: "#{role.to_s}@example.com",
                        password: "foobar311",
                        admin: true,
                        is_staff: true,
