@@ -77,11 +77,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  Rails.application.routes.default_url_options[:host] = 'localhost'
-  config.action_mailer.default_url_options = { host: 'localhost', port: 80 }
+  Rails.application.routes.default_url_options[:host] = '178.62.112.46'
+  config.action_mailer.default_url_options = { host: '178.62.112.46', port: 80 }
   config.action_mailer.delivery_method = :smtp
   # change to true to allow email to be sent during development
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 end
