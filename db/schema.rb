@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407084744) do
+ActiveRecord::Schema.define(version: 20160411071728) do
 
   create_table "accounts_invoice_items", force: :cascade do |t|
     t.integer  "accounts_invoice_id"
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(version: 20160407084744) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "expense_sub_categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "expense_category_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "expense_sub_categories", ["expense_category_id"], name: "index_expense_sub_categories_on_expense_category_id"
+
   create_table "expenses", force: :cascade do |t|
     t.string   "item"
     t.text     "description"
@@ -87,9 +96,12 @@ ActiveRecord::Schema.define(version: 20160407084744) do
     t.integer  "unit_price"
     t.integer  "tax"
     t.string   "invoice_ref"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "expense_sub_category_id"
   end
+
+  add_index "expenses", ["expense_sub_category_id"], name: "index_expenses_on_expense_sub_category_id"
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.integer "unsubscriber_id"

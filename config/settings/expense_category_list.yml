@@ -1,0 +1,23 @@
+expsense_categories:
+  Direct Course:
+    - Facilitator Fees
+    - Ground Travel and Accomodation
+    - Tickets and Visa
+    - Hire Costs
+    - Entertainment and Site Seeing
+    - Meals
+  Administrative:
+    - Transport
+    - Airtime
+  Operational:
+    - Fuel
+    - Salaries
+  Professional:
+    - Legal Fees
+    - Audit Fees
+  Finance:
+    - Bank Charges
+    - Money transfer Charges
+  Sales and Marketing:
+    - Transport
+    - Perdiems

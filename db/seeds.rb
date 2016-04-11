@@ -138,13 +138,6 @@ UserNotification.create(notification: n, user: User.first)
 ai = AccountsInvoice.create!(training: Training.find(1), invoice_date: today, invoice_terms: 'Payment must be send in dollars etc etc', currency: 'USD')
 ai.accounts_invoice_items = [AccountsInvoiceItem.create!(description: 'Training fees', units: 3, unit_cost: 1500), AccountsInvoiceItem.create!(description: 'Other fees', units: 3, unit_cost: 150), AccountsInvoiceItem.create!(description: 'Taxes 18%', units: 1, unit_cost: 674)]
 
-4.times do
-  Expense.create(item: Faker::Commerce.product_name,
-               description: Faker::Hipster.paragraph,
-               expense_date: today, qty: Faker::Number.between(1, 20), unit_price: Faker::Number.between(600, 1500),
-                 tax: Faker::Number.between(100, 600), invoice_ref: Faker::Address.zip)
-end
-
 3.times do
   Asset.create(name: Faker::Commerce.product_name,
                description: Faker::Hipster.paragraph,
@@ -182,5 +175,24 @@ end
                     start_date:today, end_date: today + 1.week, status: Task::TASK_STATUS[Faker::Number.between(0, 4)],
                     description: Faker::Hipster.paragraph)
 
-  Assignment.create!(task:ts, user: User.find(Faker::Number.between(0, 8)))
+  Assignment.create!(task:ts, user: User.find(Faker::Number.between(1, 8)))
+end
+
+Settings.add_source!("#{Rails.root}/config/settings/expense_category_list.yml")
+Settings.reload!
+cats = Settings.expsense_categories
+
+cats.each do |cat, items|
+  ec = ExpenseCategory.create!(name: cat)
+  items.each do |item|
+    ExpenseSubCategory.create!(expense_category: ec, name: item)
+  end
+end
+
+4.times do
+  Expense.create!(item: Faker::Commerce.product_name,
+                 description: Faker::Hipster.paragraph,
+                  expense_sub_category: ExpenseSubCategory.find(Faker::Number.between(1, 2)),
+                 expense_date: today, qty: Faker::Number.between(1, 20), unit_price: Faker::Number.between(600, 1500),
+                 tax: Faker::Number.between(100, 600), invoice_ref: Faker::Address.zip)
 end

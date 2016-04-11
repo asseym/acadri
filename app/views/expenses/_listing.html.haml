@@ -4,6 +4,7 @@
     %thead
       %tr
         %th= model_class.human_attribute_name(:item)
+        %th Exponse Category
         %th= smart_listing.sortable model_class.human_attribute_name(:expense_date), :expense_date
         %th= model_class.human_attribute_name(:qty)
         %th= model_class.human_attribute_name(:unit_price)
@@ -14,7 +15,7 @@
       - smart_listing.collection.each do |expense|
         %tr.editable{data: {id: expense.id}}
           = smart_listing.render object: expense, partial: 'expenses/expense', locals: {object: expense}
-      = smart_listing.item_new colspan: 8, link: new_expense_path
+      = smart_listing.item_new colspan: 9, link: new_expense_path
 
 = smart_listing.paginate
 = smart_listing.pagination_per_page_links
