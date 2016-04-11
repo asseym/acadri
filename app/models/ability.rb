@@ -45,7 +45,7 @@ class Ability
       # an ceo can do everything to the following
       can :manage, [AccountsInvoice, AccountsInvoiceItem, Category, Country, Notification,
                     Opportunity, Organisation, Participant, Participation, Program, ProgramDate, ProgramVenue, Training, UserNotification,
-                    Profile, ProfileBankDetail, ProfilePersonalDetail, ProfileContactDetail, ProfileGeneralDetail, StaticPage, User]
+                    ProfileBankDetail, ProfilePersonalDetail, ProfileContactDetail, ProfileGeneralDetail, StaticPage, User]
       # can [:read, :create, :update], Chart
       # an editor can only view the annual report
       # can :read, AnnualReport
@@ -64,7 +64,7 @@ class Ability
 
     elsif user.has_role? :manager
       can :manage, [Program, ProgramVenue, ProgramDate, Opportunity, OpportunityStatus, Organisation, Participant, Participation,
-                    Profile, ProfileBankDetail, ProfilePersonalDetail, ProfileContactDetail, ProfileGeneralDetail, Notification,
+                    ProfileBankDetail, ProfilePersonalDetail, ProfileContactDetail, ProfileGeneralDetail, Notification,
                  UserNotification]
       can :read, :all
 
@@ -78,14 +78,13 @@ class Ability
       can :manage, [UserNotification, Notification]
       can :read, :all
       can [:read, :update], User, :user => user
-      can :update, Profile, :user => user
+      can :update, :user => user
 
 
     elsif user.has_role? :guest
       can :manage, [UserNotification, Notification]
       can [:read, :update], User, :user => user
-      can :read, [StaticPage, Profile, ProfileContactDetail, ProfilePersonalDetail, ProfileBankDetail, ProfileGeneralDetail]
-      can :update, [Profile], :user => user
+      can :read, [StaticPage, ProfileContactDetail, ProfilePersonalDetail, ProfileBankDetail, ProfileGeneralDetail]
     end
 
   end
