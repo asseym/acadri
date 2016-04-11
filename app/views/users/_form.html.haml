@@ -19,7 +19,9 @@
       = af.input :religion
       = af.input :sex, collection: User::GENDER_TYPES
       = af.input :marital_status, collection: User::MARITAL_STATUS
-      = af.input :birthday, :as => :date, label_html: { class: 'col-sm-3' }
+      = af.input :birthday, :as => :date,start_year: Date.today.year - 90,
+                              end_year: Date.today.year - 12, discard_day: false,
+                              order: [:day, :month, :year], label_html: { class: 'col-sm-3' }
       = af.input :nationality
       = af.input :languages
 
@@ -28,7 +30,9 @@
       = af.input :title
       = af.input :education
       = af.input :staff_id, label: 'Staff ID'
-      = af.input :date_hired, :as => :date, label_html: { class: 'col-sm-3' }
+      = af.input :date_hired, :as => :date,start_year: Date.today.year - 20,
+                              end_year: Date.today.year, discard_day: false,
+                              order: [:day, :month, :year], label_html: { class: 'col-sm-3' }
       = af.input :passport_number
       = af.input :drivers_licence
       = af.input :salary
