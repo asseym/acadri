@@ -25,7 +25,7 @@ class ExpenseCategoriesController < ApplicationController
   # GET /expense_categories/new
   def new
     add_breadcrumb "expense_categories", :expense_categories_path, { :title => "Expense Categories" }
-    @expense_category = Expense.new
+    @expense_category = ExpenseCategory.new
   end
 
   # GET /expense_categories/1/edit
@@ -37,7 +37,7 @@ class ExpenseCategoriesController < ApplicationController
   # POST /expense_categories.json
   def create
     add_breadcrumb "expense_categories", :expense_categories_path, { :title => "Expense Categories" }
-    @expense_category = Expense.create(expense_category_params)
+    @expense_category = ExpenseCategory.create(expense_category_params)
   end
 
   # PATCH/PUT /expense_categories/1

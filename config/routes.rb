@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :expenses
   resources :expense_categories
+  resources :supply_item_categories
   resources :accounts_invoice_items
   resources :profile_general_details
   resources :profile_bank_details

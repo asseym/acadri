@@ -183,3 +183,6 @@ system_menu:
         Expense Categories:
           path: '/expense_categories'
           icon:
+        Supply Item Categories:
+          path: '/supply_item_categories'
+          icon:

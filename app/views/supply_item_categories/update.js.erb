@@ -1,0 +1,3 @@
+<%# update.js.erb %>
+<%= smart_listing_item :supply_item_categories, :update, @supply_item_category,
+                       @supply_item_category.valid? ? "supply_item_categories/supply_item_category" : "supply_item_categories/form" %>

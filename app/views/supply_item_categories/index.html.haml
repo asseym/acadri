@@ -1,6 +1,6 @@
-- model_class = ExpenseCategory
+- model_class = SupplyItemCategory
 - provide(:title, model_class.model_name.human.pluralize.titleize)
-- provide(:minor_title, 'list of expense categories')
+- provide(:minor_title, 'list of supply item categories')
 
 .portlet.box.green
   .portlet-title
@@ -10,11 +10,11 @@
       Table
     .tools
   .portlet-body
-    = smart_listing_controls_for(:expense_categories, {class: "form-inline text-right"}) do
+    = smart_listing_controls_for(:supply_item_categories, {class: "form-inline text-right"}) do
       .form-group.filter.input-append
         = text_field_tag :filter, '', class: "search form-control",
                                   placeholder: "Search...", autocomplete: :off
 
         %button.btn.btn-primary.disabled{type: :submit}
           %span.fa.fa-search
-    = smart_listing_render(:expense_categories)
+    = smart_listing_render(:supply_item_categories)
