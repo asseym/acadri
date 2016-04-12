@@ -1,0 +1,20 @@
+- model_class = ExpenseCategory
+- provide(:title, model_class.model_name.human.pluralize.titleize)
+- provide(:minor_title, 'list of program expense_categories')
+
+.portlet.box.green
+  .portlet-title
+    .caption
+      %i.fa.fa-cogs.fa-lg
+      = yield(:title)
+      Table
+    .tools
+  .portlet-body
+    = smart_listing_controls_for(:expense_categories, {class: "form-inline text-right"}) do
+      .form-group.filter.input-append
+        = text_field_tag :filter, '', class: "search form-control",
+                                  placeholder: "Search...", autocomplete: :off
+
+        %button.btn.btn-primary.disabled{type: :submit}
+          %span.fa.fa-search
+    = smart_listing_render(:expense_categories)

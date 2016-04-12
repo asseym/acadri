@@ -1,0 +1,3 @@
+<%# create.js.erb %>
+<%= smart_listing_item :expense_categories, :create, @expense_category,
+                       @expense_category.valid? ? "expense_categories/expense_category" : "expense_categories/form" %>

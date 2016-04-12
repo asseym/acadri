@@ -173,12 +173,6 @@ system_menu:
             - :superadmin
             - :admin
             - :ceo
-        Users:
-          path: '/users/'
-          icon:
-          accessible:
-            - :superadmin
-            - :ceo
         ProgramCategories:
           path: '/categories/'
           icon:
@@ -186,3 +180,6 @@ system_menu:
             - :superadmin
             - :admin
             - :ceo
+        Expense Categories:
+          path: '/expense_categories'
+          icon:

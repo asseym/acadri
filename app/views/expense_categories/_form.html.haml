@@ -1,0 +1,14 @@
+%td{colspan: 3}
+  = simple_form_for object, url: object.new_record? ? expense_categories_path : expense_category_path(object),
+                     remote: true,
+                     :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+    = f.input :name
+    %h3 Sub Categories
+    #expense_sub_categories
+      = f.simple_fields_for :expense_sub_categories do |sub_category|
+        = render 'expense_sub_category_fields', :f => sub_category, locals: {f: sub_category}
+      .links
+        = link_to_add_association 'Add a sub category', f, :expense_sub_categories
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-link.pull-right.cancel Cancel

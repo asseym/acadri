@@ -95,7 +95,7 @@ module ApplicationHelper
     calendar_list = ""
     Task.pending(current_user).each do |t|
       due = formatted_date(t.end_date)
-      txt = "#{truncate(t.title, 2)}, due: #{due}"
+      txt = "#{truncate(t.title, length: 15)}, due: #{due}"
       calendar_list += "<li>#{calendar_text(txt)}</li>"
     end
     return calendar_list.html_safe
