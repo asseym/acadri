@@ -73,8 +73,8 @@
                   .slimScrollBar{:style => "width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; background: rgb(99, 114, 131);"}
                   .slimScrollRail{:style => "width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(234, 234, 234);"}
 
-          %li.dropdown.dropdown-user.dropdown-dark
-            %a.dropdown-toggle{:href => "javascript:;", 'data-toggle' => "dropdown", 'data-hover' =>"dropdown", 'data-close-others' => "true"}
+          %li#header_usermenu.dropdown.dropdown-user.dropdown-dark
+            %a#usermenu-options.dropdown-toggle{:href => "javascript:;", 'data-toggle' => "dropdown", 'data-hover' =>"dropdown", 'data-close-others' => "true"}
               %span.username.username-hide-on-mobile
                 = current_user_name(current_user).split[0]
               = gravator_for(current_user, "img-circle", {:s => 50})

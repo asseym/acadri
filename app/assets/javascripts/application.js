@@ -9,8 +9,8 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require underscore
 //= require jack_up
@@ -20,8 +20,8 @@
 // require jquery-ui/tabs
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require bootstrap
 //= require twitter/bootstrap
-// require bootstrap
 //= require bootstrap-wysihtml5
 //= require chosen-jquery
 //= require turbolinks
@@ -29,6 +29,15 @@
 //= require cocoon
 //= require smart_listing
 //= require_tree .
+
+//$(document).on('ready page:load', function(){
+//    Metronic.init(); // init metronic core componets
+//    Layout.init(); // init layout
+//
+//    $('.wysihtml5').each(function(i, elem) {
+//        $(elem).wysihtml5();
+//    });
+//});
 
 
 //$(document).on('page:load', function(){
