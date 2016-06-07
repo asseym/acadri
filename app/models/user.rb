@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   GENDER_TYPES = [:Male, :Female]
   MARITAL_STATUS = [:Single, :Married, :Complicated]
   ROLES = [:admin, :ceo, :finance, :program_coordinator, :manager, :marketing, :guest, :staff, :superadmin]
+  ROLES_SHORT = [:admin, :ceo, :finance, :program_coordinator, :manager, :marketing, :guest, :staff]
 
   #mailboxer
   acts_as_messageable

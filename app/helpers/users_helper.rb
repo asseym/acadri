@@ -32,4 +32,8 @@ module UsersHelper
       user.profile_personal_detail.send(detail)
     end
   end
+
+  def is_superadmin(user)
+    user.has_role? :superadmin
+  end
 end

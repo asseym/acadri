@@ -8,7 +8,10 @@
     = f.input :email, label: 'Login Email'
     = f.input :password
     = f.input :password_confirmation
-    = f.input :roles, collection: User::ROLES
+    - if is_superadmin(object)
+      = f.input :roles, collection: User::ROLES, disabled: true
+    - else
+      = f.input :roles, collection: User::ROLES_SHORT
     = f.input :is_staff, as: :boolean
     = f.input :admin, as: :boolean
 
