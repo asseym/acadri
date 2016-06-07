@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411071728) do
+ActiveRecord::Schema.define(version: 20160421085913) do
 
   create_table "accounts_invoice_items", force: :cascade do |t|
     t.integer  "accounts_invoice_id"
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 20160411071728) do
   end
 
   add_index "accounts_invoices", ["training_id"], name: "index_accounts_invoices_on_training_id"
+
+  create_table "admissions", force: :cascade do |t|
+    t.integer  "training_id"
+    t.boolean  "admissions_sent",               default: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "admission_letter_file_name"
+    t.string   "admission_letter_content_type"
+    t.integer  "admission_letter_file_size"
+    t.datetime "admission_letter_updated_at"
+  end
+
+  add_index "admissions", ["training_id"], name: "index_admissions_on_training_id"
 
   create_table "assets", force: :cascade do |t|
     t.string   "name"

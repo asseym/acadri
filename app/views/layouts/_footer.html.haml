@@ -19,58 +19,15 @@
     });
 - else
   :javascript
-    //$(document).on('ready page:load', function(){
-    //    window['rangy'].initialized = false
-    //    $('.wysihtml5').each(function(i, elem) {
-    //      $(elem).wysihtml5();
-    //    });
-    //});
-    $(document).on('ready page:load', function(){
+    $(document).ready(function () {
       Metronic.init(); // init metronic core componets
       Layout.init(); // init layout
-    //  ////FormWizard.init();
-    //  //Index.init();
-    //  //Index.initDashboardDaterange();
-    //  //Index.initJQVMAP(); // init index page's custom scripts
-    //  //Index.initCalendar(); // init index page's custom scripts
-    //  //Index.initCharts(); // init index page's custom scripts
-    //  //Index.initChat();
-    //  //Index.initMiniCharts();
-    //  //Tasks.initDashboardWidget();
-    //
+
       $('.wysihtml5').each(function(i, elem) {
         $(elem).wysihtml5();
       });
 
-      //$('.form-control.datepicker').datepicker({
-      //  format: 'yyyy-mm-dd', //'mm/dd/yyyy',
-      //  altFormat: 'yyyy-mm-dd'
-      ////startDate: '-3d'
-      //});
-
-      //$('.form-wizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
-      //  var $total = navigation.find('li').length;
-      //  var $current = index+1;
-      //  var $percent = ($current/$total) * 100;
-      //  $('.form-wizard .progress-bar').css({width:$percent+'%'});
-      //}});
-
     });
-
-    //$(document).on("page:load ready", function(){
-    //  $("input.datepicker").datepicker();
-    ////});
-    //
-    //$(document).on("page:load ready", function(){
-    //  $("input.datepicker").datepicker({
-    //    format: 'yyyy-mm-dd',
-    //    altFormat: 'yyyy-mm-dd'
-    //  });
-    //});
-    //$(elem).wysihtml5({ toolbar:{ "fa": true } });
-    //$(document).on('page:load', function(){
-    //  window['rangy'].initialized = false
-    //});
 /END JAVASCRIPTS
 /END BODY
 %span.select2-hidden-accessible{:role => "status", 'aria-live' => "polite"}

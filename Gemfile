@@ -133,7 +133,12 @@ gem "smart_listing", github: "Sology/smart_listing"
 gem 'mailboxer', '~> 0.12.0'
 gem 'chosen-rails'
 gem 'faker', github: 'stympy/faker'
-           
+
+#async events publish and consumption
+# gem 'wisper', github: 'krisleech/wisper'
+gem 'wisper-activerecord'
+
+# gem 'remotipart'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

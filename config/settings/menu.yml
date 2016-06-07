@@ -22,7 +22,7 @@ system_menu:
           - :program_coordinator
           - :finance
       Admissions:
-        path: '#'
+        path: '/admissions/'
         icon:
         accessible:
           - :superadmin

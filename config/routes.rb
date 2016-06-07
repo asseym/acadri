@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :admissions
   resources :tasks
   resources :rfqs
   resources :suppliers

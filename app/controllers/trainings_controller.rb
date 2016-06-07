@@ -43,6 +43,9 @@ class TrainingsController < ApplicationController
   # POST /trainings.json
   def create
     @training = Training.create(training_params)
+    # @training = Training.new(training_params)
+    # @training.subscribe(Admission.new)
+    # @training.commit
     flash.now[:message] = 'Training was successfully created.'
   end
 
@@ -72,6 +75,10 @@ class TrainingsController < ApplicationController
                                        {:participations_attributes => [:id, :participant_id, :_destroy]}
 
       )
+    end
+
+    def create_admission
+      Admission.make_admission(@training)
     end
     
     def set_current_user

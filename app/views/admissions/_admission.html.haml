@@ -1,0 +1,7 @@
+%td= object.training
+%td
+  = link_to object.admission_letter.url do
+    = object.admission_letter_file_name ? object.admission_letter_file_name : 'not uploaded'
+%td= send_admission_button(object)
+%td.actions{width:"120px;"}= smart_listing_item_actions [{name: :edit, url: edit_admission_path(object)},
+{name: :destroy, url: admission_path(object), confirmation: "Are you sure you want to delete this item?"}]

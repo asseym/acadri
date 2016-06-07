@@ -1,0 +1,19 @@
+%td{colspan: 4}
+  = simple_form_for object, url: object.new_record? ? admissions_path : admission_path(object),
+                     remote: true,
+                     :html => { :class => "form-horizontal", multipart: true }, wrapper: :horizontal_form , wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+
+    = f.association :training
+    - object.training.participants.each do |participant|
+      = f.input :participants do
+        = check_box_tag "participants[participant_ids][]", participant.id, object.training.participants.include?(participant)
+        = label_tag participant
+    .file-drop
+      -#%span{ 'data-placeholder' => 'Drop files here' } Drop files here
+    = f.input :admission_letter, as: :file, input_html: {class: "standard-attachment",
+    accept: "application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document", multiple: :multiple }
+
+    = f.submit "Save", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    -#= f.button "Save & Send Admissions", class: "btn btn-primary pull-right", :disable_with => 'Please wait ...'
+    %button.btn.btn-primary.pull-right.send-admission Save & Send Admissions
+    %button.btn.btn-link.pull-right.cancel Cancel

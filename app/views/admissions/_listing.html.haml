@@ -1,0 +1,16 @@
+- model_class = Admission
+.table-scrollable
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= smart_listing.sortable model_class.human_attribute_name(:training), :training
+        %th= model_class.human_attribute_name(:admission_letter)
+        %th{colspan: 2}= model_class.human_attribute_name(:admission_sent)
+    %tbody
+      - smart_listing.collection.each do |admission|
+        %tr.editable{data: {id: admission.id}}
+          = smart_listing.render object: admission, partial: 'admissions/admission', locals: {object: admission}
+      = smart_listing.item_new colspan: 4, link: new_admission_path
+
+= smart_listing.paginate
+= smart_listing.pagination_per_page_links

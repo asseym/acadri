@@ -36,12 +36,12 @@ class Ability
       can :manage, :all
 
 
-    elsif user.has_role? :admin
+    elsif user.has_role? :ceo
       # an admin can do everything
       can :manage, :all
 
 
-    elsif user.has_role? :ceo
+    elsif user.has_role? :admin
       # an ceo can do everything to the following
       can :manage, [AccountsInvoice, AccountsInvoiceItem, Category, Country, Notification,
                     Opportunity, Organisation, Participant, Participation, Program, ProgramDate, ProgramVenue, Training, UserNotification,

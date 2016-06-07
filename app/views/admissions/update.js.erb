@@ -1,0 +1,3 @@
+<%# update.js.erb %>
+<%= smart_listing_item :admissions, :update, @admission,
+                       @admission.valid? ? "admissions/admission" : "admissions/form" %>

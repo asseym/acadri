@@ -7,7 +7,7 @@ class AssetsController < ApplicationController
   before_action :set_asset, only: [:show, :edit, :update, :destroy]
 
   add_breadcrumb "home", :root_path, { :title => "Home" }
-  add_breadcrumb "sales", :root_path, { :title => "Sales" }
+  add_breadcrumb "accounts", :root_path, { :title => "Accounts" }
   def index
     add_breadcrumb "assets", :assets_path, { :title => "Assets" }
     assets_scope = Asset.all
